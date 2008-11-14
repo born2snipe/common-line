@@ -8,12 +8,12 @@ import java.util.Arrays;
 import flapjack.layout.RecordLayout;
 
 
-public class CommoneLineRecordLayoutResolverTest extends TestCase {
-    private CommoneLineRecordLayoutResolver resolver;
+public class CommonLineRecordLayoutResolverTest extends TestCase {
+    private CommonLineRecordLayoutResolver resolver;
 
     protected void setUp() throws Exception {
         super.setUp();
-        resolver = new CommoneLineRecordLayoutResolver();
+        resolver = new CommonLineRecordLayoutResolver();
         resolver.setRecordLayouts(Arrays.asList(new RecordLayout[]{new StubRecordLayout("@1")}));
     }
 

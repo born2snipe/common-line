@@ -2,25 +2,23 @@ package commonline.cl4.response.parser;
 
 import commonline.cl4.response.layout.*;
 import commonline.cl4.response.model.ResponseRecordFactoryResolver;
-import commonline.core.parser.CommoneLineRecordLayoutResolver;
+import commonline.core.parser.CommonLineRecordLayoutResolver;
+import commonline.core.parser.AbstractCommonLineRecordParser;
+import flapjack.parser.RecordParserImpl;
+import flapjack.parser.StringRecordFieldParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import flapjack.parser.RecordParserImpl;
-import flapjack.parser.StringRecordFieldParser;
 
-
-public class ResponseParser extends RecordParserImpl {
+public class ResponseParser extends AbstractCommonLineRecordParser {
 
     public ResponseParser() {
-        CommoneLineRecordLayoutResolver resolver = new CommoneLineRecordLayoutResolver();
-        List recordLayouts = new ArrayList();
-        initializeRecordLayouts(recordLayouts);
-        resolver.setRecordLayouts(recordLayouts);
-        setRecordFieldParser(new StringRecordFieldParser());
-        setRecordLayoutResolver(resolver);
         setRecordFactoryResolver(new ResponseRecordFactoryResolver());
+    }
+
+    protected CommonLineRecordLayoutResolver createRecordLayoutResolver() {
+        return new CommonLineRecordLayoutResolver();
     }
 
     protected void initializeRecordLayouts(List recordLayouts) {

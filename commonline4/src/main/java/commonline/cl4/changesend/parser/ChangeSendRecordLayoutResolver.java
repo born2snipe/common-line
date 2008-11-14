@@ -1,9 +1,9 @@
 package commonline.cl4.changesend.parser;
 
-import commonline.core.parser.CommoneLineRecordLayoutResolver;
+import commonline.core.parser.CommonLineRecordLayoutResolver;
 import flapjack.layout.RecordLayout;
 
-public class ChangeSendRecordLayoutResolver extends CommoneLineRecordLayoutResolver {
+public class ChangeSendRecordLayoutResolver extends CommonLineRecordLayoutResolver {
 
     public RecordLayout resolve(byte[] bytes) {
         if (0 == bytes.length) {

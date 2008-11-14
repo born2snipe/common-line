@@ -1,7 +1,7 @@
 package commonline.cl4.response.parser;
 
 import commonline.cl4.response.layout.*;
-import commonline.core.parser.CommoneLineRecordLayoutResolver;
+import commonline.core.parser.CommonLineRecordLayoutResolver;
 import junit.framework.TestCase;
 
 import java.util.Iterator;
@@ -16,9 +16,9 @@ public class ResponseParserTest extends TestCase {
 
         RecordLayoutResolver recordLayoutResolver = parser.getRecordLayoutResolver();
         assertNotNull(recordLayoutResolver);
-        assertTrue(recordLayoutResolver instanceof CommoneLineRecordLayoutResolver);
+        assertTrue(recordLayoutResolver instanceof CommonLineRecordLayoutResolver);
 
-        CommoneLineRecordLayoutResolver resolver = (CommoneLineRecordLayoutResolver) recordLayoutResolver;
+        CommonLineRecordLayoutResolver resolver = (CommonLineRecordLayoutResolver) recordLayoutResolver;
         assertContainsRecordLayout(AlternativeLoanRecordLayout.class, resolver);
         assertContainsRecordLayout(SupplementalBorrowerInformationRecordLayout.class, resolver);
         assertContainsRecordLayout(HeaderRecordLayout.class, resolver);
@@ -29,7 +29,7 @@ public class ResponseParserTest extends TestCase {
         assertEquals(7, resolver.getRecordLayouts().size());
     }
 
-    private void assertContainsRecordLayout(Class clazz, CommoneLineRecordLayoutResolver resolver) {
+    private void assertContainsRecordLayout(Class clazz, CommonLineRecordLayoutResolver resolver) {
         Iterator it = resolver.getRecordLayouts().iterator();
         while (it.hasNext()) {
             Object obj = it.next();

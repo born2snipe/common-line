@@ -8,7 +8,7 @@ import flapjack.parser.RecordLayoutResolver;
 import flapjack.layout.RecordLayout;
 
 
-public class CommoneLineRecordLayoutResolver implements RecordLayoutResolver {
+public class CommonLineRecordLayoutResolver implements RecordLayoutResolver {
     private Map recordLayouts = new HashMap();
 
     public RecordLayout resolve(byte[] bytes) {
