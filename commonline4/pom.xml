@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project>
+
+    <parent>
+        <groupId>commonline</groupId>
+        <artifactId>commonline-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>commonline</groupId>
+    <artifactId>commonline4</artifactId>
+    <name>Commonline 4 Spec</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>commonline</groupId>
+            <artifactId>commonline-core</artifactId>
+            <version>${version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commonline</groupId>
+            <artifactId>commonline-test</artifactId>
+            <version>${version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

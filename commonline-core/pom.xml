@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<project>
+
+    <parent>
+        <groupId>commonline</groupId>
+        <artifactId>commonline-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>commonline</groupId>
+    <artifactId>commonline-core</artifactId>
+    <name>Commonline Core</name>
+    <version>0.0.1-SNAPSHOT</version>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>flapjack</groupId>
+            <artifactId>flapjack</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jmock</groupId>
+            <artifactId>jmock</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
