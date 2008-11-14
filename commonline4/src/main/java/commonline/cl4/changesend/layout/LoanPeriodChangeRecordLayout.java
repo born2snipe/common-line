@@ -2,7 +2,13 @@ package commonline.cl4.changesend.layout;
 
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
-
+/**
+ * NCHELP CommonLine® Network for FFELP and Alternative Loans
+ * <p/>
+ * Change Send File
+ * <p/>
+ * LOAN PERIOD CHANGE (@1-07) DETAIL RECORD(S)
+ */
 public class LoanPeriodChangeRecordLayout extends AbstractCommonLineRecordLayout {
 
     public LoanPeriodChangeRecordLayout() {
