@@ -11,8 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class LoanPeriodChangeRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public LoanPeriodChangeRecordLayout() {
-        super();
+    protected void defineFields() {
         fixedNumber("Record Type", 2);
         fixedNumber("Borrower SSN", 9);
         fixedNumber("School ID", 8);

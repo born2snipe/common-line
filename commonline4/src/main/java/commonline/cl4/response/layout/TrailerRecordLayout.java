@@ -11,7 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class TrailerRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public TrailerRecordLayout() {
+    protected void defineFields() {
         number("Response (@1) Detail Record Count", 6);
         number("Unique Supplemental (@2) Detail Record Count", 6);
         number("Special Messages (@3) Detail Record Count", 6);

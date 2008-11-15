@@ -11,8 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class SupplementalBorrowerInformationRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public SupplementalBorrowerInformationRecordLayout() {
-        super();
+    protected void defineFields() {
         fixedText("Supplemental Borrower Information Layout Owner Code", 4);
         fixedText("Supplemental Borrower Information Layout Identifier Code", 2);
         text("E-mail Address", 256);

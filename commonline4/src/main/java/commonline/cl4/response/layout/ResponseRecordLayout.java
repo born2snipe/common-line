@@ -5,7 +5,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 public class ResponseRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public ResponseRecordLayout() {
+    protected void defineFields() {
         fixedText("Record Status Code", 1);
         fixedNumber("Date Record Status Last Updated (CCYYMMDD)", 8);
         text("Borrower Last Name", 35);

@@ -11,7 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class UniqueSupplementDetailRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public UniqueSupplementDetailRecordLayout() {
+    protected void defineFields() {
         text("Unique Supplemental Vendor Code", 4);
         fixedText("Unique Supplemental Layout Identifier Code", 2);
         filler(1031);
@@ -20,4 +20,5 @@ public class UniqueSupplementDetailRecordLayout extends AbstractCommonLineRecord
     public String getCode() {
         return "@2";
     }
+
 }

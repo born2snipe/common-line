@@ -11,7 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class HeaderRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public HeaderRecordLayout() {
+    protected void defineFields() {
         text("Software Product Code", 4);
         text("Software Version", 4);
         text("Batch ID", 12);

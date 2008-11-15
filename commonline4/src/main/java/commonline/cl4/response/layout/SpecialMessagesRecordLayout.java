@@ -11,7 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class SpecialMessagesRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public SpecialMessagesRecordLayout() {
+    protected void defineFields() {
         text("Message 1", 160);
         text("Message 2", 160);
         text("Message 3", 160);

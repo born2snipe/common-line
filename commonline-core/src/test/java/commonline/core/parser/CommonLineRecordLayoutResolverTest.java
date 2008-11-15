@@ -43,5 +43,9 @@ public class CommonLineRecordLayoutResolverTest extends TestCase {
         public String getCode() {
             return code;
         }
+
+        protected void defineFields() {
+
+        }
     }
 }

@@ -16,8 +16,14 @@ public abstract class AbstractCommonLineRecordLayout implements CommonLineRecord
 
     protected AbstractCommonLineRecordLayout() {
         recordCodeField();
+        defineFields();
         addTrailingFields();
     }
+
+    /**
+     * Define the fields in the record
+     */
+    protected abstract void defineFields();
 
     /**
      * Adds a filler field to the current record layout
@@ -93,14 +99,14 @@ public abstract class AbstractCommonLineRecordLayout implements CommonLineRecord
     }
 
     private void addMiddleField(CommonLineFieldDefinition fieldDefinition, boolean moveTrailingFields) {
-        if (moveTrailingFields) {
-            removeTrailingFields();
-        }
+//        if (moveTrailingFields) {
+//            removeTrailingFields();
+//        }
         fieldDefinitions.add(fieldDefinition);
         offset += fieldDefinition.getLength();
-        if (moveTrailingFields) {
-            addTrailingFields();
-        }
+//        if (moveTrailingFields) {
+//            addTrailingFields();
+//        }
     }
 
     private void addTrailingFields() {

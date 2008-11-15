@@ -11,8 +11,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  */
 public class AlternativeLoanRecordLayout extends AbstractCommonLineRecordLayout {
 
-    public AlternativeLoanRecordLayout() {
-        super();
+    protected void defineFields() {
         fixedText("Alternative Loan Layout Owner Code", 4);
         fixedText("Alternative Loan Layout Identifier Code", 2);
         number("Federal Stafford Loan Debt", 5);
