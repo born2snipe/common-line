@@ -18,7 +18,9 @@ public abstract class AbstractCommonLineRecordParser extends RecordParserImpl {
         setRecordLayoutResolver(resolver);
     }
 
-    protected abstract CommonLineRecordLayoutResolver createRecordLayoutResolver();
+    protected CommonLineRecordLayoutResolver createRecordLayoutResolver() {
+        return new CommonLineRecordLayoutResolver();
+    }
 
     protected abstract void initializeRecordLayouts(List recordLayouts);
 }
