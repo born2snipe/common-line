@@ -25,12 +25,6 @@
                 <version>3.8.1</version>
             </dependency>
 
-            <dependency>
-                <groupId>jmock</groupId>
-                <artifactId>jmock</artifactId>
-                <version>1.2.0</version>
-            </dependency>
-
         </dependencies>
 
     </dependencyManagement>
