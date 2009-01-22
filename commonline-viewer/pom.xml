@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project>
+
+    <parent>
+        <groupId>commonline</groupId>
+        <artifactId>commonline-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>commonline</groupId>
+    <artifactId>commonline-viewer</artifactId>
+    <name>Commonline File Viewer</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>commonline</groupId>
+            <artifactId>commonline4</artifactId>
+            <version>${version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>
