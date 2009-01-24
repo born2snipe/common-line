@@ -2,8 +2,8 @@ package commonline.cl4.response.model;
 
 import junit.framework.TestCase;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class SpecialMessagesRecordFactoryTest extends TestCase {
@@ -11,8 +11,8 @@ public class SpecialMessagesRecordFactoryTest extends TestCase {
     public void test() {
         SpecialMessagesRecordFactory factory = new SpecialMessagesRecordFactory();
 
-        List fields = Arrays.asList(new String[]{
-           "@3", "message1","message2","message3","message4","message5", "filler", "*", "\r\n"
+        List fields = Arrays.asList(new byte[][]{
+                "@3".getBytes(), "message1".getBytes(), "message2".getBytes(), "message3".getBytes(), "message4".getBytes(), "message5".getBytes(), "filler".getBytes(), "*".getBytes(), "\r\n".getBytes()
         });
 
         Object obj = factory.build(fields, null);

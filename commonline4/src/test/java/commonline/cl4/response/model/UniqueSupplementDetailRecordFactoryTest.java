@@ -11,13 +11,13 @@ public class UniqueSupplementDetailRecordFactoryTest extends TestCase {
     public void test() {
         UniqueSupplementDetailRecordFactory factory = new UniqueSupplementDetailRecordFactory();
 
-        List fields = Arrays.asList(new String[]{
-                "@2",
-                "vendorCode",
-                "idCode",
-                "filler",
-                "*",
-                "\r\n"
+        List fields = Arrays.asList(new byte[][]{
+                "@2".getBytes(),
+                "vendorCode".getBytes(),
+                "idCode".getBytes(),
+                "filler".getBytes(),
+                "*".getBytes(),
+                "\r\n".getBytes()
         });
 
         Object obj = factory.build(fields, null);

@@ -16,32 +16,32 @@ public class HeaderRecordFactoryTest extends TestCase {
     public void setUp() {
         fields = new ArrayList();
 
-        fields.addAll(Arrays.asList(new String[]{
-                "@H",
-                " 123",
-                "  12",
-                "batchId",
-                "20000120",
-                "012030",
-                "20000122",
-                "112530",
-                "idName",
-                "idCode",
-                "recipientName",
-                "recipientId",
-                "filler",
-                "recipientNonEdBranchId",
-                "recipientTypeCode",
-                "sourceName",
-                "sourceId",
-                "filler",
-                "sourceNonEdBranchId",
-                "mediaTypeCode",
-                "dunsRecipientId",
-                "dunsSourceId",
-                "filler",
-                "*",
-                "\r\n"
+        fields.addAll(Arrays.asList(new byte[][]{
+                "@H".getBytes(),
+                " 123".getBytes(),
+                "  12".getBytes(),
+                "batchId".getBytes(),
+                "20000120".getBytes(),
+                "012030".getBytes(),
+                "20000122".getBytes(),
+                "112530".getBytes(),
+                "idName".getBytes(),
+                "idCode".getBytes(),
+                "recipientName".getBytes(),
+                "recipientId".getBytes(),
+                "filler".getBytes(),
+                "recipientNonEdBranchId".getBytes(),
+                "recipientTypeCode".getBytes(),
+                "sourceName".getBytes(),
+                "sourceId".getBytes(),
+                "filler".getBytes(),
+                "sourceNonEdBranchId".getBytes(),
+                "mediaTypeCode".getBytes(),
+                "dunsRecipientId".getBytes(),
+                "dunsSourceId".getBytes(),
+                "filler".getBytes(),
+                "*".getBytes(),
+                "\r\n".getBytes()
         }));
     }
 

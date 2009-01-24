@@ -11,31 +11,31 @@ public class TrailerRecordFactoryTest extends TestCase {
     public void test() {
         TrailerRecordFactory factory = new TrailerRecordFactory();
 
-        List fields = Arrays.asList(new String[]{
-                "@T",
-                "1",
-                "2",
-                "3",
-                "20000101",
-                "000000",
-                "fileIdCode",
-                "recipientName",
-                "recipientId",
-                "filler",
-                "recipientNonEdBranchId",
-                "sourceName",
-                "sourceId",
-                "filler",
-                "sourceNonEdBranchId",
-                "4",
-                "5",
-                "6",
-                "7",
-                "dunsRecipientId",
-                "dunsSourceId",
-                "filler",
-                "*",
-                "\r\n"
+        List fields = Arrays.asList(new byte[][]{
+                "@T".getBytes(),
+                "1".getBytes(),
+                "2".getBytes(),
+                "3".getBytes(),
+                "20000101".getBytes(),
+                "000000".getBytes(),
+                "fileIdCode".getBytes(),
+                "recipientName".getBytes(),
+                "recipientId".getBytes(),
+                "filler".getBytes(),
+                "recipientNonEdBranchId".getBytes(),
+                "sourceName".getBytes(),
+                "sourceId".getBytes(),
+                "filler".getBytes(),
+                "sourceNonEdBranchId".getBytes(),
+                "4".getBytes(),
+                "5".getBytes(),
+                "6".getBytes(),
+                "7".getBytes(),
+                "dunsRecipientId".getBytes(),
+                "dunsSourceId".getBytes(),
+                "filler".getBytes(),
+                "*".getBytes(),
+                "\r\n".getBytes()
         });
 
         Object obj = factory.build(fields, null);

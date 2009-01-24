@@ -12,23 +12,23 @@ public class SupplementalBorrowerInformationRecordFactoryTest extends TestCase {
     public void test() {
         SupplementalBorrowerInformationRecordFactory factory = new SupplementalBorrowerInformationRecordFactory();
 
-        List fields = Arrays.asList(new String[]{
-            "@7",
-            "ownerCode",
-            "idCode",
-            "emailAddress",
-            "emailAddressValidityIndicator",
-            "20001120",
-            "line1",
-            "line2",
-            "city",
-            "state",
-            "12345",
-            "1234",
-            "foreignPostal",
-            "filler",
-            "*",
-            "\r\n"
+        List fields = Arrays.asList(new byte[][]{
+            "@7".getBytes(),
+            "ownerCode".getBytes(),
+            "idCode".getBytes(),
+            "emailAddress".getBytes(),
+            "emailAddressValidityIndicator".getBytes(),
+            "20001120".getBytes(),
+            "line1".getBytes(),
+            "line2".getBytes(),
+            "city".getBytes(),
+            "state".getBytes(),
+            "12345".getBytes(),
+            "1234".getBytes(),
+            "foreignPostal".getBytes(),
+            "filler".getBytes(),
+            "*".getBytes(),
+            "\r\n".getBytes()
         });
 
         Object obj = factory.build(fields, null);
