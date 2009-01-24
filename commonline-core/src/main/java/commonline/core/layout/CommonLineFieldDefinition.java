@@ -1,30 +1,8 @@
 package commonline.core.layout;
 
-import flapjack.layout.FieldDefinition;
+import flapjack.cobol.layout.CobolFieldDefinition;
 
-/**
- * Represents the definition of a field
- */
-public interface CommonLineFieldDefinition extends FieldDefinition {
 
-    /**
-     * The data type of the field
-     *
-     * @return
-     */
-    Type getType();
-
-    /**
-     * The justification of the field layout
-     *
-     * @return
-     */
-    Justified getJustified();
-
-    /**
-     * The type of padding used
-     *
-     * @return
-     */
-    Padding getPadding();
+public interface CommonlineFieldDefinition extends CobolFieldDefinition {
+    String getId();
 }

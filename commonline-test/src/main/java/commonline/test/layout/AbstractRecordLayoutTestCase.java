@@ -1,4 +1,4 @@
-package commonline.cl4.appsend.layout;
+package commonline.test.layout;
 
 import commonline.core.layout.*;
 import flapjack.layout.FieldDefinition;
@@ -41,7 +41,7 @@ public abstract class AbstractRecordLayoutTestCase extends TestCase {
         List ids = new ArrayList();
         Iterator it = layout.getFieldDefinitions().iterator();
         while (it.hasNext()) {
-            NewCommonlineFieldDefinition fieldDef = (NewCommonlineFieldDefinition) it.next();
+            CommonlineFieldDefinition fieldDef = (CommonlineFieldDefinition) it.next();
             assertFalse("Found duplicate id, '" + fieldDef.getId() + "'", ids.contains(fieldDef.getId()));
             ids.add(fieldDef.getId());
         }

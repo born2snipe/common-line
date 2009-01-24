@@ -1,6 +1,7 @@
 package commonline.cl4.appsend.layout;
 
 import flapjack.layout.RecordLayout;
+import commonline.test.layout.AbstractRecordLayoutTestCase;
 
 public class AlternativeLoanDetailRecordLayoutTest extends AbstractRecordLayoutTestCase {
 

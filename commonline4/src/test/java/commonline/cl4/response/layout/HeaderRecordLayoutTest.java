@@ -1,6 +1,6 @@
 package commonline.cl4.response.layout;
 
-import commonline.cl4.appsend.layout.AbstractRecordLayoutTestCase;
+import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 

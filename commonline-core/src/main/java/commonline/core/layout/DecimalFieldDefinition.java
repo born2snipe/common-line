@@ -1,7 +1,7 @@
 package commonline.core.layout;
 
 
-public class DecimalFieldDefinition extends flapjack.cobol.layout.DecimalFieldDefinition implements NewCommonlineFieldDefinition {
+public class DecimalFieldDefinition extends flapjack.cobol.layout.DecimalFieldDefinition implements CommonlineFieldDefinition {
     private String id;
 
     public DecimalFieldDefinition(String id, String name, int position, String pattern) {

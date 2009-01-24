@@ -1,7 +1,7 @@
 package commonline.core.layout;
 
 
-public class IntegerFieldDefinition extends flapjack.cobol.layout.IntegerFieldDefinition implements NewCommonlineFieldDefinition {
+public class IntegerFieldDefinition extends flapjack.cobol.layout.IntegerFieldDefinition implements CommonlineFieldDefinition {
     private String id;
 
     public IntegerFieldDefinition(String id, String name, int position, String pattern) {

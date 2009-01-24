@@ -1,11 +1,9 @@
 package commonline.cl4;
 
-import commonline.cl4.changesend.layout.TrailerRecordLayout;
-import commonline.cl4.changesend.layout.LoanPeriodChangeRecordLayout;
 import commonline.cl4.response.layout.SupplementalBorrowerInformationRecordLayout;
 import commonline.core.layout.DecimalFieldDefinition;
 import commonline.core.layout.IntegerFieldDefinition;
-import commonline.core.layout.NewCommonlineFieldDefinition;
+import commonline.core.layout.CommonlineFieldDefinition;
 import commonline.core.layout.TextFieldDefinition;
 import flapjack.layout.RecordLayout;
 
@@ -18,7 +16,7 @@ public class Blah {
 
         Iterator it = layout.getFieldDefinitions().iterator();
         while (it.hasNext()) {
-            NewCommonlineFieldDefinition fieldDef = (NewCommonlineFieldDefinition) it.next();
+            CommonlineFieldDefinition fieldDef = (CommonlineFieldDefinition) it.next();
             if (fieldDef instanceof DecimalFieldDefinition) {
                 System.out.print("assertDecimal(");
             } else if (fieldDef instanceof IntegerFieldDefinition) {
