@@ -1,3 +1,15 @@
+/**
+ * Copyright 2008-2009 the original author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at:
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ */
 package commonline.cl4.appsend.layout;
 
 import flapjack.layout.RecordLayout;
@@ -54,11 +66,11 @@ public class AlternativeLoanDetailRecordLayoutTest extends AbstractRecordLayoutT
         assertText("46", "Cosigner 2 Foreign Postal Code", 440, 14);
         assertText("47", "Student Major", 454, 15);
         assertInteger("48", "Cosigner 1 Date of Birth", 469, 8);
-        assertText("49", "Cosigner 1 DriverÕs License State", 477, 2);
-        assertText("50", "Cosigner 1 DriverÕs License Number", 479, 20);
+        assertText("49", "Cosigner 1 Driverï¿½s License State", 477, 2);
+        assertText("50", "Cosigner 1 Driverï¿½s License Number", 479, 20);
         assertInteger("51", "Cosigner 2 Date of Birth", 499, 8);
-        assertText("52", "Cosigner 2 DriverÕs License State", 507, 2);
-        assertText("53", "Cosigner 2 DriverÕs License Number", 509, 20);
+        assertText("52", "Cosigner 2 Driverï¿½s License State", 507, 2);
+        assertText("53", "Cosigner 2 Driverï¿½s License Number", 509, 20);
         assertText("54", "Filler", 529, 20);
         assertText("55", "Student School Phone", 549, 10);
         assertText("56", "Cosigner 1 Relationship to Student", 559, 1);

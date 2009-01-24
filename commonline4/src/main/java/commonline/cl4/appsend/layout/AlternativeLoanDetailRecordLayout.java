@@ -1,9 +1,21 @@
+/**
+ * Copyright 2008-2009 the original author or authors.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at:
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ */
 package commonline.cl4.appsend.layout;
 
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 /**
- * NCHELP CommonLine¨ Network for FFELP and Alternative Loans
+ * NCHELP CommonLineï¿½ Network for FFELP and Alternative Loans
  * <p/>
  * Application Send File
  * <p/>
@@ -58,11 +70,11 @@ public class AlternativeLoanDetailRecordLayout extends AbstractCommonLineRecordL
         field("46", "Cosigner 2 Foreign Postal Code", "X(014)");
         field("47", "Student Major", "X(015)");
         field("48", "Cosigner 1 Date of Birth", "9(008)");
-        field("49", "Cosigner 1 DriverÕs License State", "X(002)");
-        field("50", "Cosigner 1 DriverÕs License Number", "X(020)");
+        field("49", "Cosigner 1 Driverï¿½s License State", "X(002)");
+        field("50", "Cosigner 1 Driverï¿½s License Number", "X(020)");
         field("51", "Cosigner 2 Date of Birth", "9(008)");
-        field("52", "Cosigner 2 DriverÕs License State", "X(002)");
-        field("53", "Cosigner 2 DriverÕs License Number", "X(020)");
+        field("52", "Cosigner 2 Driverï¿½s License State", "X(002)");
+        field("53", "Cosigner 2 Driverï¿½s License Number", "X(020)");
         field("54", "Filler", "X(020)");
         field("55", "Student School Phone", "X(010)");
         field("56", "Cosigner 1 Relationship to Student", "X(001)");
