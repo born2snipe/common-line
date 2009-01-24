@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>flapjack</groupId>
-            <artifactId>flapjack</artifactId>
+            <artifactId>flapjack-cobol</artifactId>
         </dependency>
 
         <dependency>

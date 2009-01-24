@@ -12,28 +12,29 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
 public class BorrowerDetailRecordLayout extends AbstractCommonLineRecordLayout {
 
     protected void defineFields() {
-        fixedNumber("Record Type", 2);
-        fixedNumber("Borrower SSN", 9);
-        fixedNumber("School ID", 8);
-        filler(3);
-        fixedText("School Non-ED Branch ID", 4);
-        text("Recipient ID", 8);
-        filler(3);
-        text("Recipient Non-ED Branch ID", 4);
-        filler(12);
-        text("Borrower Last Name", 35);
-        text("Borrower First Name", 12);
-        fixedText("Borrower Middle Initial", 1);
-        fixedNumber("Borrower Date of Birth (CCYYMMDD)", 8);
-        fixedText("Record Status", 1);
-        fixedText("Date/Time Stamp (CCYYMMDDHHMMSSNNNNNN)", 20);
-        fixedText("DUNS School ID", 9);
-        fixedText("DUNS Recipient ID", 9);
-        filler(183);
-        fixedText("School Use Only", 23);
-        fixedText("Lender Use Only", 20);
-        fixedText("Guarantor Use Only", 23);
-        filler(80);
+        field("2", "Record Type", "9(002)");
+        field("3", "Borrower SSN", "9(009)");
+        field("4", "School ID", "9(008)");
+        field("5", "Filler", "X(003)");
+        field("6", "School Non-ED Branch ID", "X(004)");
+        field("7", "Recipient ID", "X(008)");
+        field("8", "Filler", "X(003)");
+        field("9", "Recipient Non-ED Branch ID", "X(004)");
+        field("10", "Filler", "X(012)");
+        field("11", "Borrower Last Name", "X(035)");
+        field("12", "Borrower First Name", "X(012)");
+        field("13", "Borrower Middle Initial", "X(001)");
+        field("14", "Borrower Date of Birth (CCYYMMDD)", "9(008)");
+        field("15", "Record Status", "X(001)");
+        field("16", "Date/Time Stamp(CCYYMMDDHHMMSSNNNNNN)", "X(020)");
+        field("17", "DUNS School ID", "X(009)");
+        field("18", "DUNS Recipient ID", "X(009)");
+        field("19", "Filler", "X(183)");
+        field("20", "School Use Only", "X(023)");
+        field("21", "Lender Use Only", "X(020)");
+        field("22", "Guarantor Use Only", "X(023)");
+        field("23", "Filler", "X(080)");
+        recordTerminator("24");
     }
 
     public String getCode() {

@@ -1,33 +1,43 @@
 package commonline.cl4.response.layout;
 
-import commonline.test.layout.CommonLineRecordLayoutTestCase;
+import commonline.cl4.appsend.layout.AbstractRecordLayoutTestCase;
+import flapjack.layout.RecordLayout;
 
 
-public class SupplementalBorrowerInformationRecordLayoutTest extends CommonLineRecordLayoutTestCase {
+public class SupplementalBorrowerInformationRecordLayoutTest extends AbstractRecordLayoutTestCase {
 
-    public void test() {
-        SupplementalBorrowerInformationRecordLayout layout = new SupplementalBorrowerInformationRecordLayout();
+    protected RecordLayout createRecordLayout() {
+        return new SupplementalBorrowerInformationRecordLayout();
+    }
 
-        assertEquals("@7", layout.getCode());
-        assertRecordCodeField(layout.getFieldDefinitions());
+    protected int recordLength() {
+        return 1040;
+    }
 
-        int i = 1;
-        assertFixedTextField("Supplemental Borrower Information Layout Owner Code", 3, 4, layout.getFieldDefinitions().get(i++));
-        assertFixedTextField("Supplemental Borrower Information Layout Identifier Code", 7, 2, layout.getFieldDefinitions().get(i++));
-        assertTextField("E-mail Address", 9, 256, layout.getFieldDefinitions().get(i++));
-        assertTextField("E-mail Address Validity Indicator", 265, 1, layout.getFieldDefinitions().get(i++));
-        assertFixedNumberField("E-mail Address Effective Date (CCYYMMDD)", 266, 8, layout.getFieldDefinitions().get(i++));
-        assertTextField("Temporary Borrower Address (line 1)", 274, 30, layout.getFieldDefinitions().get(i++));
-        assertTextField("Temporary Borrower Address (line 2)", 304, 30, layout.getFieldDefinitions().get(i++));
-        assertTextField("Temporary Borrower City", 334, 24, layout.getFieldDefinitions().get(i++));
-        assertFixedTextField("Temporary Borrower State", 358, 2, layout.getFieldDefinitions().get(i++));
-        assertFixedNumberField("Temporary Borrower Zip Code", 360, 5, layout.getFieldDefinitions().get(i++));
-        assertFixedNumberField("Temporary Borrower Zip Code Suffix", 365, 4, layout.getFieldDefinitions().get(i++));
-        assertTextField("Foreign Postal Code", 369, 14, layout.getFieldDefinitions().get(i++));
-        assertFillerField(383, 657, layout.getFieldDefinitions().get(i++));
-        assertRecordTerminatorField(1040, layout.getFieldDefinitions());
+    protected int fieldCount() {
+        return 15;
+    }
 
-        assertEquals(1040, layout.getLength());
-        assertEquals(15, layout.getFieldDefinitions().size());
+    protected String recordCode() {
+        return "@7";
+    }
+
+    public void test_fieldDefinitions() {
+        assertText("1", "Record Code", 1, 2);
+        assertText("2", "Supplemental Borrower Information Layout Owner Code R", 3, 4);
+        assertText("3", "Supplemental Borrower Information Layout Identifier Code R", 7, 2);
+        assertText("4", "E-mail Address R1", 9, 256);
+        assertText("5", "E-mail Address Validity Indicator R", 265, 1);
+        assertInteger("6", "E-mail Address Effective Date(CCYYMMDD)", 266, 8);
+        assertText("7", "Temporary Borrower Address(line 1)", 274, 30);
+        assertText("8", "Temporary Borrower Address(line 2)", 304, 30);
+        assertText("9", "Temporary Borrower City R1", 334, 24);
+        assertText("10", "Temporary Borrower State R1", 358, 2);
+        assertInteger("11", "Temporary Borrower Zip Code R1", 360, 5);
+        assertInteger("12", "Temporary Borrower Zip Code Suffix R 1", 365, 4);
+        assertText("13", "Foreign Postal Code R1", 369, 14);
+        assertText("14", "Filler", 383, 657);
+        assertText("15", "Record Terminator", 1040, 1);
+
     }
 }

@@ -1,23 +1,33 @@
 package commonline.cl4.response.layout;
 
-import commonline.test.layout.CommonLineRecordLayoutTestCase;
+import commonline.cl4.appsend.layout.AbstractRecordLayoutTestCase;
+import flapjack.layout.RecordLayout;
 
 
-public class UniqueSupplementDetailRecordLayoutTest extends CommonLineRecordLayoutTestCase {
+public class UniqueSupplementDetailRecordLayoutTest extends AbstractRecordLayoutTestCase {
 
-    public void test() {
-        UniqueSupplementDetailRecordLayout layout = new UniqueSupplementDetailRecordLayout();
 
-        assertEquals("@2", layout.getCode());
-        assertRecordCodeField(layout.getFieldDefinitions());
+    protected RecordLayout createRecordLayout() {
+        return new UniqueSupplementDetailRecordLayout();
+    }
 
-        int i = 1;
-        assertTextField("Unique Supplemental Vendor Code", 3, 4, layout.getFieldDefinitions().get(i++));
-        assertFixedTextField("Unique Supplemental Layout Identifier Code", 7, 2, layout.getFieldDefinitions().get(i++));
-        assertFillerField(9, 1031, layout.getFieldDefinitions().get(i++));
-        assertRecordTerminatorField(1040, layout.getFieldDefinitions());
+    protected int recordLength() {
+        return 1040;
+    }
 
-        assertEquals(1040, layout.getLength());
-        assertEquals(5, layout.getFieldDefinitions().size());
+    protected int fieldCount() {
+        return 5;
+    }
+
+    protected String recordCode() {
+        return "@2";
+    }
+
+    public void test_fieldDefinitions() {
+        assertText("1", "Record Code", 1, 2);
+        assertText("2", "Unique Supplemental Vendor Code", 3, 4);
+        assertText("3", "Unique Supplemental Layout Identifier Code", 7, 2);
+        assertText("4", "Filler", 9, 1031);
+        assertText("5", "Record Terminator", 1040, 1);
     }
 }

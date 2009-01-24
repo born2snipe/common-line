@@ -1,63 +1,69 @@
 package commonline.cl4.changesend.layout;
 
-import commonline.test.layout.CommonLineRecordLayoutTestCase;
+import commonline.cl4.appsend.layout.AbstractRecordLayoutTestCase;
+import flapjack.layout.RecordLayout;
 
-import java.util.List;
 
+public class LoanPeriodChangeRecordLayoutTest extends AbstractRecordLayoutTestCase {
 
-public class LoanPeriodChangeRecordLayoutTest extends CommonLineRecordLayoutTestCase {
-    public void test() {
-        LoanPeriodChangeRecordLayout layout = new LoanPeriodChangeRecordLayout();
+    protected RecordLayout createRecordLayout() {
+        return new LoanPeriodChangeRecordLayout();
+    }
 
-        assertEquals("@107", layout.getCode());
+    protected int recordLength() {
+        return 480;
+    }
 
-        List fields = layout.getFieldDefinitions();
-        int i = 1;
+    protected int fieldCount() {
+        return 41;
+    }
 
-        assertRecordCodeField(fields);
-        assertFixedNumberField("Record Type", 3, 2, fields.get(i++));
-        assertFixedNumberField("Borrower SSN", 5, 9, fields.get(i++));
-        assertFixedNumberField("School ID", 14, 8, fields.get(i++));
-        assertFillerField(22, 3, fields.get(i++));
-        assertFixedTextField("School Non-ED Branch Id", 25, 4, fields.get(i++));
-        assertTextField("Recipient ID", 29, 8, fields.get(i++));
-        assertFillerField(37, 3, fields.get(i++));
-        assertTextField("Recipient Non-ED Branch ID", 40, 4, fields.get(i++));
-        assertFixedTextField("Unique Loan Identifier", 44, 16, fields.get(i++));
-        assertFixedNumberField("Guarantee Date (CCYYMMDD)", 60, 8, fields.get(i++));
-        assertFixedTextField("Loan Type Code", 68, 2, fields.get(i++));
-        assertFixedTextField("Alternative Loan Program Type Code", 70, 3, fields.get(i++));
-        assertFixedNumberField("First Disbursement Date (CCYYMMDD)", 73, 8, fields.get(i++));
-        assertFixedTextField("Lender ID", 81, 6, fields.get(i++));
-        assertFixedTextField("Servicer Code", 87, 6, fields.get(i++));
-        assertFixedNumberField("Loan Period Begin Date (CCYYMMDD)", 93, 8, fields.get(i++));
-        assertFixedNumberField("Loan Period End Date (CCYYMMDD)", 101, 8, fields.get(i++));
-        assertFixedTextField("School Designated Branch/Division Code", 109, 2, fields.get(i++));
-        assertFixedNumberField("PLUS/Alternative Student SSN", 111, 9, fields.get(i++));
-        assertFixedTextField("CommonLine Unique Identifier", 120, 17, fields.get(i++));
-        assertFixedNumberField("CommonLine Loan Sequence Number", 137, 2, fields.get(i++));
-        assertFixedNumberField("Revised Loan Period Begin Date (CCYYMMDD)", 139, 8, fields.get(i++));
-        assertFixedNumberField("Revised Loan Period End Date (CCYYMMDD)", 147, 8, fields.get(i++));
-        assertFixedTextField("Grade Level Code", 155, 1, fields.get(i++));
-        assertFixedNumberField("Change Certification Date (CCYYMMDD)", 156, 8, fields.get(i++));
-        assertFillerField(164, 1, fields.get(i++));
-        assertFixedNumberField("Anticipated Completion Date (CCYYMMDD)", 165, 8, fields.get(i++));
-        assertFixedTextField("Record Status", 173, 1, fields.get(i++));
-        assertFixedNumberField("Date/Time Stamp (CCYYMMDDHHMMSSNNNNNN)", 174, 20, fields.get(i++));
-        assertFixedTextField("DUNS School ID", 194, 9, fields.get(i++));
-        assertFixedTextField("DUNS Recipient ID", 203, 9, fields.get(i++));
-        assertFixedTextField("DUNS Lender ID", 212, 9, fields.get(i++));
-        assertFixedTextField("DUNS Servicer ID", 221, 9, fields.get(i++));
-        assertFixedTextField("Lender Non-ED Branch ID", 230, 4, fields.get(i++));
-        assertFillerField(234, 100, fields.get(i++));
-        assertTextField("School Use Only", 334, 23, fields.get(i++));
-        assertTextField("Lender Use Only", 357, 20, fields.get(i++));
-        assertTextField("Guarantor Use Only", 377, 23, fields.get(i++));
-        assertFillerField(400, 80, fields.get(i++));
+    protected String recordCode() {
+        return "@107";
+    }
 
-        assertRecordTerminatorField(480, layout.getFieldDefinitions());
+    public void test_fieldDefinitions() {
+        assertText("1", "Record Code", 1, 2);
+        assertInteger("2", "Record Type R", 3, 2);
+        assertInteger("3", "Borrower SSN R", 5, 9);
+        assertInteger("4", "School ID R", 14, 8);
+        assertText("5", "Filler", 22, 3);
+        assertText("6", "School Non-ED Branch ID", 25, 4);
+        assertText("7", "Recipient ID R", 29, 8);
+        assertText("8", "Filler", 37, 3);
+        assertText("9", "Recipient Non-ED Branch ID R1", 40, 4);
+        assertText("10", "Unique Loan Identifier", 44, 16);
+        assertInteger("11", "Guarantee Date (CCYYMMDD)", 60, 8);
+        assertText("12", "Loan Type Code R", 68, 2);
+        assertText("13", "Alternative Loan Program Type Code R1", 70, 3);
+        assertInteger("14", "First Disbursement Date(CCYYMMDD)", 73, 8);
+        assertText("15", "Lender ID R", 81, 6);
+        assertText("16", "Servicer Code", 87, 6);
+        assertInteger("17", "Loan Period Begin Date (CCYYMMDD)", 93, 8);
+        assertInteger("18", "Loan Period End Date (CCYYMMDD)", 101, 8);
+        assertText("19", "School Designated Branch/Division Code", 109, 2);
+        assertInteger("20", "PLUS/Alternative Student SSN", 111, 9);
+        assertText("21", "CommonLine Unique Identifier R", 120, 17);
+        assertInteger("22", "CommonLine Loan Sequence Number R1", 137, 2);
+        assertInteger("23", "Revised Loan Period Begin Date(CCYYMMDD)", 139, 8);
+        assertInteger("24", "Revised Loan Period End Date(CCYYMMDD)", 147, 8);
+        assertText("25", "Grade Level Code R", 155, 1);
+        assertInteger("26", "Change Certification Date(CCYYMMDD)", 156, 8);
+        assertText("27", "Filler", 164, 1);
+        assertInteger("28", "Anticipated Completion Date(CCYYMMDD)", 165, 8);
+        assertText("29", "Record Status", 173, 1);
+        assertText("30", "Date/Time Stamp(CCYYMMDDHHMMSSNNNNNN)", 174, 20);
+        assertText("31", "DUNS School ID O", 194, 9);
+        assertText("32", "DUNS Recipient ID O", 203, 9);
+        assertText("33", "DUNS Lender ID O", 212, 9);
+        assertText("34", "DUNS Servicer Code", 221, 9);
+        assertText("35", "Lender Non-ED Branch ID", 230, 4);
+        assertText("36", "Filler", 234, 100);
+        assertText("37", "School Use Only O", 334, 23);
+        assertText("38", "Lender Use Only O", 357, 20);
+        assertText("39", "Guarantor Use Only O", 377, 23);
+        assertText("40", "Filler", 400, 80);
+        assertText("41", "Record Terminator", 480, 1);
 
-        assertEquals(480, layout.getLength());
-        assertEquals(41, layout.getFieldDefinitions().size());
     }
 }

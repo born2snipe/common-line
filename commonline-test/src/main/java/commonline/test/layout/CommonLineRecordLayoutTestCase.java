@@ -50,7 +50,12 @@ public class CommonLineRecordLayoutTestCase extends TestCase {
     }
 
     protected void assertRecordCodeField(List definitions) {
-        assertTrue(definitions.get(0) instanceof RecordCodeFieldDefinition);
+        FieldDefinition fieldDef = (FieldDefinition) definitions.get(0);
+        assertTrue("expected TextFieldDefinition, but was "+fieldDef.getClass().getName(), fieldDef instanceof TextFieldDefinition);
+        TextFieldDefinition textField = (TextFieldDefinition) fieldDef;
+        assertEquals("1", textField.getId());
+        assertEquals(0, textField.getPosition());
+        assertEquals(2, textField.getLength());
     }
 
     protected void assertFieldDefinition(String expectedName, int expectedPosition, int expectedLength, Type expectedType, Justified expectedJustfied, Padding expectedPadding, Object actualObj) {

@@ -1,26 +1,36 @@
 package commonline.cl4.response.layout;
 
-import commonline.test.layout.CommonLineRecordLayoutTestCase;
+import commonline.cl4.appsend.layout.AbstractRecordLayoutTestCase;
+import flapjack.layout.RecordLayout;
 
 
-public class SpecialMessagesRecordLayoutTest extends CommonLineRecordLayoutTestCase {
+public class SpecialMessagesRecordLayoutTest extends AbstractRecordLayoutTestCase {
 
-    public void test() {
-        SpecialMessagesRecordLayout layout = new SpecialMessagesRecordLayout();
 
-        assertEquals("@3", layout.getCode());
-        assertRecordCodeField(layout.getFieldDefinitions());
+    protected RecordLayout createRecordLayout() {
+        return new SpecialMessagesRecordLayout();
+    }
 
-        int i = 1;
-        assertTextField("Message 1", 3, 160, layout.getFieldDefinitions().get(i++));
-        assertTextField("Message 2", 163, 160, layout.getFieldDefinitions().get(i++));
-        assertTextField("Message 3", 323, 160, layout.getFieldDefinitions().get(i++));
-        assertTextField("Message 4", 483, 160, layout.getFieldDefinitions().get(i++));
-        assertTextField("Message 5", 643, 160, layout.getFieldDefinitions().get(i++));
-        assertFillerField(803, 237, layout.getFieldDefinitions().get(i++));
-        assertRecordTerminatorField(1040, layout.getFieldDefinitions());
+    protected int recordLength() {
+        return 1040;
+    }
 
-        assertEquals(1040, layout.getLength());
-        assertEquals(8, layout.getFieldDefinitions().size());
+    protected int fieldCount() {
+        return 8;
+    }
+
+    protected String recordCode() {
+        return "@3";
+    }
+
+    public void test_fieldDefinitions() {
+        assertText("1", "Record Code", 1, 2);
+        assertText("2", "Message 1", 3, 160);
+        assertText("3", "Message 2", 163, 160);
+        assertText("4", "Message 3", 323, 160);
+        assertText("5", "Message 4", 483, 160);
+        assertText("6", "Message 5", 643, 160);
+        assertText("7", "Filler", 803, 237);
+        assertText("8", "Record Terminator", 1040, 1);
     }
 }
