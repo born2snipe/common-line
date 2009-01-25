@@ -10,16 +10,18 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline.query;
+package commonline.query.gui;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import javax.swing.*;
+import java.awt.*;
+
+
+public class DatabaseStructurePanel extends JPanel {
+    private JTree tree = new JTree();
+
+    public DatabaseStructurePanel() {
+        super(new BorderLayout());
+        setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Database Structure"));
+        add(new JScrollPane(tree), BorderLayout.CENTER);
     }
 }
