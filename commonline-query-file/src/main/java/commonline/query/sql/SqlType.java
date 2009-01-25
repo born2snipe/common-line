@@ -17,7 +17,8 @@ import java.text.MessageFormat;
 
 public enum SqlType {
     VARCHAR("varchar({0})", true),
-    INT("int");
+    INT("int"),
+    DOUBLE("double");
 
     private String formatted;
     private boolean lengthRequired;
