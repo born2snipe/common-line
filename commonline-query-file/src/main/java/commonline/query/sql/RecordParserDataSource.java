@@ -26,9 +26,12 @@ import java.util.Map;
 
 
 public class RecordParserDataSource implements DataSource, InitializingBean {
+    private static final RecordLayoutSqlTableFactory sqlTableFactory = new RecordLayoutSqlTableFactory();
     private DriverManagerDataSource delegate;
     private String driverClassName;
     private String url;
+    private String username;
+    private String password;
     private Map<String, RecordParser> parsers = new HashMap<String, RecordParser>();
 
     public Connection getConnection() throws SQLException {
@@ -66,6 +69,8 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
     public void afterPropertiesSet() throws Exception {
         delegate = createDelegate();
         delegate.setUrl(url);
+        delegate.setPassword(password);
+        delegate.setUsername(username);
         delegate.setDriverClassName(driverClassName);
         JdbcTemplate template = new JdbcTemplate(delegate);
     }
@@ -86,4 +91,19 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
         this.driverClassName = driverClassName;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

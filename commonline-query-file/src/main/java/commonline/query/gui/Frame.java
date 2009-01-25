@@ -28,6 +28,7 @@ public class Frame extends JFrame {
         initializeView();
 
         setSize(800, 600);
+        setLocationByPlatform(true);
     }
 
     private void initializeView() {
@@ -66,7 +67,9 @@ public class Frame extends JFrame {
         setJMenuBar(menuBar);
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
         System.setProperty("com.apple.macos.useScreenMenuBar", "true");
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("MainContext.xml");

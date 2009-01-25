@@ -32,7 +32,7 @@ public class OutputPanel extends JPanel {
             }
         });
 
-        JTable results = new JTable();
+        JTable results = new JTable(new Object[0][0], new String[]{"SSN", "LASTNAME", "FIRSTNAME", "MIDDLEINITIAL"});
 
         tabs.addTab("Results", new JScrollPane(results));
         tabs.addTab("Console", new JScrollPane(console));
