@@ -19,17 +19,19 @@ public class FieldColumn {
     private SqlType type;
     private int length;
 
-    public FieldColumn(String fieldName, String columnName, SqlType type) {
+    public FieldColumn(String fieldName, String columnName, SqlType type) throws IllegalArgumentException {
         this(fieldName, columnName, type, -1);
     }
 
-    public FieldColumn(String fieldName, String columnName, SqlType type, int length) {
+    public FieldColumn(String fieldName, String columnName, SqlType type, int length) throws IllegalArgumentException {
+        if (type.isLengthRequired() && length <= 0) {
+            throw new IllegalArgumentException("A length over 0 must be provided with type "+type);
+        }
+
         this.fieldName = fieldName;
         this.columnName = columnName;
         this.type = type;
         this.length = length;
-
-        // TODO - do some validation here to not allow a <= 0 VARCHAR
     }
 
     public String getFieldName() {
