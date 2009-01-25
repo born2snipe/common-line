@@ -12,7 +12,10 @@
  */
 package commonline.file.parser;
 
+import commonline.cl4.appsend.parser.AppSendParser;
+import commonline.cl4.changesend.parser.ChangeSendParser;
 import commonline.cl4.response.parser.ResponseParser;
+import commonline.file.FileInfo;
 import commonline.file.FileType;
 import commonline.file.FileVersion;
 import flapjack.parser.RecordParser;
@@ -25,38 +28,13 @@ public class ParserResolver {
     private Map parsers = new HashMap();
 
     public ParserResolver() {
-        parsers.put(new ParserInfo(FileType.RESPONSE, FileVersion.CL4), new ResponseParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.RESPONSE), new ResponseParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), new ChangeSendParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.APP_SEND), new AppSendParser());
     }
 
     public RecordParser resolver(FileType fileType, FileVersion fileVersion) {
-        return (RecordParser) parsers.get(new ParserInfo(fileType, fileVersion));
+        return (RecordParser) parsers.get(new FileInfo(fileVersion, fileType));
     }
 
-    private static class ParserInfo {
-        private FileType type;
-        private FileVersion version;
-
-        private ParserInfo(FileType type, FileVersion version) {
-            this.type = type;
-            this.version = version;
-        }
-
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            ParserInfo that = (ParserInfo) o;
-
-            if (type != that.type) return false;
-            if (version != that.version) return false;
-
-            return true;
-        }
-
-        public int hashCode() {
-            int result = type != null ? type.hashCode() : 0;
-            result = 31 * result + (version != null ? version.hashCode() : 0);
-            return result;
-        }
-    }
 }
