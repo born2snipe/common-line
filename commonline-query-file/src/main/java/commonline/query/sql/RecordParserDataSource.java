@@ -21,8 +21,7 @@ import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class RecordParserDataSource implements DataSource, InitializingBean {
@@ -33,6 +32,8 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
     private String username;
     private String password;
     private Map<String, RecordParser> parsers = new HashMap<String, RecordParser>();
+    private List<RecordLayoutTableInfo> tableInfos = new ArrayList<RecordLayoutTableInfo>();
+    private String name;
 
     public Connection getConnection() throws SQLException {
         return delegate.getConnection();
@@ -105,5 +106,17 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<RecordLayoutTableInfo> getTableInfos() {
+        return Collections.unmodifiableList(tableInfos);
     }
 }

@@ -19,11 +19,13 @@
     <bean id="cl4DataSource" class="commonline.query.sql.RecordParserDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
         <property name="url" value="jdbc:h2:~/cl4"/>
+        <property name="name" value="CL4"/>
     </bean>
 
     <bean id="cl5DataSource" class="commonline.query.sql.RecordParserDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
         <property name="url" value="jdbc:h2:~/cl5"/>
+        <property name="name" value="CL5"/>
     </bean>
 
 </beans>

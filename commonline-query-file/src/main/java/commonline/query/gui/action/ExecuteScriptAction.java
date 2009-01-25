@@ -12,6 +12,7 @@
  */
 package commonline.query.gui.action;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -19,6 +20,7 @@ import java.awt.event.KeyEvent;
 public class ExecuteScriptAction extends AbtractMacableAction {
     public ExecuteScriptAction(boolean isMac) {
         super("Execute...", "Execute the current query", KeyEvent.VK_E, isMac);
+        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("icon_run.gif")));
     }
 
 

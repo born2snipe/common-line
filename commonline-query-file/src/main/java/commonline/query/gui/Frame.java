@@ -13,26 +13,29 @@
 package commonline.query.gui;
 
 import commonline.query.gui.action.*;
+import commonline.query.sql.RecordParserDataSource;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class Frame extends JFrame {
-    public Frame(boolean isMac) throws HeadlessException {
+    public Frame(boolean isMac, List dataSources) throws HeadlessException {
         super("Commonline Query File Tool");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initializeMenu(isMac);
-        initializeView();
+        initializeView(dataSources);
 
         setSize(800, 600);
         setLocationByPlatform(true);
     }
 
-    private void initializeView() {
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(), new QueryPanel());
+    private void initializeView(List dataSources) {
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(dataSources), new QueryPanel());
         split.setDividerLocation(200);
 
         getContentPane().setLayout(new BorderLayout());
@@ -74,7 +77,10 @@ public class Frame extends JFrame {
 
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("MainContext.xml");
 
-        Frame frame = new Frame(System.getProperty("os.name").toLowerCase().indexOf("mac") != -1);
+        List dataSources = new ArrayList();
+        dataSources.addAll(context.getBeansOfType(RecordParserDataSource.class).values());
+
+        Frame frame = new Frame(System.getProperty("os.name").toLowerCase().indexOf("mac") != -1, dataSources);
         frame.setVisible(true);
     }
 }

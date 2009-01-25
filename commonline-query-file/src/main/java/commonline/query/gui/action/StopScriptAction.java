@@ -12,6 +12,7 @@
  */
 package commonline.query.gui.action;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -19,6 +20,7 @@ import java.awt.event.KeyEvent;
 public class StopScriptAction extends AbtractMacableAction {
     public StopScriptAction(boolean isMac) {
         super("Stop", "Stop the current query", KeyEvent.VK_S, isMac);
+        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("icon_stop.gif")));
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
