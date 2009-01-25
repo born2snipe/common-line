@@ -29,6 +29,10 @@ public class FileAnalyzer {
     private Map parsers = new LinkedHashMap();
     private Map fileInfos = new LinkedHashMap();
 
+    public FileAnalyzer() {
+        this(new CommonlineHeaderLocator());
+    }
+
     protected FileAnalyzer(HeaderLocator headerLocator) {
         this.headerLocator = headerLocator;
         initializeParsers();
