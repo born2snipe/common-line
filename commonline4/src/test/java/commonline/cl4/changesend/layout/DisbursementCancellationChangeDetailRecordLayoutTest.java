@@ -22,8 +22,9 @@ public class DisbursementCancellationChangeDetailRecordLayoutTest extends Abstra
         return new DisbursementCancellationChangeDetailRecordLayout();
     }
 
+    // TODO -- need to review w/ someone
     protected int recordLength() {
-        return 480;
+        return 481;
     }
 
     protected int fieldCount() {

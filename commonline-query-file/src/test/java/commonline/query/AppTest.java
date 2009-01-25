@@ -10,16 +10,41 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline;
+package commonline.query;
 
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
+/**
+ * Unit test for simple App.
+ */
+public class AppTest 
+    extends TestCase
+{
+    /**
+     * Create the test case
+     *
+     * @param testName name of the test case
+     */
+    public AppTest( String testName )
+    {
+        super( testName );
+    }
 
-public class FileTypeTest extends TestCase {
-    public void test_evaluate() {
-        assertEquals(FileType.RESPONSE, FileType.evaluate("COMMON RESPONSE"));
-        assertEquals(FileType.CHANGE_SEND, FileType.evaluate("CHANGE TRANS"));
-        assertEquals(FileType.APP_SEND, FileType.evaluate("COMMON APPLICATIONS"));
-        assertNull(FileType.evaluate("wtf"));
+    /**
+     * @return the suite of tests being tested
+     */
+    public static Test suite()
+    {
+        return new TestSuite( AppTest.class );
+    }
+
+    /**
+     * Rigourous Test :-)
+     */
+    public void testApp()
+    {
+        assertTrue( true );
     }
 }

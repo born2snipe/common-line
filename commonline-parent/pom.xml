@@ -14,6 +14,30 @@
         <dependencies>
 
             <dependency>
+                <groupId>commonline</groupId>
+                <artifactId>commonline-core</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commonline</groupId>
+                <artifactId>commonline-file</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commonline</groupId>
+                <artifactId>commonline4</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commonline</groupId>
+                <artifactId>commonline-test</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>flapjack</groupId>
                 <artifactId>flapjack-cobol</artifactId>
                 <version>1.0.2-SNAPSHOT</version>
@@ -23,6 +47,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>3.8.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.6</version>
             </dependency>
 
         </dependencies>

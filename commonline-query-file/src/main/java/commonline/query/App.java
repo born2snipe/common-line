@@ -10,28 +10,16 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline;
+package commonline.query;
 
-import java.util.Arrays;
-
-
-public enum FileVersion {
-    CL4("R004P", "R004T", "C004P", "C004T", "A004P", "A004T"),
-    CL5("R005P", "R005T", "C005P", "C005T", "A005P", "A005T");
-
-    private String[] identifiers;
-
-    FileVersion(String... identifiers) {
-        this.identifiers = identifiers;
-    }
-
-
-    public static FileVersion evaluate(String identifier) {
-        for (FileVersion version : values()) {
-            if (Arrays.asList(version.identifiers).contains(identifier)) {
-                return version;
-            }
-        }
-        return null;
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
     }
 }
