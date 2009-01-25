@@ -17,7 +17,7 @@ import flapjack.layout.FieldDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// TODO - make a replace String
 public class ColumnNameResolver {
     private List<String> removes = new ArrayList<String>();
 

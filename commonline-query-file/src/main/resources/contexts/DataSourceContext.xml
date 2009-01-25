@@ -18,14 +18,56 @@
 
     <bean id="cl4DataSource" class="commonline.query.sql.RecordParserDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:~/cl4"/>
+        <property name="url" value="jdbc:h2:~/.commonline/cl4"/>
         <property name="name" value="CL4"/>
+        <property name="parsers">
+            <list>
+                <!--<bean class="commonline.cl4.response.parser.ResponseParser"/>-->
+                <!--<bean class="commonline.cl4.appsend.parser.AppSendParser"/>-->
+                <bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>
+            </list>
+        </property>
+        <property name="layoutTableInfoFactory" ref="layoutTableInfoFactory"/>
     </bean>
 
     <bean id="cl5DataSource" class="commonline.query.sql.RecordParserDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:~/cl5"/>
+        <property name="url" value="jdbc:h2:~/.commonline/cl5"/>
         <property name="name" value="CL5"/>
     </bean>
+
+    <bean id="layoutTableInfoFactory" class="commonline.query.sql.CommonlineRecordLayoutTableInfoFactory">
+        <property name="fieldColumnFactory">
+            <bean class="commonline.query.sql.CobolFieldColumnFactory">
+                <constructor-arg>
+                    <bean class="commonline.query.sql.ColumnNameResolver">
+                        <property name="removes">
+                            <list>
+                                <value>(CCYYMMDD)</value>
+                                <value>/</value>
+                                <value>(</value>
+                                <value>)</value>
+                                <value>.</value>
+                                <value>'</value>
+                                <value>-</value>
+                                <value>@</value>
+                            </list>
+                        </property>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="tableNameResolver">
+            <bean class="commonline.query.sql.CommonlineTableNameResolver"/>
+        </property>
+        <property name="prependForParsers">
+            <map>
+                <entry key="commonline.cl4.response.parser.ResponseParser" value="RESPONSE"/>
+                <entry key="commonline.cl4.appsend.parser.AppSendParser" value="APPSEND"/>
+                <entry key="commonline.cl4.changesend.parser.ChangeSendParser" value="CHANGESEND"/>
+            </map>
+        </property>
+    </bean>
+
 
 </beans>

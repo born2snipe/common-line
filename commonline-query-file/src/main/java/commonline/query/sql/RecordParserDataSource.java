@@ -12,7 +12,9 @@
  */
 package commonline.query.sql;
 
-import flapjack.parser.RecordParser;
+import commonline.core.parser.CommonLineRecordLayoutResolver;
+import flapjack.layout.RecordLayout;
+import flapjack.parser.RecordParserImpl;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -21,7 +23,9 @@ import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class RecordParserDataSource implements DataSource, InitializingBean {
@@ -31,9 +35,10 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
     private String url;
     private String username;
     private String password;
-    private Map<String, RecordParser> parsers = new HashMap<String, RecordParser>();
+    private List<RecordParserImpl> parsers = new ArrayList<RecordParserImpl>();
     private List<RecordLayoutTableInfo> tableInfos = new ArrayList<RecordLayoutTableInfo>();
     private String name;
+    private RecordLayoutTableInfoFactory layoutTableInfoFactory;
 
     public Connection getConnection() throws SQLException {
         return delegate.getConnection();
@@ -74,6 +79,15 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
         delegate.setUsername(username);
         delegate.setDriverClassName(driverClassName);
         JdbcTemplate template = new JdbcTemplate(delegate);
+        for (RecordParserImpl parser : parsers) {
+            CommonLineRecordLayoutResolver resolver = (CommonLineRecordLayoutResolver) parser.getRecordLayoutResolver();
+            for (Object obj : resolver.getRecordLayouts()) {
+                RecordLayoutTableInfo tableInfo = layoutTableInfoFactory.build(parser, (RecordLayout) obj);
+                template.execute(sqlTableFactory.build(tableInfo));
+                tableInfos.add(tableInfo);
+            }
+        }
+
     }
 
     protected DriverManagerDataSource createDelegate() {
@@ -118,5 +132,13 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
 
     public List<RecordLayoutTableInfo> getTableInfos() {
         return Collections.unmodifiableList(tableInfos);
+    }
+
+    public void setLayoutTableInfoFactory(RecordLayoutTableInfoFactory layoutTableInfoFactory) {
+        this.layoutTableInfoFactory = layoutTableInfoFactory;
+    }
+
+    public void setParsers(List<RecordParserImpl> parsers) {
+        this.parsers.addAll(parsers);
     }
 }
