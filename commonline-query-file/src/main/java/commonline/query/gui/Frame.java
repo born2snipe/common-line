@@ -39,14 +39,14 @@ public class Frame extends JFrame {
         stopScriptAction = new StopScriptAction(isMac);
 
         initializeMenu(isMac);
-        initializeView(dataSources);
+        initializeView(dataSources, executeScriptAction, stopScriptAction);
 
         setSize(800, 600);
         setLocationByPlatform(true);
     }
 
-    private void initializeView(List dataSources) {
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(dataSources), new QueryPanel());
+    private void initializeView(List dataSources, Action executeScriptAction, Action stopScriptAction) {
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(dataSources), new QueryPanel(executeScriptAction, stopScriptAction));
         split.setDividerLocation(200);
 
         getContentPane().add(split, BorderLayout.CENTER);

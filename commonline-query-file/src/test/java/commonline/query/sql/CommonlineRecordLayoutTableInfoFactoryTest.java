@@ -1,28 +1,27 @@
 /**
  * Copyright 2008-2009 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at:
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
 package commonline.query.sql;
 
-import commonline.core.layout.AbstractCommonLineRecordLayout;
 import commonline.cl4.response.parser.ResponseParser;
-import flapjack.layout.RecordLayout;
+import commonline.core.layout.AbstractCommonLineRecordLayout;
 import flapjack.layout.FieldDefinition;
-import flapjack.parser.RecordParser;
+import flapjack.layout.RecordLayout;
 import junit.framework.TestCase;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
@@ -39,7 +38,33 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
         factory.setTableNameResolver(tableNameResolver);
         factory.setFieldColumnFactory(columnFactory);
     }
-    
+
+    // TODO -- need to complete
+    public void FAILING_test_build_MultipleFieldsWithTheSameName() {
+        RecordLayout layout = new AbstractCommonLineRecordLayout() {
+            protected void defineFields() {
+                field("1", "Record Code", "x(2)");
+            }
+
+            public String getCode() {
+                return null;
+            }
+        };
+
+        FieldColumn fieldColumn = new FieldColumn("field", "column", SqlType.DOUBLE);
+        FieldColumn fieldColumn2 = new FieldColumn("field", "column", SqlType.DOUBLE);
+
+        when(tableNameResolver.resolve(layout)).thenReturn("tableName");
+        when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(0))).thenReturn(fieldColumn);
+        when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(1))).thenReturn(fieldColumn2);
+
+        RecordLayoutTableInfo tableInfo = factory.build(PARSER, layout);
+
+        assertEquals(2, tableInfo.getColumns().size());
+        assertEquals(fieldColumn, tableInfo.getColumns().get(0));
+        assertEquals(fieldColumn2, tableInfo.getColumns().get(1));
+    }
+
     public void test_build_MultipleFields() {
         RecordLayout layout = new AbstractCommonLineRecordLayout() {
             protected void defineFields() {
@@ -89,7 +114,7 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
         assertEquals(1, tableInfo.getColumns().size());
         assertSame(fieldColumn, tableInfo.getColumns().get(0));
     }
-    
+
     public void test_build_PrependStringForSpecificParser() {
         Map<Class, String> x = new HashMap<Class, String>();
         x.put(ResponseParser.class, "RESPONSE");

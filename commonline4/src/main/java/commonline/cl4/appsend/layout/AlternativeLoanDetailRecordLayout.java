@@ -21,6 +21,7 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * <p/>
  * Alternative Loan (@4) Detail Record(s) Addendum
  */
+// TODO - why are these special characters getting inserted?!
 public class AlternativeLoanDetailRecordLayout extends AbstractCommonLineRecordLayout {
     protected void defineFields() {
         field("2", "Alternative Loan Layout Owner Code", "X(004)");

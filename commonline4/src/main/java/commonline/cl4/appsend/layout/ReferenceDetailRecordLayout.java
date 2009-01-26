@@ -59,7 +59,7 @@ public class ReferenceDetailRecordLayout extends AbstractCommonLineRecordLayout 
         field("35", "Borrower Employer State", "X(002)");
         field("36", "Borrower Employer Zip Code", "9(005)");
         field("37", "Borrower Employer Zip Code Suffix", "9(004)");
-        field("38", "Borrower/Cosigner Borrower Employer Telephone Number R 1", "X(010)");
+        field("38", "Borrower/Cosigner Borrower Employer Telephone Number", "X(010)");
         field("39", "Reference 1 Foreign Postal Code", "X(014)");
         field("40", "Reference 2 Foreign Postal Code", "X(014)");
         field("41", "Borrower/Cosigner Credit Information Indicator", "X(001)");

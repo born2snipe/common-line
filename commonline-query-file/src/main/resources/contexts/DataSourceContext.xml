@@ -43,7 +43,10 @@
                     <bean class="commonline.query.sql.ColumnNameResolver">
                         <property name="removes">
                             <list>
-                                <value>(CCYYMMDD)</value>
+                                <value>CCYYMMDDHHMMSSNNNNNN</value>
+                                <value>CCYYMMDD</value>
+                                <value>HHMMSS</value>
+                                <value>CCYYMM</value>
                                 <value>/</value>
                                 <value>(</value>
                                 <value>)</value>

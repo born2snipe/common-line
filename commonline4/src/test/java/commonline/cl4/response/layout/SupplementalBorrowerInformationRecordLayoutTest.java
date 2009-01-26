@@ -36,18 +36,18 @@ public class SupplementalBorrowerInformationRecordLayoutTest extends AbstractRec
 
     public void test_fieldDefinitions() {
         assertText("1", "Record Code", 1, 2);
-        assertText("2", "Supplemental Borrower Information Layout Owner Code R", 3, 4);
-        assertText("3", "Supplemental Borrower Information Layout Identifier Code R", 7, 2);
-        assertText("4", "E-mail Address R1", 9, 256);
-        assertText("5", "E-mail Address Validity Indicator R", 265, 1);
+        assertText("2", "Supplemental Borrower Information Layout Owner Code", 3, 4);
+        assertText("3", "Supplemental Borrower Information Layout Identifier Code", 7, 2);
+        assertText("4", "E-mail Address", 9, 256);
+        assertText("5", "E-mail Address Validity Indicator", 265, 1);
         assertInteger("6", "E-mail Address Effective Date(CCYYMMDD)", 266, 8);
         assertText("7", "Temporary Borrower Address(line 1)", 274, 30);
         assertText("8", "Temporary Borrower Address(line 2)", 304, 30);
-        assertText("9", "Temporary Borrower City R1", 334, 24);
-        assertText("10", "Temporary Borrower State R1", 358, 2);
-        assertInteger("11", "Temporary Borrower Zip Code R1", 360, 5);
-        assertInteger("12", "Temporary Borrower Zip Code Suffix R 1", 365, 4);
-        assertText("13", "Foreign Postal Code R1", 369, 14);
+        assertText("9", "Temporary Borrower City", 334, 24);
+        assertText("10", "Temporary Borrower State", 358, 2);
+        assertInteger("11", "Temporary Borrower Zip Code", 360, 5);
+        assertInteger("12", "Temporary Borrower Zip Code Suffix", 365, 4);
+        assertText("13", "Foreign Postal Code", 369, 14);
         assertText("14", "Filler", 383, 657);
         assertText("15", "Record Terminator", 1040, 1);
 

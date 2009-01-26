@@ -35,8 +35,8 @@ public class UniqueSupplementRecordLayoutTest extends AbstractRecordLayoutTestCa
 
     public void test_fieldDefinitions() {
         assertText("1", "Record Code", 1, 2);
-        assertText("2", "Unique Supplemental Vendor Code R1", 3, 4);
-        assertText("3", "Unique Supplemental Layout Identifier Code R 1", 7, 2);
+        assertText("2", "Unique Supplemental Vendor Code", 3, 4);
+        assertText("3", "Unique Supplemental Layout Identifier Code", 7, 2);
         assertText("4", "Filler", 9, 471);
         assertText("5", "Record Terminator", 480, 1);
     }

@@ -22,7 +22,7 @@ public class QueryPanel extends JPanel {
     private JEditorPane codeEditor;
     private OutputPanel outputPanel;
 
-    public QueryPanel() {
+    public QueryPanel(Action executeScriptAction, Action stopScriptAction) {
         super(new BorderLayout());
 
         DefaultSyntaxKit.initKit();
@@ -40,8 +40,11 @@ public class QueryPanel extends JPanel {
         toolBar.setFloatable(false);
 
         JComboBox comboBox = new JComboBox(new String[]{"CL4", "CL5"});
+        toolBar.add(comboBox);
+        toolBar.add(executeScriptAction);
+        toolBar.add(stopScriptAction);
 
-        p.add(comboBox, BorderLayout.NORTH);
+        p.add(toolBar, BorderLayout.NORTH);
 
         JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, p, outputPanel);
         split.setDividerLocation(400);
