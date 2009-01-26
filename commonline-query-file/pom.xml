@@ -101,4 +101,69 @@
     </build>
 
 
+    <profiles>
+
+        <profile>
+            <id>release</id>
+
+            <properties>
+                <keystore>${basedir}/target/keystore</keystore>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>keytool-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>genkey</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <keystore>${keystore}</keystore>
+                            <dname>cn=code.google.com/p/common-line, ou=None, L=West Des Moines, ST=IA, o=common-line,
+                                c=US
+                            </dname>
+                            <keypass>c0mm0nl1n3</keypass>
+                            <storepass>c0mm0nl1n3</storepass>
+                            <alias>commonline</alias>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.codecrate</groupId>
+                        <artifactId>webstart-maven-plugin</artifactId>
+                        <version>0.0.1-SNAPSHOT</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>generate-jnlp</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>commonline.query.gui.Frame</mainClass>
+                            <keystore>${keystore}</keystore>
+                            <keypass>c0mm0nl1n3</keypass>
+                            <storepass>c0mm0nl1n3</storepass>
+                            <alias>commonline</alias>
+                            <offlineAllowed>true</offlineAllowed>
+                            <allPermissions>true</allPermissions> 
+                            <codebase>http://common-line.googlecode.com/svn/trunk/webstart</codebase>
+                            <vendor>http://code.google.com/p/common-line</vendor>
+                            <homepage>http://code.google.com/p/common-line</homepage>
+                            <description>A tool that allows you to run queries against commonline files.</description>
+                        </configuration>
+                    </plugin>
+
+                </plugins>
+            </build>
+
+        </profile>
+
+    </profiles>
+
 </project>

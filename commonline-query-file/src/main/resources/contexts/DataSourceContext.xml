@@ -22,8 +22,8 @@
         <property name="name" value="CL4"/>
         <property name="parsers">
             <list>
-                <!--<bean class="commonline.cl4.response.parser.ResponseParser"/>-->
-                <!--<bean class="commonline.cl4.appsend.parser.AppSendParser"/>-->
+                <bean class="commonline.cl4.response.parser.ResponseParser"/>
+                <bean class="commonline.cl4.appsend.parser.AppSendParser"/>
                 <bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>
             </list>
         </property>

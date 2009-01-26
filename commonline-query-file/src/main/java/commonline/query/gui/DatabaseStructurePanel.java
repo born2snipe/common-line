@@ -44,6 +44,7 @@ public class DatabaseStructurePanel extends JPanel {
                 for (FieldColumn column : tableInfo.getColumns()) {
                     table.add(new Node(column));
                 }
+                db.add(table);
             }
             root.add(db);
         }

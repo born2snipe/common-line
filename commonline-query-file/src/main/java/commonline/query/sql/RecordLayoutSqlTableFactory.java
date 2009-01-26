@@ -31,7 +31,7 @@ public class RecordLayoutSqlTableFactory {
             }
             builder.append("\n");
         }
-        builder.append(");");
+        builder.append(")");
         return builder.toString();
     }
 }

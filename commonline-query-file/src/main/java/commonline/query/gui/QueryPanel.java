@@ -24,6 +24,7 @@ public class QueryPanel extends JPanel {
 
     public QueryPanel() {
         super(new BorderLayout());
+
         DefaultSyntaxKit.initKit();
 
         codeEditor = new JEditorPane();
@@ -34,6 +35,13 @@ public class QueryPanel extends JPanel {
         JPanel p = new JPanel(new BorderLayout());
         p.add(scrPane, BorderLayout.CENTER);
         p.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Query Editor"));
+
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+
+        JComboBox comboBox = new JComboBox(new String[]{"CL4", "CL5"});
+
+        p.add(comboBox, BorderLayout.NORTH);
 
         JSplitPane split = new JSplitPane(JSplitPane.VERTICAL_SPLIT, p, outputPanel);
         split.setDividerLocation(400);

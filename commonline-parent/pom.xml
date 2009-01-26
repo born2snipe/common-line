@@ -155,4 +155,42 @@
         </profile>
     </profiles>
 
+    <pluginRepositories>
+
+        <pluginRepository>
+            <id>mc-release</id>
+            <name>Local Maven repository of releases</name>
+            <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </pluginRepository>
+
+        <pluginRepository>
+            <id>codecrate-repository</id>
+            <name>Codecrate Repository</name>
+            <url>http://maven.codecrate.com/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+
+
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>codecrate-repository</id>
+            <name>Codecrate Repository</name>
+            <url>http://maven.codecrate.com/</url>
+        </repository>
+    </repositories>
+
+
 </project>

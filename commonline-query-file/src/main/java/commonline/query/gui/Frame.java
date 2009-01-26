@@ -1,11 +1,11 @@
 /**
  * Copyright 2008-2009 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at:
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
@@ -14,19 +14,30 @@ package commonline.query.gui;
 
 import commonline.query.gui.action.*;
 import commonline.query.sql.RecordParserDataSource;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class Frame extends JFrame {
+    private OpenAction openAction;
+    private ClearDatabaseAction clearDatabaseAction;
+    private StopScriptAction stopScriptAction;
+    private ExecuteScriptAction executeScriptAction;
+
     public Frame(boolean isMac, List dataSources) throws HeadlessException {
         super("Commonline Query File Tool");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new BorderLayout());
+
+        openAction = new OpenAction(isMac);
+        clearDatabaseAction = new ClearDatabaseAction(isMac);
+        executeScriptAction = new ExecuteScriptAction(isMac);
+        stopScriptAction = new StopScriptAction(isMac);
+
         initializeMenu(isMac);
         initializeView(dataSources);
 
@@ -38,14 +49,13 @@ public class Frame extends JFrame {
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(dataSources), new QueryPanel());
         split.setDividerLocation(200);
 
-        getContentPane().setLayout(new BorderLayout());
         getContentPane().add(split, BorderLayout.CENTER);
     }
 
     private void initializeMenu(boolean isMac) {
         JMenu file = new JMenu("File");
-        JMenuItem open = new JMenuItem(new OpenAction(isMac));
-        JMenuItem clear = new JMenuItem(new ClearDatabaseAction(isMac));
+        JMenuItem open = new JMenuItem(openAction);
+        JMenuItem clear = new JMenuItem(clearDatabaseAction);
         JMenuItem exit = new JMenuItem(new ExitAction());
 
         file.add(open);
@@ -57,8 +67,8 @@ public class Frame extends JFrame {
         }
 
         JMenu query = new JMenu("Query");
-        JMenuItem execute = new JMenuItem(new ExecuteScriptAction(isMac));
-        JMenuItem stop = new JMenuItem(new StopScriptAction(isMac));
+        JMenuItem execute = new JMenuItem(executeScriptAction);
+        JMenuItem stop = new JMenuItem(stopScriptAction);
 
         query.add(execute);
         query.add(stop);
