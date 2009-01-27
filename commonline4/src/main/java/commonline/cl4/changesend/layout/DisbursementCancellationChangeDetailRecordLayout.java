@@ -60,7 +60,7 @@ public class DisbursementCancellationChangeDetailRecordLayout extends AbstractCo
         field("36", "DUNS Lender ID", "X(009)");
         field("37", "DUNS Servicer Code", "X(009)");
         field("38", "Lender Non-ED Branch ID", "X(004)");
-        field("39", "Submittal As-Of Date", "9(009)");
+        field("39", "Submittal As-Of Date", "9(008)");
         field("40", "Filler", "X(082)");
         field("41", "School Use Only", "X(023)");
         field("42", "Lender Use Only", "X(020)");

@@ -22,9 +22,8 @@ public class DisbursementCancellationChangeDetailRecordLayoutTest extends Abstra
         return new DisbursementCancellationChangeDetailRecordLayout();
     }
 
-    // TODO -- need to review w/ someone
     protected int recordLength() {
-        return 481;
+        return 480;
     }
 
     protected int fieldCount() {
@@ -74,12 +73,12 @@ public class DisbursementCancellationChangeDetailRecordLayoutTest extends Abstra
         assertText("36", "DUNS Lender ID", 222, 9);
         assertText("37", "DUNS Servicer Code", 231, 9);
         assertText("38", "Lender Non-ED Branch ID", 240, 4);
-        assertInteger("39", "Submittal As-Of Date", 244, 9);
-        assertText("40", "Filler", 253, 82);
-        assertText("41", "School Use Only", 335, 23);
-        assertText("42", "Lender Use Only", 358, 20);
-        assertText("43", "Guarantor Use Only", 378, 23);
-        assertText("44", "Filler", 401, 80);
-        assertText("45", "Record Terminator", 481, 1);
+        assertInteger("39", "Submittal As-Of Date", 244, 8);
+        assertText("40", "Filler", 252, 82);
+        assertText("41", "School Use Only", 334, 23);
+        assertText("42", "Lender Use Only", 357, 20);
+        assertText("43", "Guarantor Use Only", 377, 23);
+        assertText("44", "Filler", 400, 80);
+        assertText("45", "Record Terminator", 480, 1);
     }
 }
