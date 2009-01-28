@@ -22,9 +22,12 @@ public class FileType {
     public static final FileType RESPONSE = new FileType("COMMON RESPONSE", "Response");
     public static final FileType APP_SEND = new FileType("COMMON APPLICATIONS", "Application Send");
     public static final FileType CHANGE_SEND = new FileType("CHANGE TRANS", "Change Send");
+    public static final FileType DISBURSEMENT_ROSTER = new FileType("COMMON DISB ROS", "Disbursement Roster");
+    public static final FileType DISBURSEMENT_ACKNOWLEDGEMENT = new FileType("COMMON DISB ACK", "Disbursement Acknowledgement");
 
     private String identifierName;
     private String description;
+
 
     FileType(String identifierName, String description) {
         this.identifierName = identifierName;
@@ -38,5 +41,9 @@ public class FileType {
 
     public static FileType evaluate(String identifier) {
         return (FileType) types.get(identifier);
+    }
+
+    public String toString() {
+        return getDescription();
     }
 }

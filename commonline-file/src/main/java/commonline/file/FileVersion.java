@@ -19,8 +19,8 @@ import java.util.Map;
 public class FileVersion {
     private static Map versions = new HashMap();
 
-    public static final FileVersion CL4 = new FileVersion(new String[]{"R004P", "R004T", "C004P", "C004T", "A004P", "A004T"});
-    public static final FileVersion CL5 = new FileVersion(new String[]{"R005P", "R005T", "C005P", "C005T", "A005P", "A005T"});
+    public static final FileVersion CL4 = new FileVersion(new String[]{"R004P", "R004T", "C004P", "C004T", "A004P", "A004T", "E004P", "E004T", "EA04P", "EA04T"});
+    public static final FileVersion CL5 = new FileVersion(new String[]{"R005P", "R005T", "C005P", "C005T", "A005P", "A005T", "E005P", "E005T", "EA05P", "EA05T"});
 
     private String[] identifiers;
 
@@ -34,5 +34,12 @@ public class FileVersion {
 
     public static FileVersion evaluate(String identifier) {
         return (FileVersion) versions.get(identifier);
+    }
+
+    public String toString() {
+        if (this == CL4) {
+            return "CL4";
+        }
+        return "CL5";
     }
 }

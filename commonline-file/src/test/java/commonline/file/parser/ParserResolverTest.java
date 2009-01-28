@@ -12,12 +12,12 @@
  */
 package commonline.file.parser;
 
+import commonline.cl4.appsend.parser.AppSendParser;
+import commonline.cl4.changesend.parser.ChangeSendParser;
+import commonline.cl4.disbursement.parser.DisbursementParser;
 import commonline.cl4.response.parser.ResponseParser;
 import commonline.file.FileType;
 import commonline.file.FileVersion;
-import commonline.cl4.appsend.parser.AppSendParser;
-import commonline.cl4.changesend.parser.ChangeSendParser;
-import flapjack.parser.RecordParser;
 import junit.framework.TestCase;
 
 
@@ -29,6 +29,8 @@ public class ParserResolverTest extends TestCase {
         assertTrue(resolver.resolver(FileType.RESPONSE, FileVersion.CL4) instanceof ResponseParser);
         assertTrue(resolver.resolver(FileType.APP_SEND, FileVersion.CL4) instanceof AppSendParser);
         assertTrue(resolver.resolver(FileType.CHANGE_SEND, FileVersion.CL4) instanceof ChangeSendParser);
+        assertTrue(resolver.resolver(FileType.DISBURSEMENT_ACKNOWLEDGEMENT, FileVersion.CL4) instanceof DisbursementParser);
+        assertTrue(resolver.resolver(FileType.DISBURSEMENT_ROSTER, FileVersion.CL4) instanceof DisbursementParser);
     }
 
     public void test_resolve_ParserUnResolved() {

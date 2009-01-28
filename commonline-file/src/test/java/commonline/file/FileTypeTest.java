@@ -20,6 +20,8 @@ public class FileTypeTest extends TestCase {
         assertEquals(FileType.RESPONSE, FileType.evaluate("COMMON RESPONSE"));
         assertEquals(FileType.CHANGE_SEND, FileType.evaluate("CHANGE TRANS"));
         assertEquals(FileType.APP_SEND, FileType.evaluate("COMMON APPLICATIONS"));
+        assertEquals(FileType.DISBURSEMENT_ROSTER, FileType.evaluate("COMMON DISB ROS"));
+        assertEquals(FileType.DISBURSEMENT_ACKNOWLEDGEMENT, FileType.evaluate("COMMON DISB ACK"));
         assertNull(FileType.evaluate("wtf"));
     }
 }

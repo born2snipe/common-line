@@ -85,7 +85,7 @@ public class Frame extends JFrame {
     public static void main(String args[]) throws Exception {
         Plastic3DLookAndFeel.setTabStyle(Plastic3DLookAndFeel.TAB_STYLE_METAL_VALUE);
         Plastic3DLookAndFeel.setPlasticTheme(new ExperienceRoyale());
-        UIManager.setLookAndFeel(new Plastic3DLookAndFeel());
+        UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
 
         System.setProperty("com.apple.macos.useScreenMenuBar", "true");
 

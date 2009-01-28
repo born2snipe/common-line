@@ -32,6 +32,16 @@ public class FileVersionTest extends TestCase {
         assertEquals(FileVersion.CL5, FileVersion.evaluate("A005T"));
         assertEquals(FileVersion.CL4, FileVersion.evaluate("A004P"));
         assertEquals(FileVersion.CL4, FileVersion.evaluate("A004T"));
+
+        assertEquals(FileVersion.CL5, FileVersion.evaluate("E005P"));
+        assertEquals(FileVersion.CL5, FileVersion.evaluate("E005T"));
+        assertEquals(FileVersion.CL4, FileVersion.evaluate("E004P"));
+        assertEquals(FileVersion.CL4, FileVersion.evaluate("E004T"));
+        
+        assertEquals(FileVersion.CL5, FileVersion.evaluate("EA05P"));
+        assertEquals(FileVersion.CL5, FileVersion.evaluate("EA05T"));
+        assertEquals(FileVersion.CL4, FileVersion.evaluate("EA04P"));
+        assertEquals(FileVersion.CL4, FileVersion.evaluate("EA04T"));
         
         assertNull(FileVersion.evaluate("WTF"));
     }

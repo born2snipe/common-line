@@ -22,7 +22,7 @@ import java.util.Iterator;
 
 public class DibursementParserTest extends TestCase {
     public void test_verifyRecordLayouts() {
-        DibursementParser parser = new DibursementParser();
+        DisbursementParser parser = new DisbursementParser();
 
         RecordLayoutResolver recordLayoutResolver = parser.getRecordLayoutResolver();
         assertNotNull(recordLayoutResolver);

@@ -25,7 +25,7 @@
                 <bean class="commonline.cl4.response.parser.ResponseParser"/>
                 <bean class="commonline.cl4.appsend.parser.AppSendParser"/>
                 <bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>
-                <bean class="commonline.cl4.disbursement.parser.DibursementParser"/>
+                <bean class="commonline.cl4.disbursement.parser.DisbursementParser"/>
             </list>
         </property>
         <property name="layoutTableInfoFactory" ref="layoutTableInfoFactory"/>
@@ -72,7 +72,7 @@
                 <entry key="commonline.cl4.response.parser.ResponseParser" value="RESPONSE"/>
                 <entry key="commonline.cl4.appsend.parser.AppSendParser" value="APPSEND"/>
                 <entry key="commonline.cl4.changesend.parser.ChangeSendParser" value="CHANGESEND"/>
-                <entry key="commonline.cl4.disbursement.parser.DibursementParser" value="DISBURSEMENT"/>
+                <entry key="commonline.cl4.disbursement.parser.DisbursementParser" value="DISBURSEMENT"/>
             </map>
         </property>
     </bean>

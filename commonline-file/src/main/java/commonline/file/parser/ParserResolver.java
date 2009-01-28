@@ -15,6 +15,7 @@ package commonline.file.parser;
 import commonline.cl4.appsend.parser.AppSendParser;
 import commonline.cl4.changesend.parser.ChangeSendParser;
 import commonline.cl4.response.parser.ResponseParser;
+import commonline.cl4.disbursement.parser.DisbursementParser;
 import commonline.file.FileInfo;
 import commonline.file.FileType;
 import commonline.file.FileVersion;
@@ -31,6 +32,8 @@ public class ParserResolver {
         parsers.put(new FileInfo(FileVersion.CL4, FileType.RESPONSE), new ResponseParser());
         parsers.put(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), new ChangeSendParser());
         parsers.put(new FileInfo(FileVersion.CL4, FileType.APP_SEND), new AppSendParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ROSTER), new DisbursementParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ACKNOWLEDGEMENT), new DisbursementParser());
     }
 
     public RecordParser resolver(FileType fileType, FileVersion fileVersion) {

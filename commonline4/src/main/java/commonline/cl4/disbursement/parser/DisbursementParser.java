@@ -18,7 +18,7 @@ import commonline.cl4.disbursement.layout.*;
 import java.util.List;
 
 
-public class DibursementParser extends AbstractCommonLineRecordParser {
+public class DisbursementParser extends AbstractCommonLineRecordParser {
     protected void initializeRecordLayouts(List recordLayouts) {
         recordLayouts.add(new HeaderRecordLayout());
         recordLayouts.add(new TrailerRecordLayout());

@@ -14,6 +14,7 @@ package commonline.file;
 
 import commonline.cl4.appsend.parser.AppSendParser;
 import commonline.cl4.changesend.parser.ChangeSendParser;
+import commonline.cl4.disbursement.parser.DisbursementParser;
 import commonline.cl4.response.parser.ResponseParser;
 import flapjack.io.LineRecordReader;
 import flapjack.parser.ParseResult;
@@ -38,10 +39,13 @@ public class FileAnalyzer {
         initializeParsers();
     }
 
+    // TODO -- this seems messy to have to put this here and in the ParserResolver
     private void initializeParsers() {
         registerParser(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), new ChangeSendParser());
         registerParser(new FileInfo(FileVersion.CL4, FileType.APP_SEND), new AppSendParser());
         registerParser(new FileInfo(FileVersion.CL4, FileType.RESPONSE), new ResponseParser());
+        registerParser(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ROSTER), new DisbursementParser());
+        registerParser(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ACKNOWLEDGEMENT), new DisbursementParser());
     }
 
     protected void registerParser(FileInfo info, RecordParser parser) {
