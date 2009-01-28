@@ -15,7 +15,7 @@ package commonline.cl4.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 /**
- * NCHELP CommonLine� Network for FFELP and Alternative Loans
+ * NCHELP CommonLine Network for FFELP and Alternative Loans
  * <p/>
  * Application Send File
  * <p/>

@@ -13,6 +13,7 @@
 package commonline.cl4;
 
 import commonline.cl4.response.layout.SupplementalBorrowerInformationRecordLayout;
+import commonline.cl4.disbursement.layout.*;
 import commonline.core.layout.DecimalFieldDefinition;
 import commonline.core.layout.IntegerFieldDefinition;
 import commonline.core.layout.CommonlineFieldDefinition;
@@ -24,7 +25,7 @@ import java.util.Iterator;
 
 public class Blah {
     public static void main(String args[]) {
-        RecordLayout layout = new SupplementalBorrowerInformationRecordLayout();
+        RecordLayout layout = new TrailerRecordLayout();
 
         Iterator it = layout.getFieldDefinitions().iterator();
         while (it.hasNext()) {

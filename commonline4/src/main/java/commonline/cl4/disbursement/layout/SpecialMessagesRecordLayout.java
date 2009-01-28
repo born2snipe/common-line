@@ -10,29 +10,29 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline.cl4.appsend.layout;
+package commonline.cl4.disbursement.layout;
 
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 /**
  * NCHELP CommonLine Network for FFELP and Alternative Loans
  * <p/>
- * Application Send File
+ * Disbursement Roster File/Disbursement Roster Acknowledgment File
  * <p/>
- * Supplemental Borrower Information (@7) Detail Record(s) Addendum
+ * SPECIAL MESSAGES (@3) DETAIL RECORD
  */
-public class SupplementalBorrowerInformationRecordLayout extends AbstractCommonLineRecordLayout {
+public class SpecialMessagesRecordLayout extends AbstractCommonLineRecordLayout {
     protected void defineFields() {
-        field("2", "Supplemental Borrower Information Layout Owner Code", "X(004)");
-        field("3", "Supplemental Borrower Information Layout Identifier Code", "X(002)");
-        field("4", "E-mail Address", "X(256)");
-        field("5", "E-mail Address Validity Indicator", "X(001)");
-        field("6", "E-mail Address Effective Date (CCYYMMDD)", "9(008)");
-        field("7", "Filler", "X(606)");
+        field("2", "Message 1", "X(080)");
+        field("3", "Message 2", "X(080)");
+        field("4", "Message 3", "X(080)");
+        field("5", "Message 4", "X(080)");
+        field("6", "Message 5", "X(080)");
+        field("7", "Filler", "X(157)");
         recordTerminator("8");
     }
 
     public String getCode() {
-        return "@7";
+        return "@3";
     }
 }

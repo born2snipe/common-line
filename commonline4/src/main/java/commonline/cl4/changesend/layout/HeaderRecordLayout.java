@@ -15,7 +15,7 @@ package commonline.cl4.changesend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 /**
- * NCHELP CommonLine� Network for FFELP and Alternative Loans
+ * NCHELP CommonLine Network for FFELP and Alternative Loans
  * <p/>
  * Change Send File
  * <p/>
