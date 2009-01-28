@@ -39,8 +39,7 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
         factory.setFieldColumnFactory(columnFactory);
     }
 
-    // TODO -- need to complete
-    public void FAILING_test_build_MultipleFieldsWithTheSameName() {
+    public void test_build_MultipleFieldsWithTheSameName() {
         RecordLayout layout = new AbstractCommonLineRecordLayout() {
             protected void defineFields() {
                 field("1", "Record Code", "x(2)");
@@ -51,8 +50,8 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
             }
         };
 
-        FieldColumn fieldColumn = new FieldColumn("field", "column", SqlType.DOUBLE);
-        FieldColumn fieldColumn2 = new FieldColumn("field", "column", SqlType.DOUBLE);
+        FieldColumn fieldColumn = new FieldColumn(new ColumnIdentifier("1"), "field", "column", SqlType.DOUBLE);
+        FieldColumn fieldColumn2 = new FieldColumn(new ColumnIdentifier("2"), "field", "column", SqlType.DOUBLE);
 
         when(tableNameResolver.resolve(layout)).thenReturn("tableName");
         when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(0))).thenReturn(fieldColumn);
@@ -76,8 +75,8 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
             }
         };
 
-        FieldColumn fieldColumn = new FieldColumn("field1", "column1", SqlType.INT);
-        FieldColumn fieldColumn2 = new FieldColumn("field2", "column2", SqlType.DOUBLE);
+        FieldColumn fieldColumn = new FieldColumn(new ColumnIdentifier("1"), "field1", "column1", SqlType.INT);
+        FieldColumn fieldColumn2 = new FieldColumn(new ColumnIdentifier("2"), "field2", "column2", SqlType.DOUBLE);
 
         when(tableNameResolver.resolve(layout)).thenReturn("tableName");
         when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(0))).thenReturn(fieldColumn);
@@ -101,7 +100,7 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
         };
 
 
-        FieldColumn fieldColumn = new FieldColumn("", "", SqlType.INT);
+        FieldColumn fieldColumn = new FieldColumn(new ColumnIdentifier("2"), "", "", SqlType.INT);
 
         when(tableNameResolver.resolve(layout)).thenReturn("tableName");
         when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(0))).thenReturn(fieldColumn);
@@ -131,7 +130,7 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
         };
 
         when(tableNameResolver.resolve(layout)).thenReturn("tableName");
-        when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(0))).thenReturn(new FieldColumn("", "", SqlType.INT));
+        when(columnFactory.build((FieldDefinition) layout.getFieldDefinitions().get(0))).thenReturn(new FieldColumn(new ColumnIdentifier("2"), "", "", SqlType.INT));
 
         RecordLayoutTableInfo tableInfo = factory.build(PARSER, layout);
 

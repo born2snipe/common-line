@@ -39,8 +39,8 @@ public class RecordLayoutSqlTableFactoryTest extends TestCase {
     }
 
     public void test_build_MultipleColumns() {
-        tableInfo.registerFieldColumn(new FieldColumn("field1", "column1", SqlType.INT));
-        tableInfo.registerFieldColumn(new FieldColumn("field2", "column2", SqlType.VARCHAR, 10));
+        tableInfo.registerFieldColumn(new FieldColumn(new ColumnIdentifier("1"), "field1", "column1", SqlType.INT));
+        tableInfo.registerFieldColumn(new FieldColumn(new ColumnIdentifier("2"), "field2", "column2", SqlType.VARCHAR, 10));
 
         String sql = "CREATE TABLE DUMMY (\n" +
                 "\tcolumn1 int,\n" +
@@ -50,7 +50,7 @@ public class RecordLayoutSqlTableFactoryTest extends TestCase {
     }
 
     public void test_build_SingleColumn() {
-        tableInfo.registerFieldColumn(new FieldColumn("field", "column", SqlType.VARCHAR, 10));
+        tableInfo.registerFieldColumn(new FieldColumn(new ColumnIdentifier("1"), "field", "column", SqlType.VARCHAR, 10));
 
         String sql = "CREATE TABLE DUMMY (\n" +
                 "\tcolumn varchar(10)\n" +

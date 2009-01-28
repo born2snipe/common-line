@@ -13,8 +13,6 @@
 package commonline.query.gui;
 
 import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
-import com.jgoodies.looks.plastic.PlasticTheme;
-import com.jgoodies.looks.plastic.theme.DesertBlue;
 import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
 import commonline.query.gui.action.*;
 import commonline.query.sql.RecordParserDataSource;

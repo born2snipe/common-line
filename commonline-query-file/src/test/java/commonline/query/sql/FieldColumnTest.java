@@ -18,7 +18,7 @@ import junit.framework.TestCase;
 public class FieldColumnTest extends TestCase {
     public void test_constructor_zeroLength() {
         try {
-            new FieldColumn("field", "column", SqlType.VARCHAR, 0);
+            new FieldColumn(null, "field", "column", SqlType.VARCHAR, 0);
             fail();
         } catch (IllegalArgumentException er) {
             assertEquals("A length over 0 must be provided with type VARCHAR", er.getMessage());
@@ -27,7 +27,7 @@ public class FieldColumnTest extends TestCase {
     
     public void test_constructor_negativeLength() {
         try {
-            new FieldColumn("field", "column", SqlType.VARCHAR, -1);
+            new FieldColumn(null, "field", "column", SqlType.VARCHAR, -1);
             fail();
         } catch (IllegalArgumentException er) {
             assertEquals("A length over 0 must be provided with type VARCHAR", er.getMessage());
@@ -35,6 +35,6 @@ public class FieldColumnTest extends TestCase {
     }
     
     public void test_constructor_validLength() {
-        new FieldColumn("field", "column", SqlType.VARCHAR, 1);
+        new FieldColumn(null, "field", "column", SqlType.VARCHAR, 1);
     }
 }

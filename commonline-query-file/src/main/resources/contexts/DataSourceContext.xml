@@ -59,6 +59,9 @@
                         </property>
                     </bean>
                 </constructor-arg>
+                <constructor-arg>
+                    <bean class="commonline.query.sql.CommonlineColumnIdentifierFactory" />
+                </constructor-arg>
             </bean>
         </property>
         <property name="tableNameResolver">
