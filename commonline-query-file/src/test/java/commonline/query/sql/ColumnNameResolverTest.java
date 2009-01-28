@@ -16,6 +16,8 @@ import commonline.core.layout.TextFieldDefinition;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ColumnNameResolverTest extends TestCase {
@@ -29,11 +31,15 @@ public class ColumnNameResolverTest extends TestCase {
         assertEquals("name", resolver.resolve(new TextFieldDefinition("1", "name ZZZ", 0, "x(1)")));
         assertEquals("filler_1", resolver.resolve(new TextFieldDefinition("1", "filler", 0, "x(1)")));
         assertEquals("FILLER_1", resolver.resolve(new TextFieldDefinition("1", "FILLER", 0, "x(1)")));
+        assertEquals("At1_Count", resolver.resolve(new TextFieldDefinition("1", "@1 Count", 0, "x(1)")));
     }
 
     protected void setUp() throws Exception {
         super.setUp();
         resolver = new ColumnNameResolver();
         resolver.setRemoves(Arrays.asList("(XXX)", "ZZZ"));
+        Map<String, String> replacements = new HashMap<String, String>();
+        replacements.put("@", "At");
+        resolver.setReplacements(replacements);
     }
 }

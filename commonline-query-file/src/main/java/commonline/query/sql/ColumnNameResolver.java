@@ -16,13 +16,19 @@ import commonline.core.layout.CommonlineFieldDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 
 public class ColumnNameResolver {
     private List<String> removes = new ArrayList<String>();
+    private Map<String, String> replacements = new HashMap<String, String>();
 
     public String resolve(CommonlineFieldDefinition fieldDefinition) {
         String newName = fieldDefinition.getName().trim();
+        for (String key : replacements.keySet()) {
+            newName = newName.replaceAll(key, replacements.get(key));
+        }
         for (String value : removes) {
             newName = newName.replace(value, "").trim();
             if ("filler".equalsIgnoreCase(newName)) {
@@ -34,5 +40,9 @@ public class ColumnNameResolver {
 
     public void setRemoves(List<String> removes) {
         this.removes.addAll(removes);
+    }
+
+    public void setReplacements(Map<String, String> replacements) {
+        this.replacements.putAll(replacements);
     }
 }

@@ -54,13 +54,17 @@
                                 <value>.</value>
                                 <value>'</value>
                                 <value>-</value>
-                                <value>@</value>
                             </list>
+                        </property>
+                        <property name="replacements">
+                            <map>
+                                <entry key="@" value="At"/>
+                            </map>
                         </property>
                     </bean>
                 </constructor-arg>
                 <constructor-arg>
-                    <bean class="commonline.query.sql.CommonlineColumnIdentifierFactory" />
+                    <bean class="commonline.query.sql.CommonlineColumnIdentifierFactory"/>
                 </constructor-arg>
             </bean>
         </property>
