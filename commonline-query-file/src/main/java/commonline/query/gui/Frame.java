@@ -12,6 +12,10 @@
  */
 package commonline.query.gui;
 
+import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
+import com.jgoodies.looks.plastic.PlasticTheme;
+import com.jgoodies.looks.plastic.theme.DesertBlue;
+import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
 import commonline.query.gui.action.*;
 import commonline.query.sql.RecordParserDataSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -81,7 +85,9 @@ public class Frame extends JFrame {
     }
 
     public static void main(String args[]) throws Exception {
-        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        Plastic3DLookAndFeel.setTabStyle(Plastic3DLookAndFeel.TAB_STYLE_METAL_VALUE);
+        Plastic3DLookAndFeel.setPlasticTheme(new ExperienceRoyale());
+        UIManager.setLookAndFeel(new Plastic3DLookAndFeel());
 
         System.setProperty("com.apple.macos.useScreenMenuBar", "true");
 
