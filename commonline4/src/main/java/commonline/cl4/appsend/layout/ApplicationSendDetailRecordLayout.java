@@ -77,8 +77,8 @@ public class ApplicationSendDetailRecordLayout extends AbstractCommonLineRecordL
         field("59", "Recommended Disbursement Date 3 (CCYYMMDD)", "9(008)");
         field("60", "Recommended Disbursement Date 4 (CCYYMMDD)", "9(008)");
         field("61", "School Certification Date (CCYYMMDD)", "9(008)");
-        field("62", "Filler - Expansion for revision of Federal Stafford common application", "X(008)");
-        field("63", "Filler - Expansion for revision of Federal Stafford common application", "X(008)");
+        field("62", "Filler", "X(008)");
+        field("63", "Filler", "X(008)");
         field("64", "Alternative Loan Certified Amount", "9(005)");
         field("65", "Alternative Loan Application Version Code", "9(004)");
         field("66", "School Designated Branch/Division Code", "X(002)");

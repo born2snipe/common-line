@@ -35,9 +35,9 @@ public class Frame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
-        openAction = new OpenAction(isMac);
-        clearDatabaseAction = new ClearDatabaseAction(isMac);
-        executeScriptAction = new ExecuteScriptAction(isMac);
+        openAction = new OpenAction(isMac, this);
+        clearDatabaseAction = new ClearDatabaseAction(isMac, this, dataSources);
+        executeScriptAction = new ExecuteScriptAction(isMac, dataSources);
         stopScriptAction = new StopScriptAction(isMac);
 
         initializeMenu(isMac);
@@ -47,7 +47,7 @@ public class Frame extends JFrame {
         setLocationByPlatform(true);
     }
 
-    private void initializeView(List dataSources, Action executeScriptAction, Action stopScriptAction) {
+    private void initializeView(List dataSources, ExecuteScriptAction executeScriptAction, Action stopScriptAction) {
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(dataSources), new QueryPanel(executeScriptAction, stopScriptAction));
         split.setDividerLocation(200);
 

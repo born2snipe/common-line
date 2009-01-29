@@ -44,8 +44,8 @@ public class DisbursementCancellationChangeDetailRecordLayout extends AbstractCo
         field("20", "PLUS/Alternative Student SSN", "9(009)");
         field("21", "CommonLine Unique Identifier", "X(017)");
         field("22", "CommonLine Loan Sequence Number", "9(002)");
-        field("23", "Disbursement Number", "X(001)");
-        field("24", "Disbursement Number", "9(001)");
+        field("23", "Disbursement Number 1", "X(001)");
+        field("24", "Disbursement Number 2", "9(001)");
         field("25", "Disbursement Date (CCYYMMDD)", "9(008)");
         field("26", "Cancellation Date (CCYYMMDD)", "9(008)");
         field("27", "Cancellation Amount", "9(006)V99");

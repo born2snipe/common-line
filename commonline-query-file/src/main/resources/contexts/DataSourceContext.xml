@@ -18,13 +18,13 @@
 
     <bean id="cl4DataSource" class="commonline.query.sql.RecordParserDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:~/.commonline/cl4"/>
+        <property name="url" value="jdbc:h2:mem:cl4;DB_CLOSE_DELAY=-1"/>
         <property name="name" value="CL4"/>
         <property name="parsers">
             <list>
                 <bean class="commonline.cl4.response.parser.ResponseParser"/>
                 <bean class="commonline.cl4.appsend.parser.AppSendParser"/>
-                <bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>
+                <!--<bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>-->
                 <bean class="commonline.cl4.disbursement.parser.DisbursementParser"/>
             </list>
         </property>
@@ -33,8 +33,13 @@
 
     <bean id="cl5DataSource" class="commonline.query.sql.RecordParserDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:~/.commonline/cl5"/>
+        <property name="url" value="jdbc:h2:mem:cl5;DB_CLOSE_DELAY=-1"/>
         <property name="name" value="CL5"/>
+        <property name="layoutTableInfoFactory" ref="layoutTableInfoFactory"/>
+        <property name="parsers">
+            <list>
+            </list>
+        </property>
     </bean>
 
     <bean id="layoutTableInfoFactory" class="commonline.query.sql.CommonlineRecordLayoutTableInfoFactory">

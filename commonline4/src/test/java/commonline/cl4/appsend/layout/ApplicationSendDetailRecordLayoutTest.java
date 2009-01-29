@@ -95,8 +95,8 @@ public class ApplicationSendDetailRecordLayoutTest extends AbstractRecordLayoutT
         assertInteger("59", "Recommended Disbursement Date 3 (CCYYMMDD)", 428, 8);
         assertInteger("60", "Recommended Disbursement Date 4 (CCYYMMDD)", 436, 8);
         assertInteger("61", "School Certification Date (CCYYMMDD)", 444, 8);
-        assertText("62", "Filler - Expansion for revision of Federal Stafford common application", 452, 8);
-        assertText("63", "Filler - Expansion for revision of Federal Stafford common application", 460, 8);
+        assertText("62", "Filler", 452, 8);
+        assertText("63", "Filler", 460, 8);
         assertInteger("64", "Alternative Loan Certified Amount", 468, 5);
         assertInteger("65", "Alternative Loan Application Version Code", 473, 4);
         assertText("66", "School Designated Branch/Division Code", 477, 2);

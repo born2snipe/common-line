@@ -57,8 +57,8 @@ public class DisbursementCancellationChangeDetailRecordLayoutTest extends Abstra
         assertInteger("20", "PLUS/Alternative Student SSN", 111, 9);
         assertText("21", "CommonLine Unique Identifier", 120, 17);
         assertInteger("22", "CommonLine Loan Sequence Number", 137, 2);
-        assertText("23", "Disbursement Number", 139, 1);
-        assertInteger("24", "Disbursement Number", 140, 1);
+        assertText("23", "Disbursement Number 1", 139, 1);
+        assertInteger("24", "Disbursement Number 2", 140, 1);
         assertInteger("25", "Disbursement Date (CCYYMMDD)", 141, 8);
         assertInteger("26", "Cancellation Date (CCYYMMDD)", 149, 8);
         assertDecimal("27", "Cancellation Amount", 157, 8);

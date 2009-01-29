@@ -158,6 +158,7 @@
                             <alias>commonline</alias>
                             <offlineAllowed>true</offlineAllowed>
                             <allPermissions>true</allPermissions>
+                            <j2seVersion>1.6+</j2seVersion>
                             <codebase>http://common-line.googlecode.com/svn/trunk/webstart</codebase>
                             <vendor>http://code.google.com/p/common-line</vendor>
                             <homepage>http://code.google.com/p/common-line</homepage>

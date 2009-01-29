@@ -83,7 +83,7 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
             CommonLineRecordLayoutResolver resolver = (CommonLineRecordLayoutResolver) parser.getRecordLayoutResolver();
             for (Object obj : resolver.getRecordLayouts()) {
                 RecordLayoutTableInfo tableInfo = layoutTableInfoFactory.build(parser, (RecordLayout) obj);
-//                template.execute(sqlTableFactory.build(tableInfo));
+                template.execute(sqlTableFactory.build(tableInfo));
                 tableInfos.add(tableInfo);
             }
         }
@@ -92,6 +92,10 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
 
     protected DriverManagerDataSource createDelegate() {
         return new DriverManagerDataSource();
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public void setUrl(String url) {

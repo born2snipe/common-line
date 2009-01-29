@@ -17,12 +17,14 @@ import jsyntaxpane.DefaultSyntaxKit;
 import javax.swing.*;
 import java.awt.*;
 
+import commonline.query.gui.action.ExecuteScriptAction;
+
 
 public class QueryPanel extends JPanel {
     private JEditorPane codeEditor;
     private OutputPanel outputPanel;
 
-    public QueryPanel(Action executeScriptAction, Action stopScriptAction) {
+    public QueryPanel(ExecuteScriptAction executeScriptAction, Action stopScriptAction) {
         super(new BorderLayout());
 
         DefaultSyntaxKit.initKit();
@@ -52,5 +54,8 @@ public class QueryPanel extends JPanel {
         add(split, BorderLayout.CENTER);
         doLayout();
         codeEditor.setContentType("text/sql");
+
+        executeScriptAction.setSqlEditor(codeEditor);
+        executeScriptAction.setDatabaseSelector(comboBox);
     }
 }

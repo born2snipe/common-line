@@ -74,9 +74,11 @@ public class FileAnalyzer {
         return null;
     }
 
-    public FileInfo analyze(File file) {
+    public FileInfo analyze(File file) throws IllegalArgumentException {
         try {
             return analyze(new FileInputStream(file));
+        } catch (IllegalArgumentException err) {
+            throw new IllegalArgumentException("Could not locate header record in file=" + file);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }

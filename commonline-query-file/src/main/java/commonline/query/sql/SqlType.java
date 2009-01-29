@@ -35,7 +35,7 @@ public enum SqlType {
 
     public String format(int length) {
         MessageFormat formatter = new MessageFormat(this.formatted);
-        return formatter.format(new Object[]{length});
+        return formatter.format(new Object[]{String.valueOf(length)});
     }
 
     public boolean isLengthRequired() {
