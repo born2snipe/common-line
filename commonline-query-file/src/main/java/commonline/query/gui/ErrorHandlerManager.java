@@ -33,6 +33,7 @@ public class ErrorHandlerManager {
     }
 
     public void handle(Exception err) {
+        err.printStackTrace();
         for (ErrorHandler handler : handlers) {
             handler.handle(err);
         }

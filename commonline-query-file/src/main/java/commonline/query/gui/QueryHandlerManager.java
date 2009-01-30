@@ -12,9 +12,9 @@
  */
 package commonline.query.gui;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class QueryHandlerManager {
@@ -29,9 +29,9 @@ public class QueryHandlerManager {
         handlers.add(handler);
     }
 
-    public void handle(ResultSet resultSet, int rowCount) {
+    public void handle(List<String> columns, int rowCount, Map<String, Object> results) {
         for (QueryHandler handler : handlers)
-            handler.handle(resultSet, rowCount);
+            handler.handle(columns, rowCount, results);
     }
 
     public void reset() {
@@ -40,7 +40,7 @@ public class QueryHandlerManager {
     }
 
     public interface QueryHandler {
-        void handle(ResultSet resultSet, int rowCount);
+        void handle(List<String> columns, int rowCount, Map<String, Object> results);
 
         void reset();
     }

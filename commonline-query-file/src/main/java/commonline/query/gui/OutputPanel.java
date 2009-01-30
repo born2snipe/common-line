@@ -14,14 +14,15 @@ package commonline.query.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.ResultSet;
+import java.util.Map;
 
 
 public class OutputPanel extends JPanel {
     private JTabbedPane tabs = new JTabbedPane(JTabbedPane.BOTTOM);
     private JTextPane console = new JTextPane();
     private ResultSetTableModel tableModel;
-    private JLabel label = new JLabel();
+    private JLabel resultLabel = new JLabel();
+    private JLabel consoleLabel = new JLabel();
 
     public OutputPanel() {
         super(new BorderLayout());
@@ -43,11 +44,12 @@ public class OutputPanel extends JPanel {
         tableModel = new ResultSetTableModel();
 
         QueryHandlerManager.instance().addHandler(new QueryHandlerManager.QueryHandler() {
-            public void handle(final ResultSet resultSet, final int rowCount) {
+            public void handle(final java.util.List<String> columns, final int rowCount, final Map<String, Object> results) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        tableModel.addResultSet(resultSet);
-                        label.setText("Results: " + rowCount);
+                        tableModel.addResults(columns, results);
+                        resultLabel.setText("Results: " + rowCount);
+                        consoleLabel.setText("Results: " + rowCount);
                     }
                 });
             }
@@ -58,7 +60,8 @@ public class OutputPanel extends JPanel {
                         tableModel.reset();
                         tabs.setSelectedIndex(0);
                         ConsoleManager.instance().clear();
-                        label.setText("Results: 0");
+                        resultLabel.setText("Results: 0");
+                        consoleLabel.setText("Results: 0");
                     }
                 });
             }
@@ -101,11 +104,11 @@ public class OutputPanel extends JPanel {
 
         JPanel resultPanel = new JPanel(new BorderLayout());
         resultPanel.add(resultScrollPane, BorderLayout.CENTER);
-        resultPanel.add(label, BorderLayout.SOUTH);
+        resultPanel.add(resultLabel, BorderLayout.SOUTH);
 
         JPanel consolePanel = new JPanel(new BorderLayout());
         consolePanel.add(consoleScrollPane, BorderLayout.CENTER);
-        consolePanel.add(label, BorderLayout.SOUTH);
+        consolePanel.add(consoleLabel, BorderLayout.SOUTH);
 
         tabs.addTab("Results", resultPanel);
         tabs.addTab("Console", consolePanel);

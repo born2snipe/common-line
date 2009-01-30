@@ -23,8 +23,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class ExecuteScriptAction extends AbtractMacableAction {
@@ -41,16 +45,41 @@ public class ExecuteScriptAction extends AbtractMacableAction {
 
     public void actionPerformed(ActionEvent actionEvent) {
         synchronized (sqlEditor) {
-            QueryHandlerManager.instance().reset();
             if (sqlEditor.getText().trim().length() == 0) {
                 return;
             }
             try {
+                QueryHandlerManager.instance().reset();
+                final List<String> columnNames = new ArrayList<String>();
                 JdbcTemplate jdbcTemplate = new JdbcTemplate(findSelectedDataSource());
                 jdbcTemplate.query(sqlEditor.getText(), new RowMapper() {
                     public Object mapRow(ResultSet resultSet, int rowCount) throws SQLException {
-                        QueryHandlerManager.instance().handle(resultSet, rowCount);
+                        initializeColumnHeadings(resultSet);
+                        Map results = convertToMap(resultSet);
+                        QueryHandlerManager.instance().handle(columnNames, rowCount, results);
                         return null;
+                    }
+
+                    private Map<String, Object> convertToMap(ResultSet resultSet) throws SQLException {
+                        Map<String, Object> map = new HashMap<String, Object>();
+                        for (String name : columnNames) {
+                            map.put(name, resultSet.getObject(name));
+                        }
+                        return map;
+                    }
+
+                    private void initializeColumnHeadings(ResultSet resultSet) {
+                        if (columnNames.size() == 0) {
+                            try {
+                                ResultSetMetaData metaData = resultSet.getMetaData();
+                                int count = metaData.getColumnCount();
+                                for (int i = 1; i <= count; i++) {
+                                    columnNames.add(metaData.getColumnName(i));
+                                }
+                            } catch (SQLException err) {
+                                ErrorHandlerManager.instance().handle(err);
+                            }
+                        }
                     }
                 });
             } catch (Exception err) {
