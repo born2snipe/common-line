@@ -27,12 +27,13 @@ public class OutputPanel extends JPanel {
         super(new BorderLayout());
 
         console.setEditable(false);
+        console.setFocusable(false);
 
         ErrorHandlerManager.instance().addHandler(new ErrorHandlerManager.ErrorHandler() {
             public void handle(final Exception err) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        console.setText(err.getMessage());
+                        ConsoleManager.instance().println(err.getMessage());
                         tabs.setSelectedIndex(1);
                     }
                 });
@@ -56,11 +57,40 @@ public class OutputPanel extends JPanel {
                     public void run() {
                         tableModel.reset();
                         tabs.setSelectedIndex(0);
-                        console.setText("");
+                        ConsoleManager.instance().clear();
                         label.setText("Results: 0");
                     }
                 });
             }
+        });
+
+        ConsoleManager.instance().addHandler(new ConsoleManager.Handler() {
+            public void clear() {
+                if (SwingUtilities.isEventDispatchThread()) {
+                    console.setText("");
+                } else {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            console.setText("");
+                        }
+                    });
+                }
+            }
+
+            public void print(final String text) {
+                if (SwingUtilities.isEventDispatchThread()) {
+                    console.setText(console.getText() + text);
+                    tabs.setSelectedIndex(1);
+                } else {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        public void run() {
+                            console.setText(console.getText() + text);
+                            tabs.setSelectedIndex(1);
+                        }
+                    });
+                }
+            }
+
         });
 
 

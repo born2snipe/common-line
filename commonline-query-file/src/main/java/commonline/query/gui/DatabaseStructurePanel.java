@@ -68,7 +68,8 @@ public class DatabaseStructurePanel extends JPanel {
                 label.setText(((RecordParserDataSource) node.getUserObject()).getName());
             } else if (node.getUserObject() instanceof FieldColumn) {
                 label.setIcon(COLUMN_ICON);
-                label.setText(((FieldColumn) node.getUserObject()).getColumnName());
+                FieldColumn fieldColumn = (FieldColumn) node.getUserObject();
+                label.setText("<html>" + fieldColumn.getColumnName() + " <i><font color='#4C9EAF'>" + fieldColumn.getType().format(fieldColumn.getLength()) + "</font></i></html>");
             } else {
                 label.setText(node.getUserObject().toString());
             }

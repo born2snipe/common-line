@@ -20,6 +20,11 @@
         </dependency>
 
         <dependency>
+            <groupId>flapjack</groupId>
+            <artifactId>flapjack-annotation</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>

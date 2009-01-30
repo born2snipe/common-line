@@ -55,4 +55,8 @@ public class FieldColumn {
     public ColumnIdentifier getIdentifier() {
         return identifier;
     }
+
+    public String toString() {
+        return getColumnName() + " " + type.format(getLength());
+    }
 }
