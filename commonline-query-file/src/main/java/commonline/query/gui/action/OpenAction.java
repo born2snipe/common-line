@@ -78,7 +78,7 @@ public class OpenAction extends AbtractMacableAction {
                     consoleManager.println("\n=======================");
                     consoleManager.println("Results for " + file.getName());
                     consoleManager.println("=======================");
-                    consoleManager.println("Good Records:" + result.getRecords().size());
+                    consoleManager.println("Records:" + result.getRecords().size());
                     consoleManager.println("Partial Records:" + result.getPartialRecords().size());
                     consoleManager.println("Unresolvable Records:" + result.getUnresolvedRecords().size());
                     consoleManager.println("Unparseable Records:" + result.getUnparseableRecords().size());

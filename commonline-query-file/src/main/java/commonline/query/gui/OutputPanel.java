@@ -29,33 +29,43 @@ public class OutputPanel extends JPanel {
 
         console.setEditable(false);
         console.setFocusable(false);
+        tableModel = new ResultSetTableModel();
 
         ErrorHandlerManager.instance().addHandler(new ErrorHandlerManager.ErrorHandler() {
             public void handle(final Exception err) {
-                SwingUtilities.invokeLater(new Runnable() {
+                Runnable runnable = new Runnable() {
                     public void run() {
                         ConsoleManager.instance().println(err.getMessage());
                         tabs.setSelectedIndex(1);
                     }
-                });
+                };
+                if (SwingUtilities.isEventDispatchThread()) {
+                    runnable.run();
+                } else {
+                    SwingUtilities.invokeLater(runnable);
+                }
             }
         });
 
-        tableModel = new ResultSetTableModel();
 
         QueryHandlerManager.instance().addHandler(new QueryHandlerManager.QueryHandler() {
             public void handle(final java.util.List<String> columns, final int rowCount, final Map<String, Object> results) {
-                SwingUtilities.invokeLater(new Runnable() {
+                Runnable runnable = new Runnable() {
                     public void run() {
                         tableModel.addResults(columns, results);
                         resultLabel.setText("Results: " + rowCount);
                         consoleLabel.setText("Results: " + rowCount);
                     }
-                });
+                };
+                if (SwingUtilities.isEventDispatchThread()) {
+                    runnable.run();
+                } else {
+                    SwingUtilities.invokeLater(runnable);
+                }
             }
 
             public void reset() {
-                SwingUtilities.invokeLater(new Runnable() {
+                Runnable runnable = new Runnable() {
                     public void run() {
                         tableModel.reset();
                         tabs.setSelectedIndex(0);
@@ -63,34 +73,40 @@ public class OutputPanel extends JPanel {
                         resultLabel.setText("Results: 0");
                         consoleLabel.setText("Results: 0");
                     }
-                });
+                };
+                if (SwingUtilities.isEventDispatchThread()) {
+                    runnable.run();
+                } else {
+                    SwingUtilities.invokeLater(runnable);
+                }
             }
         });
 
         ConsoleManager.instance().addHandler(new ConsoleManager.Handler() {
             public void clear() {
+                Runnable runnable = new Runnable() {
+                    public void run() {
+                        console.setText("");
+                    }
+                };
                 if (SwingUtilities.isEventDispatchThread()) {
-                    console.setText("");
+                    runnable.run();
                 } else {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                            console.setText("");
-                        }
-                    });
+                    SwingUtilities.invokeLater(runnable);
                 }
             }
 
             public void print(final String text) {
+                Runnable runnable = new Runnable() {
+                    public void run() {
+                        console.setText(console.getText() + text);
+                        tabs.setSelectedIndex(1);
+                    }
+                };
                 if (SwingUtilities.isEventDispatchThread()) {
-                    console.setText(console.getText() + text);
-                    tabs.setSelectedIndex(1);
+                    runnable.run();
                 } else {
-                    SwingUtilities.invokeLater(new Runnable() {
-                        public void run() {
-                            console.setText(console.getText() + text);
-                            tabs.setSelectedIndex(1);
-                        }
-                    });
+                    SwingUtilities.invokeLater(runnable);
                 }
             }
 
