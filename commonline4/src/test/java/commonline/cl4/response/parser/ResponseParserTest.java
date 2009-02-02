@@ -38,7 +38,8 @@ public class ResponseParserTest extends TestCase {
         assertContainsRecordLayout(UniqueSupplementDetailRecordLayout.class, resolver);
         assertContainsRecordLayout(SpecialMessagesRecordLayout.class, resolver);
         assertContainsRecordLayout(ResponseRecordLayout.class, resolver);
-        assertEquals(7, resolver.getRecordLayouts().size());
+        assertContainsRecordLayout(ReferenceResponseRecordLayout.class, resolver);
+        assertEquals(8, resolver.getRecordLayouts().size());
     }
 
     private void assertContainsRecordLayout(Class clazz, CommonLineRecordLayoutResolver resolver) {

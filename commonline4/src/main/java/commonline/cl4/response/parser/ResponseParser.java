@@ -25,7 +25,6 @@ public class ResponseParser extends AbstractCommonLineRecordParser {
         setRecordFactoryResolver(new ResponseRecordFactoryResolver());
     }
 
-    // at @5 and @7
     protected void initializeRecordLayouts(List recordLayouts) {
         recordLayouts.add(new HeaderRecordLayout());
         recordLayouts.add(new ResponseRecordLayout());
@@ -34,6 +33,7 @@ public class ResponseParser extends AbstractCommonLineRecordParser {
         recordLayouts.add(new UniqueSupplementDetailRecordLayout());
         recordLayouts.add(new TrailerRecordLayout());
         recordLayouts.add(new SpecialMessagesRecordLayout());
+        recordLayouts.add(new ReferenceResponseRecordLayout());
     }
 
 }
