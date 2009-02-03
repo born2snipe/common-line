@@ -18,7 +18,8 @@ import java.text.MessageFormat;
 public enum SqlType {
     VARCHAR("varchar({0})", true),
     INT("int"),
-    DOUBLE("double");
+    DOUBLE("double"),
+    DATE("datetime");
 
     private String formatted;
     private boolean lengthRequired;

@@ -15,14 +15,15 @@ package commonline.query.sql;
 import commonline.core.layout.CommonlineFieldDefinition;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 
 public class ColumnNameResolver {
     private List<String> removes = new ArrayList<String>();
     private Map<String, String> replacements = new HashMap<String, String>();
+    private List<String> tagOnId = new ArrayList<String>();
 
     public String resolve(CommonlineFieldDefinition fieldDefinition) {
         String newName = fieldDefinition.getName().trim();
@@ -31,8 +32,10 @@ public class ColumnNameResolver {
         }
         for (String value : removes) {
             newName = newName.replace(value, "").trim();
-            if ("filler".equalsIgnoreCase(newName)) {
-                newName += "_" + fieldDefinition.getId();
+            for (String tagOn : tagOnId) {
+                if (tagOn.equalsIgnoreCase(newName)) {
+                    newName += "_" + fieldDefinition.getId();
+                }
             }
         }
         return newName.replace(" ", "_");
@@ -44,5 +47,9 @@ public class ColumnNameResolver {
 
     public void setReplacements(Map<String, String> replacements) {
         this.replacements.putAll(replacements);
+    }
+
+    public void setTagOnId(List<String> tagOnId) {
+        this.tagOnId.addAll(tagOnId);
     }
 }

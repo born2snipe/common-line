@@ -12,12 +12,12 @@
  */
 package commonline.query.sql;
 
-import commonline.core.layout.DecimalFieldDefinition;
-import commonline.core.layout.IntegerFieldDefinition;
 import commonline.core.layout.TextFieldDefinition;
 import junit.framework.TestCase;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import java.util.Arrays;
 
 
 public class CobolFieldColumnFactoryTest extends TestCase {
@@ -25,53 +25,25 @@ public class CobolFieldColumnFactoryTest extends TestCase {
     private ColumnNameResolver columnNameResolver;
     private ColumnIdentifierFactory columnIdentifierFactory;
     private static final ColumnIdentifier IDENTIFIER = new ColumnIdentifier("1");
+    private SqlTypeResolver sqlTypeResolver;
 
     protected void setUp() throws Exception {
         super.setUp();
 
         columnIdentifierFactory = mock(ColumnIdentifierFactory.class);
         columnNameResolver = mock(ColumnNameResolver.class);
+        sqlTypeResolver = mock(SqlTypeResolver.class);
 
         factory = new CobolFieldColumnFactory(columnNameResolver, columnIdentifierFactory);
+        factory.setSqlTypeResolvers(Arrays.asList(sqlTypeResolver));
     }
 
-    public void test_build_decimalField() {
-        DecimalFieldDefinition fieldDef = new DecimalFieldDefinition("", "name", 0, "9(2)v99");
-
-        when(columnNameResolver.resolve(fieldDef)).thenReturn("column");
-        when(columnIdentifierFactory.build(fieldDef)).thenReturn(IDENTIFIER);
-
-        FieldColumn fieldColumn = factory.build(fieldDef);
-
-        assertNotNull(fieldColumn);
-        assertEquals("column", fieldColumn.getColumnName());
-        assertEquals("name", fieldColumn.getFieldName());
-        assertEquals(4, fieldColumn.getLength());
-        assertEquals(SqlType.DOUBLE, fieldColumn.getType());
-        assertSame(IDENTIFIER, fieldColumn.getIdentifier());
-    }
-
-    public void test_build_integerField() {
-        IntegerFieldDefinition fieldDef = new IntegerFieldDefinition("", "name", 0, "9(2)");
-
-        when(columnNameResolver.resolve(fieldDef)).thenReturn("column");
-        when(columnIdentifierFactory.build(fieldDef)).thenReturn(IDENTIFIER);
-
-        FieldColumn fieldColumn = factory.build(fieldDef);
-
-        assertNotNull(fieldColumn);
-        assertEquals("column", fieldColumn.getColumnName());
-        assertEquals("name", fieldColumn.getFieldName());
-        assertEquals(2, fieldColumn.getLength());
-        assertEquals(SqlType.INT, fieldColumn.getType());
-        assertSame(IDENTIFIER, fieldColumn.getIdentifier());
-    }
-
-    public void test_build_textField() {
+    public void test_build_TypeWasResolved() {
         TextFieldDefinition fieldDef = new TextFieldDefinition("", "name", 0, "X(2)");
 
         when(columnNameResolver.resolve(fieldDef)).thenReturn("column");
         when(columnIdentifierFactory.build(fieldDef)).thenReturn(IDENTIFIER);
+        when(sqlTypeResolver.resolve(fieldDef)).thenReturn(SqlType.DOUBLE);
 
         FieldColumn fieldColumn = factory.build(fieldDef);
 
@@ -79,8 +51,23 @@ public class CobolFieldColumnFactoryTest extends TestCase {
         assertEquals("column", fieldColumn.getColumnName());
         assertEquals("name", fieldColumn.getFieldName());
         assertEquals(2, fieldColumn.getLength());
-        assertEquals(SqlType.VARCHAR, fieldColumn.getType());
+        assertEquals(SqlType.DOUBLE, fieldColumn.getType());
         assertSame(IDENTIFIER, fieldColumn.getIdentifier());
+    }
+    
+    public void test_build_TypeWasNotResolved() {
+        TextFieldDefinition fieldDef = new TextFieldDefinition("", "name", 0, "X(2)");
+
+        when(columnNameResolver.resolve(fieldDef)).thenReturn("column");
+        when(columnIdentifierFactory.build(fieldDef)).thenReturn(IDENTIFIER);
+        when(sqlTypeResolver.resolve(fieldDef)).thenReturn(null);
+
+        try {
+            factory.build(fieldDef);
+            fail();
+        } catch (IllegalArgumentException err) {
+            assertEquals("Could not resolve what sql data type should be used for field='name'", err.getMessage());
+        }
     }
 
 

@@ -19,6 +19,7 @@ public class FieldColumn {
     private SqlType type;
     private int length;
     private ColumnIdentifier identifier;
+    private String pattern;
 
     public FieldColumn(ColumnIdentifier identifier, String fieldName, String columnName, SqlType type) throws IllegalArgumentException {
         this(identifier, fieldName, columnName, type, -1);
@@ -34,6 +35,11 @@ public class FieldColumn {
         this.type = type;
         this.length = length;
         this.identifier = identifier;
+    }
+
+    public FieldColumn(ColumnIdentifier identifier, String fieldName, String columnName, SqlType type, String pattern) throws IllegalArgumentException {
+        this(identifier, fieldName, columnName, type);
+        this.pattern = pattern;
     }
 
     public String getFieldName() {
@@ -58,5 +64,9 @@ public class FieldColumn {
 
     public String toString() {
         return getColumnName() + " " + type.format(getLength());
+    }
+
+    public String getPattern() {
+        return pattern;
     }
 }

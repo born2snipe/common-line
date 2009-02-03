@@ -63,7 +63,7 @@ public class Frame extends JFrame {
         file.add(open);
         file.addSeparator();
         file.add(clear);
-        if (!isMac) {
+        if (!isMac) {                                               
             file.addSeparator();
             file.add(exit);
         }

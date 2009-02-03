@@ -13,14 +13,16 @@
 package commonline.query.sql;
 
 import commonline.core.layout.CommonlineFieldDefinition;
-import flapjack.cobol.layout.DecimalFieldDefinition;
-import flapjack.cobol.layout.IntegerFieldDefinition;
 import flapjack.layout.FieldDefinition;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CobolFieldColumnFactory {
     private ColumnNameResolver columnNameResolver;
     private ColumnIdentifierFactory columnIdentifierFactory;
+    private List<SqlTypeResolver> sqlTypeResolvers = new ArrayList<SqlTypeResolver>();
 
     public CobolFieldColumnFactory() {
         this(new ColumnNameResolver(), new CommonlineColumnIdentifierFactory());
@@ -33,12 +35,18 @@ public class CobolFieldColumnFactory {
 
     public FieldColumn build(FieldDefinition fieldDefinition) {
         CommonlineFieldDefinition cobolFd = (CommonlineFieldDefinition) fieldDefinition;
-        SqlType type = SqlType.VARCHAR;
-        if (cobolFd instanceof IntegerFieldDefinition) {
-            type = SqlType.INT;
-        } else if (cobolFd instanceof DecimalFieldDefinition) {
-            type = SqlType.DOUBLE;
+        SqlType type = null;
+        for (SqlTypeResolver sqlTypeResolver : sqlTypeResolvers) {
+            type = sqlTypeResolver.resolve(fieldDefinition);
+            if (type != null) break;
+        }
+        if (type == null) {
+            throw new IllegalArgumentException("Could not resolve what sql data type should be used for field='"+fieldDefinition.getName()+"'");            
         }
         return new FieldColumn(columnIdentifierFactory.build(fieldDefinition), cobolFd.getName(), columnNameResolver.resolve(cobolFd), type, cobolFd.getLength());
+    }
+
+    public void setSqlTypeResolvers(List<SqlTypeResolver> sqlTypeResolvers) {
+        this.sqlTypeResolvers.addAll(sqlTypeResolvers);
     }
 }

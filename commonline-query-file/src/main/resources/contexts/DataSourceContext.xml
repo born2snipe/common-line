@@ -24,7 +24,7 @@
             <list>
                 <bean class="commonline.cl4.response.parser.ResponseParser"/>
                 <bean class="commonline.cl4.appsend.parser.AppSendParser"/>
-                <!--<bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>-->
+                <bean class="commonline.cl4.changesend.parser.ChangeSendParser"/>
                 <bean class="commonline.cl4.disbursement.parser.DisbursementParser"/>
             </list>
         </property>
@@ -66,11 +66,25 @@
                                 <entry key="@" value="At"/>
                             </map>
                         </property>
+                        <property name="tagOnId">
+                            <list>
+                                <value>filler</value>
+                                <value>disbursement number</value>
+                            </list>
+                        </property>
                     </bean>
                 </constructor-arg>
                 <constructor-arg>
                     <bean class="commonline.query.sql.CommonlineColumnIdentifierFactory"/>
                 </constructor-arg>
+                <property name="sqlTypeResolvers">
+                    <list>
+                        <bean class="commonline.query.sql.DateTypeResolver"/>
+                        <bean class="commonline.query.sql.DecimalTypeResolver"/>
+                        <bean class="commonline.query.sql.TextTypeResolver"/>
+                        <bean class="commonline.query.sql.IntegerTypeResolver"/>
+                    </list>
+                </property>
             </bean>
         </property>
         <property name="tableNameResolver">

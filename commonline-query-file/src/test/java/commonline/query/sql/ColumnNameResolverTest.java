@@ -32,6 +32,7 @@ public class ColumnNameResolverTest extends TestCase {
         assertEquals("filler_1", resolver.resolve(new TextFieldDefinition("1", "filler", 0, "x(1)")));
         assertEquals("FILLER_1", resolver.resolve(new TextFieldDefinition("1", "FILLER", 0, "x(1)")));
         assertEquals("At1_Count", resolver.resolve(new TextFieldDefinition("1", "@1 Count", 0, "x(1)")));
+        assertEquals("disbursement_number_1", resolver.resolve(new TextFieldDefinition("1", "disbursement number", 0, "x(1)")));
     }
 
     protected void setUp() throws Exception {
@@ -41,5 +42,6 @@ public class ColumnNameResolverTest extends TestCase {
         Map<String, String> replacements = new HashMap<String, String>();
         replacements.put("@", "At");
         resolver.setReplacements(replacements);
+        resolver.setTagOnId(Arrays.asList("filler", "disbursement number"));
     }
 }

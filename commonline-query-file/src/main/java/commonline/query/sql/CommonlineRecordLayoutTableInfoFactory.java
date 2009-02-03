@@ -19,7 +19,6 @@ import flapjack.parser.RecordParser;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO -- need to handle if a record layout has multiple fields w/ the same name
 public class CommonlineRecordLayoutTableInfoFactory implements RecordLayoutTableInfoFactory {
     private TableNameResolver tableNameResolver;
     private CobolFieldColumnFactory fieldColumnFactory;
