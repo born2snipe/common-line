@@ -79,7 +79,6 @@
                 </constructor-arg>
                 <property name="sqlTypeResolvers">
                     <list>
-                        <bean class="commonline.query.sql.DateTypeResolver"/>
                         <bean class="commonline.query.sql.DecimalTypeResolver"/>
                         <bean class="commonline.query.sql.TextTypeResolver"/>
                         <bean class="commonline.query.sql.IntegerTypeResolver"/>

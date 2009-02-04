@@ -43,6 +43,7 @@ public class RecordLayoutSqlTableFactoryTest extends TestCase {
         tableInfo.registerFieldColumn(new FieldColumn(new ColumnIdentifier("2"), "field2", "column2", SqlType.VARCHAR, 10));
 
         String sql = "CREATE TABLE DUMMY (\n" +
+                "\tid int primary key auto_increment,\n" +
                 "\tcolumn1 int,\n" +
                 "\tcolumn2 varchar(10)\n" +
                 ")";
@@ -53,6 +54,7 @@ public class RecordLayoutSqlTableFactoryTest extends TestCase {
         tableInfo.registerFieldColumn(new FieldColumn(new ColumnIdentifier("1"), "field", "column", SqlType.VARCHAR, 10));
 
         String sql = "CREATE TABLE DUMMY (\n" +
+                "\tid int primary key auto_increment,\n" +
                 "\tcolumn varchar(10)\n" +
                 ")";
 

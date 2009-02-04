@@ -13,7 +13,6 @@
 package commonline.query.gui;
 
 import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
-import com.jgoodies.looks.plastic.theme.ExperienceRoyale;
 import commonline.query.gui.action.*;
 import commonline.query.sql.RecordParserDataSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -63,7 +62,7 @@ public class Frame extends JFrame {
         file.add(open);
         file.addSeparator();
         file.add(clear);
-        if (!isMac) {                                               
+        if (!isMac) {
             file.addSeparator();
             file.add(exit);
         }
@@ -71,7 +70,7 @@ public class Frame extends JFrame {
         JMenu query = new JMenu("Query");
         JMenuItem execute = new JMenuItem(executeScriptAction);
         JMenuItem stop = new JMenuItem(stopScriptAction);
-                                                                                                                     
+
         query.add(execute);
         query.add(stop);
 
@@ -84,7 +83,6 @@ public class Frame extends JFrame {
 
     public static void main(String args[]) throws Exception {
         Plastic3DLookAndFeel.setTabStyle(Plastic3DLookAndFeel.TAB_STYLE_METAL_VALUE);
-//        Plastic3DLookAndFeel.setPlasticTheme(new ExperienceRoyale());
         UIManager.setLookAndFeel("com.jgoodies.looks.plastic.Plastic3DLookAndFeel");
 
         System.setProperty("com.apple.macos.useScreenMenuBar", "true");

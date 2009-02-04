@@ -23,6 +23,7 @@ public class RecordLayoutSqlTableFactory {
 
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE ").append(tableInfo.getTableName()).append(" (\n");
+        builder.append("\tid int primary key auto_increment,\n");
         for (int i = 0; i < columns.size(); i++) {
             FieldColumn fieldColumn = columns.get(i);
             builder.append("\t").append(fieldColumn.getColumnName()).append(" ").append(fieldColumn.getType().format(fieldColumn.getLength()));
