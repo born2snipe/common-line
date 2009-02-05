@@ -48,5 +48,9 @@ public class ChangeSendRecordLayoutResolverTest extends TestCase {
     public void test_resolve_OneByteGiven() {
         assertNull(resolver.resolve(new byte[1]));
     }
+    
+    public void test_resolve_ThreeBytesGiven() {
+        assertNull(resolver.resolve(new byte[3]));
+    }
 
 }

@@ -18,7 +18,7 @@ import flapjack.layout.RecordLayout;
 public class ChangeSendRecordLayoutResolver extends CommonLineRecordLayoutResolver {
 
     public RecordLayout resolve(byte[] bytes) {
-        if (bytes.length < 2) {
+        if (bytes.length < 2 || bytes.length == 3) {
             return null;
         }
 
