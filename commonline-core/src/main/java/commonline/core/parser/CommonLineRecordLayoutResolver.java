@@ -24,6 +24,9 @@ public class CommonLineRecordLayoutResolver implements RecordLayoutResolver {
     private Map recordLayouts = new HashMap();
 
     public RecordLayout resolve(byte[] bytes) {
+        if (bytes.length < 2) {
+            return null;
+        }
         return lookupLayout(getIdentityField(bytes));
     }
 
