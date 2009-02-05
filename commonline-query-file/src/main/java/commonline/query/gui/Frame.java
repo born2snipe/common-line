@@ -29,7 +29,7 @@ public class Frame extends JFrame {
     private StopScriptAction stopScriptAction;
     private ExecuteScriptAction executeScriptAction;
 
-    public Frame(boolean isMac, List dataSources) throws HeadlessException {
+    public Frame(boolean isMac, List<RecordParserDataSource> dataSources) throws HeadlessException {
         super("Commonline Query File Tool");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
@@ -40,14 +40,18 @@ public class Frame extends JFrame {
         stopScriptAction = new StopScriptAction(isMac);
 
         initializeMenu(isMac);
-        initializeView(dataSources, executeScriptAction, stopScriptAction);
+        initializeView(executeScriptAction, stopScriptAction);
+
+        for (RecordParserDataSource dataSource : dataSources) {
+            MetaDataAnalyzer.instance().analyze(dataSource);
+        }
 
         setSize(800, 600);
         setLocationByPlatform(true);
     }
 
-    private void initializeView(List dataSources, ExecuteScriptAction executeScriptAction, Action stopScriptAction) {
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(dataSources), new QueryPanel(executeScriptAction, stopScriptAction));
+    private void initializeView(ExecuteScriptAction executeScriptAction, Action stopScriptAction) {
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, new DatabaseStructurePanel(), new QueryPanel(executeScriptAction, stopScriptAction));
         split.setDividerLocation(200);
 
         getContentPane().add(split, BorderLayout.CENTER);

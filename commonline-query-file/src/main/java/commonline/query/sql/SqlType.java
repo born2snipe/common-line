@@ -12,6 +12,7 @@
  */
 package commonline.query.sql;
 
+import java.sql.Types;
 import java.text.MessageFormat;
 
 
@@ -41,5 +42,20 @@ public enum SqlType {
 
     public boolean isLengthRequired() {
         return lengthRequired;
+    }
+
+    public static SqlType convert(int sqlType) {
+        switch (sqlType) {
+            case Types.VARCHAR:
+                return VARCHAR;
+            case Types.INTEGER:
+                return INT;
+            case Types.DOUBLE:
+                return DOUBLE;
+            case Types.DATE:
+                return DATE;
+            default:
+                return null;
+        }
     }
 }

@@ -12,9 +12,8 @@
  */
 package commonline.query.gui;
 
-import commonline.query.sql.FieldColumn;
-import commonline.query.sql.RecordLayoutTableInfo;
 import commonline.query.sql.RecordParserDataSource;
+import commonline.query.sql.SqlType;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -28,26 +27,35 @@ public class DatabaseStructurePanel extends JPanel {
     private ImageIcon DB_ICON;
     private ImageIcon COLUMN_ICON;
 
-    public DatabaseStructurePanel(List<RecordParserDataSource> dataSources) {
+    public DatabaseStructurePanel() {
         super(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Database Structure"));
         TABLE_ICON = new ImageIcon(getClass().getClassLoader().getResource("tree_table.gif"));
         DB_ICON = new ImageIcon(getClass().getClassLoader().getResource("tree_database.gif"));
         COLUMN_ICON = new ImageIcon(getClass().getClassLoader().getResource("tree_column.gif"));
 
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Databases");
 
-        for (RecordParserDataSource dataSource : dataSources) {
-            DefaultMutableTreeNode db = new Node(dataSource);
-            for (RecordLayoutTableInfo tableInfo : dataSource.getTableInfos()) {
-                DefaultMutableTreeNode table = new Node(tableInfo);
-                for (FieldColumn column : tableInfo.getColumns()) {
-                    table.add(new Node(column));
-                }
-                db.add(table);
+        final DefaultMutableTreeNode root = new DefaultMutableTreeNode("Databases");
+
+        MetaDataAnalyzer.instance().setHandler(new MetaDataAnalyzer.Handler() {
+            private DefaultMutableTreeNode currentDb;
+            private DefaultMutableTreeNode currentTable;
+
+            public void addDatabase(String name) {
+                currentDb = new Node(name, NodeType.DB);
+                root.add(currentDb);
             }
-            root.add(db);
-        }
+
+            public void addTable(String name) {
+                currentTable = new Node(name, NodeType.TABLE);
+                currentDb.add(currentTable);
+            }
+
+            public void addColumn(String column, SqlType type, int length) {
+                String text = "<html>" + column + " <i><font color='#4C9EAF'>" + type.format(length) + "</font></i></html>";
+                currentTable.add(new Node(text, NodeType.COLUMN));
+            }
+        });
 
         JTree tree = new JTree(root);
         tree.setCellRenderer(new CellRenderer());
@@ -59,41 +67,56 @@ public class DatabaseStructurePanel extends JPanel {
     private class CellRenderer extends DefaultTreeCellRenderer {
         public java.awt.Component getTreeCellRendererComponent(javax.swing.JTree jTree, java.lang.Object o, boolean b, boolean b1, boolean b2, int i, boolean b3) {
             JLabel label = (JLabel) super.getTreeCellRendererComponent(jTree, o, b, b1, b2, i, b3);
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) o;
-            if (node.getUserObject() instanceof RecordLayoutTableInfo) {
-                label.setIcon(TABLE_ICON);
-                label.setText(((RecordLayoutTableInfo) node.getUserObject()).getTableName());
-            } else if (node.getUserObject() instanceof RecordParserDataSource) {
-                label.setIcon(DB_ICON);
-                label.setText(((RecordParserDataSource) node.getUserObject()).getName());
-            } else if (node.getUserObject() instanceof FieldColumn) {
-                label.setIcon(COLUMN_ICON);
-                FieldColumn fieldColumn = (FieldColumn) node.getUserObject();
-                label.setText("<html>" + fieldColumn.getColumnName() + " <i><font color='#4C9EAF'>" + fieldColumn.getType().format(fieldColumn.getLength()) + "</font></i></html>");
+            if (o instanceof Node) {
+                Node node = (Node) o;
+                switch (node.type) {
+                    case TABLE:
+                    case DB:
+                    case COLUMN:
+                        label.setIcon(node.getIcon());
+                        label.setText(node.name);
+                        break;
+                    default:
+                        label.setText(node.getUserObject().toString());
+                }
             } else {
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) o;
                 label.setText(node.getUserObject().toString());
             }
             return label;
         }
     }
 
-    private static class Node extends DefaultMutableTreeNode {
-        private Object obj;
+    private class Node extends DefaultMutableTreeNode {
+        private String name;
+        private NodeType type;
 
-        private Node(Object obj) {
-            this.obj = obj;
+        private Node(String name, NodeType type) {
+            this.name = name;
+            this.type = type;
         }
 
         @Override
         public Object getUserObject() {
-            return obj;
+            return name;
         }
 
-        @Override
-        public void setUserObject(Object o) {
-            this.obj = o;
+        public ImageIcon getIcon() {
+            switch (type) {
+                case DB:
+                    return DB_ICON;
+                case TABLE:
+                    return TABLE_ICON;
+                case COLUMN:
+                    return COLUMN_ICON;
+                default:
+                    return null;
+            }
         }
     }
 
+    private enum NodeType {
+        DB, TABLE, COLUMN;
+    }
 
 }
