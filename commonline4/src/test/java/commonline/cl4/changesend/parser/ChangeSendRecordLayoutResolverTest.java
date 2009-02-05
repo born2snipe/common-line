@@ -49,6 +49,14 @@ public class ChangeSendRecordLayoutResolverTest extends TestCase {
         assertNull(resolver.resolve(new byte[1]));
     }
     
+    public void test_resolve_TwoBytesGiven_NoMatch() {
+        assertNull(resolver.resolve(new byte[2]));
+    }
+    
+    public void test_resolve_TwoBytesGiven_Match() {
+        assertTrue(resolver.resolve("@H".getBytes()) instanceof HeaderRecordLayout);
+    }
+    
     public void test_resolve_ThreeBytesGiven() {
         assertNull(resolver.resolve(new byte[3]));
     }

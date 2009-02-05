@@ -18,13 +18,15 @@ import flapjack.layout.RecordLayout;
 public class ChangeSendRecordLayoutResolver extends CommonLineRecordLayoutResolver {
 
     public RecordLayout resolve(byte[] bytes) {
-        if (bytes.length < 2 || bytes.length == 3) {
+        if (bytes.length < 2) {
             return null;
         }
-
-        RecordLayout layout = lookupLayout(createIdentityBuffer(bytes, 4));
+        RecordLayout layout = lookupLayout(createIdentityBuffer(bytes, 2));
         if (layout == null) {
-            return lookupLayout(createIdentityBuffer(bytes, 2));
+            if (bytes.length < 4) {
+                return null;
+            }
+            return lookupLayout(createIdentityBuffer(bytes, 4));
         }
         return layout;
     }
