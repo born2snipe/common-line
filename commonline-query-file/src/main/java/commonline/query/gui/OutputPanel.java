@@ -31,6 +31,11 @@ public class OutputPanel extends JPanel {
         console.setFocusable(false);
         tableModel = new ResultSetTableModel();
 
+        JTable results = new JTable(tableModel);
+        results.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        final JScrollPane resultScrollPane = new JScrollPane(results);
+
         ErrorHandlerManager.instance().addHandler(new ErrorHandlerManager.ErrorHandler() {
             public void handle(final Exception err) {
                 Runnable runnable = new Runnable() {
@@ -73,6 +78,7 @@ public class OutputPanel extends JPanel {
                         ConsoleManager.instance().clear();
                         resultLabel.setText("Results: 0");
                         consoleLabel.setText("Results: 0");
+                        resultScrollPane.getHorizontalScrollBar().setValue(0);
                     }
                 };
                 if (SwingUtilities.isEventDispatchThread()) {
@@ -114,10 +120,6 @@ public class OutputPanel extends JPanel {
         });
 
 
-        JTable results = new JTable(tableModel);
-        results.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        JScrollPane resultScrollPane = new JScrollPane(results);
         JScrollPane consoleScrollPane = new JScrollPane(console);
 
         JPanel resultPanel = new JPanel(new BorderLayout());
