@@ -53,8 +53,9 @@ public class OutputPanel extends JPanel {
                 Runnable runnable = new Runnable() {
                     public void run() {
                         tableModel.addResults(columns, results);
-                        resultLabel.setText("Results: " + rowCount);
-                        consoleLabel.setText("Results: " + rowCount);
+                        int row = rowCount +1;
+                        resultLabel.setText("Results: " + row);
+                        consoleLabel.setText("Results: " + row);
                     }
                 };
                 if (SwingUtilities.isEventDispatchThread()) {
@@ -114,6 +115,7 @@ public class OutputPanel extends JPanel {
 
 
         JTable results = new JTable(tableModel);
+        results.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         JScrollPane resultScrollPane = new JScrollPane(results);
         JScrollPane consoleScrollPane = new JScrollPane(console);

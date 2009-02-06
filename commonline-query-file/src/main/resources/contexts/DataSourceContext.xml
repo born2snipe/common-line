@@ -42,6 +42,18 @@
         </property>
     </bean>
 
+    <bean id="clRepository" class="commonline.query.gui.CommonlineRecordRepository">
+        <constructor-arg>
+            <map>
+                <entry key="CL4" value-ref="cl4DataSource"/>
+                <entry key="CL5" value-ref="cl5DataSource"/>
+            </map>
+        </constructor-arg>
+        <property name="columnIdentifierFactory">
+            <bean class="commonline.query.sql.CommonlineColumnIdentifierFactory"/>
+        </property>
+    </bean>
+
     <bean id="layoutTableInfoFactory" class="commonline.query.sql.CommonlineRecordLayoutTableInfoFactory">
         <property name="fieldColumnFactory">
             <bean class="commonline.query.sql.CobolFieldColumnFactory">

@@ -33,11 +33,12 @@ public class ResultSetTableModel extends AbstractTableModel {
 
     @Override
     public Class<?> getColumnClass(int i) {
-        if (headings.size() == 0) {
-            return null;
-        }
-        String name = headings.get(i);
-        return rows.get(i).get(name).getClass();
+//        if (headings.size() == 0) {
+//            return null;
+//        }
+//        String name = headings.get(i);
+//        return rows.get(i).get(name).getClass();
+        return String.class;
     }
 
     public int getRowCount() {

@@ -40,6 +40,15 @@ public class RecordParserDataSource implements DataSource, InitializingBean {
     private String name;
     private RecordLayoutTableInfoFactory layoutTableInfoFactory;
 
+    public RecordLayoutTableInfo findTableInfoFor(RecordLayout layout) {
+        for (RecordLayoutTableInfo tableInfo : tableInfos) {
+            if (tableInfo.getRecordLayout().getClass().equals(layout.getClass())) {
+                return tableInfo;
+            }
+        }
+        return null;
+    }
+
     public Connection getConnection() throws SQLException {
         return delegate.getConnection();
     }

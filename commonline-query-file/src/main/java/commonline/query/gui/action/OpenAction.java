@@ -13,6 +13,7 @@
 package commonline.query.gui.action;
 
 import commonline.query.gui.LoadFilesWorker;
+import commonline.query.gui.CommonlineRecordRepository;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,19 +25,21 @@ import java.util.Arrays;
 public class OpenAction extends AbtractMacableAction {
     private JFileChooser fileChooser;
     private JFrame parent;
+    private CommonlineRecordRepository repository;
 
-    public OpenAction(boolean isMac, JFrame parent) {
+    public OpenAction(boolean isMac, JFrame parent, CommonlineRecordRepository repository) {
         super("Open...", "Open up commonline files to query", KeyEvent.VK_O, isMac);
         this.parent = parent;
         fileChooser = new JFileChooser();
         fileChooser.setMultiSelectionEnabled(true);
+        this.repository = repository;
     }
 
     public void actionPerformed(ActionEvent actionEvent) {
         if (JFileChooser.APPROVE_OPTION == fileChooser.showOpenDialog(parent)) {
             File[] files = fileChooser.getSelectedFiles();
             if (files != null)
-                new LoadFilesWorker(Arrays.asList(files)).execute();
+                new LoadFilesWorker(Arrays.asList(files), repository).execute();
         }
     }
 

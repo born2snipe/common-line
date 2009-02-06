@@ -34,6 +34,10 @@ public class RecordLayoutTableInfo {
         return columns.get(columnIdentifier).getFieldName();
     }
 
+    public FieldColumn getFieldColumn(ColumnIdentifier columnIdentifier) {
+        return columns.get(columnIdentifier);
+    }
+
     public List<FieldColumn> getColumns() {
         List<FieldColumn> columns = new ArrayList<FieldColumn>();
         columns.addAll(this.columns.values());

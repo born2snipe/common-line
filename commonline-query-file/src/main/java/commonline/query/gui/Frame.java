@@ -29,12 +29,12 @@ public class Frame extends JFrame {
     private StopScriptAction stopScriptAction;
     private ExecuteScriptAction executeScriptAction;
 
-    public Frame(boolean isMac, List<RecordParserDataSource> dataSources) throws HeadlessException {
+    public Frame(boolean isMac, List<RecordParserDataSource> dataSources, CommonlineRecordRepository repository) throws HeadlessException {
         super("Commonline Query File Tool");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
-        openAction = new OpenAction(isMac, this);
+        openAction = new OpenAction(isMac, this, repository);
         clearDatabaseAction = new ClearDatabaseAction(isMac, this, dataSources);
         executeScriptAction = new ExecuteScriptAction(isMac, dataSources);
         stopScriptAction = new StopScriptAction(isMac);
@@ -95,8 +95,9 @@ public class Frame extends JFrame {
 
         List dataSources = new ArrayList();
         dataSources.addAll(context.getBeansOfType(RecordParserDataSource.class).values());
+        CommonlineRecordRepository repository = (CommonlineRecordRepository) context.getBean("clRepository");
 
-        Frame frame = new Frame(System.getProperty("os.name").toLowerCase().indexOf("mac") != -1, dataSources);
+        Frame frame = new Frame(System.getProperty("os.name").toLowerCase().indexOf("mac") != -1, dataSources, repository);
         frame.setVisible(true);
     }
 }

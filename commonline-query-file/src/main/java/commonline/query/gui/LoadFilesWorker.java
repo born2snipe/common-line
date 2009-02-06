@@ -1,11 +1,11 @@
 /**
  * Copyright 2008-2009 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
  * compliance with the License. You may obtain a copy of the License at:
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
@@ -16,13 +16,13 @@ import commonline.core.layout.CommonlineFieldDefinition;
 import commonline.file.FileAnalyzer;
 import commonline.file.FileInfo;
 import commonline.file.parser.ParserResolver;
+import commonline.query.model.CommonLineRecord;
 import commonline.query.model.CommonlineRecordFactory;
 import flapjack.annotation.parser.ByteMapRecordFieldParser;
 import flapjack.annotation.parser.MappedFieldIdGenerator;
 import flapjack.io.LineRecordReader;
 import flapjack.layout.FieldDefinition;
 import flapjack.model.SameRecordFactoryResolver;
-import flapjack.parser.BadRecord;
 import flapjack.parser.ParseResult;
 import flapjack.parser.RecordParserImpl;
 
@@ -39,8 +39,9 @@ public class LoadFilesWorker extends SwingWorker<Void, Void> {
     private ByteMapRecordFieldParser fieldParser;
     private SameRecordFactoryResolver recordFactoryResolver;
     private List<File> files = new ArrayList<File>();
+    private CommonlineRecordRepository repository;
 
-    public LoadFilesWorker(List<File> files) {
+    public LoadFilesWorker(List<File> files, CommonlineRecordRepository repository) {
         this.files.addAll(files);
         fieldParser = new ByteMapRecordFieldParser();
         fieldParser.setFieldIdGenerator(new MappedFieldIdGenerator() {
@@ -50,6 +51,7 @@ public class LoadFilesWorker extends SwingWorker<Void, Void> {
             }
         });
         recordFactoryResolver = new SameRecordFactoryResolver(CommonlineRecordFactory.class);
+        this.repository = repository;
     }
 
     protected Void doInBackground() throws Exception {
@@ -79,11 +81,13 @@ public class LoadFilesWorker extends SwingWorker<Void, Void> {
                 consoleManager.println("Unparseable Records:" + result.getUnparseableRecords().size());
                 consoleManager.println("=======================\n");
 
-                for (Object obj : result.getUnresolvedRecords()) {
-                    BadRecord record = (BadRecord) obj;
-                    System.out.println(new String(record.getContents()));
+                for (Object o : result.getRecords()) {
+                    CommonLineRecord record = (CommonLineRecord) o;
+                    repository.save(record, fileInfo.getVersion());
                 }
+
             } catch (Exception err) {
+                err.printStackTrace();
                 ErrorHandlerManager.instance().handle(err);
             }
         }
