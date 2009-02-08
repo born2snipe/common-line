@@ -13,71 +13,62 @@
 package commonline.query.gui;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 
 public class ResultSetTableModel extends AbstractTableModel {
-    private List<Map> rows = new ArrayList<Map>();
-    private List<String> headings = new ArrayList<String>();
+    private int rowCount = 0;
+    private int columnCount = 0;
+    private ResultSet resultSet;
+    private ResultSetMetaData metaData;
+
 
     @Override
     public String getColumnName(int i) {
-        if (headings.size() == 0) {
-            return "";
+        try {
+            return metaData.getColumnName(i + 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return headings.get(i);
-    }
-
-    @Override
-    public Class<?> getColumnClass(int i) {
-//        if (headings.size() == 0) {
-//            return null;
-//        }
-//        String name = headings.get(i);
-//        return rows.get(i).get(name).getClass();
-        return String.class;
+        return "";
     }
 
     public int getRowCount() {
-        return rows.size();
+        return rowCount;
     }
+
 
     public int getColumnCount() {
-        return headings.size();
+        return columnCount;
     }
+
 
     public Object getValueAt(int row, int column) {
-        if (rows.size() == 0) {
-            return null;
+        try {
+            if (resultSet.absolute(row + 1)) {
+                return resultSet.getObject(getColumnName(column));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        Map values = rows.get(row);
-        return values.get(headings.get(column));
+        return "";
     }
 
-    public void addResults(List<String> columns, Map<String, Object> results) {
-        initializeColumnHeadings(columns);
-        Map values = new HashMap();
-        for (String heading : headings) {
-            values.put(heading, results.get(heading));
-        }
-        rows.add(values);
-        fireTableDataChanged();
-    }
-
-    private void initializeColumnHeadings(List<String> columnNames) {
-        if (rows.size() == 0) {
-            headings.clear();
-            headings.addAll(columnNames);
+    public void updateResultSet(ResultSet resultSet) {
+        try {
+            if (this.resultSet != null) {
+                this.resultSet.close();
+            }
+            resultSet.last();
+            rowCount = resultSet.getRow();
+            metaData = resultSet.getMetaData();
+            columnCount = metaData.getColumnCount();
+            this.resultSet = resultSet;
             fireTableStructureChanged();
+        } catch (SQLException err) {
+            err.printStackTrace();
         }
-    }
-
-    public void reset() {
-        rows.clear();
-        headings.clear();
-        fireTableStructureChanged();
     }
 }

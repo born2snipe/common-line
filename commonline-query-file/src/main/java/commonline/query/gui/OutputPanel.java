@@ -14,7 +14,7 @@ package commonline.query.gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
+import java.sql.ResultSet;
 
 
 public class OutputPanel extends JPanel {
@@ -44,36 +44,27 @@ public class OutputPanel extends JPanel {
                         tabs.setSelectedIndex(1);
                     }
                 };
-                if (SwingUtilities.isEventDispatchThread()) {
-                    runnable.run();
-                } else {
-                    SwingUtilities.invokeLater(runnable);
-                }
+                execute(runnable);
             }
         });
 
 
         QueryHandlerManager.instance().addHandler(new QueryHandlerManager.QueryHandler() {
-            public void handle(final java.util.List<String> columns, final int rowCount, final Map<String, Object> results) {
+            public void handle(final ResultSet resultSet) {
                 Runnable runnable = new Runnable() {
                     public void run() {
-                        tableModel.addResults(columns, results);
-                        int row = rowCount +1;
+                        tableModel.updateResultSet(resultSet);
+                        int row = tableModel.getRowCount();
                         resultLabel.setText("Results: " + row);
                         consoleLabel.setText("Results: " + row);
                     }
                 };
-                if (SwingUtilities.isEventDispatchThread()) {
-                    runnable.run();
-                } else {
-                    SwingUtilities.invokeLater(runnable);
-                }
+                execute(runnable);
             }
 
             public void reset() {
                 Runnable runnable = new Runnable() {
                     public void run() {
-                        tableModel.reset();
                         tabs.setSelectedIndex(0);
                         ConsoleManager.instance().clear();
                         resultLabel.setText("Results: 0");
@@ -81,11 +72,7 @@ public class OutputPanel extends JPanel {
                         resultScrollPane.getHorizontalScrollBar().setValue(0);
                     }
                 };
-                if (SwingUtilities.isEventDispatchThread()) {
-                    runnable.run();
-                } else {
-                    SwingUtilities.invokeLater(runnable);
-                }
+                execute(runnable);
             }
         });
 
@@ -96,11 +83,7 @@ public class OutputPanel extends JPanel {
                         console.setText("");
                     }
                 };
-                if (SwingUtilities.isEventDispatchThread()) {
-                    runnable.run();
-                } else {
-                    SwingUtilities.invokeLater(runnable);
-                }
+                execute(runnable);
             }
 
             public void print(final String text) {
@@ -110,11 +93,7 @@ public class OutputPanel extends JPanel {
                         tabs.setSelectedIndex(1);
                     }
                 };
-                if (SwingUtilities.isEventDispatchThread()) {
-                    runnable.run();
-                } else {
-                    SwingUtilities.invokeLater(runnable);
-                }
+                execute(runnable);
             }
 
         });
@@ -133,5 +112,13 @@ public class OutputPanel extends JPanel {
         tabs.addTab("Results", resultPanel);
         tabs.addTab("Console", consolePanel);
         add(tabs, BorderLayout.CENTER);
+    }
+
+    private void execute(Runnable runnable) {
+        if (SwingUtilities.isEventDispatchThread()) {
+            runnable.run();
+        } else {
+            SwingUtilities.invokeLater(runnable);
+        }
     }
 }

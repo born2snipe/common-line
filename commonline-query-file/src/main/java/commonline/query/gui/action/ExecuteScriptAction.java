@@ -15,26 +15,22 @@ package commonline.query.gui.action;
 import commonline.query.gui.ErrorHandlerManager;
 import commonline.query.gui.QueryHandlerManager;
 import commonline.query.sql.RecordParserDataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
 
 
 public class ExecuteScriptAction extends AbtractMacableAction {
     private List<RecordParserDataSource> dataSources;
     private JEditorPane sqlEditor;
     private JComboBox databaseSelector;
+    private Connection connection;
 
     public ExecuteScriptAction(boolean isMac, List dataSources) {
         super("Execute...", "Execute the current query", KeyEvent.VK_E, isMac);
@@ -50,38 +46,15 @@ public class ExecuteScriptAction extends AbtractMacableAction {
             }
             try {
                 QueryHandlerManager.instance().reset();
-                final List<String> columnNames = new ArrayList<String>();
-                JdbcTemplate jdbcTemplate = new JdbcTemplate(findSelectedDataSource());
-                jdbcTemplate.query(sqlEditor.getText(), new RowMapper() {
-                    public Object mapRow(ResultSet resultSet, int rowCount) throws SQLException {
-                        initializeColumnHeadings(resultSet);
-                        Map results = convertToMap(resultSet);
-                        QueryHandlerManager.instance().handle(columnNames, rowCount, results);
-                        return null;
-                    }
+                connection = findSelectedDataSource().getConnection();
+                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                String sql = sqlEditor.getSelectedText();
+                if (sql == null || sql.trim().length() == 0) {
+                    sql = sqlEditor.getText();
+                }
+                ResultSet resultSet = statement.executeQuery(sql);
+                QueryHandlerManager.instance().handle(resultSet);
 
-                    private Map<String, Object> convertToMap(ResultSet resultSet) throws SQLException {
-                        Map<String, Object> map = new HashMap<String, Object>();
-                        for (String name : columnNames) {
-                            map.put(name, resultSet.getObject(name));
-                        }
-                        return map;
-                    }
-
-                    private void initializeColumnHeadings(ResultSet resultSet) {
-                        if (columnNames.size() == 0) {
-                            try {
-                                ResultSetMetaData metaData = resultSet.getMetaData();
-                                int count = metaData.getColumnCount();
-                                for (int i = 1; i <= count; i++) {
-                                    columnNames.add(metaData.getColumnName(i));
-                                }
-                            } catch (SQLException err) {
-                                ErrorHandlerManager.instance().handle(err);
-                            }
-                        }
-                    }
-                });
             } catch (Exception err) {
                 ErrorHandlerManager.instance().handle(err);
             }
