@@ -34,16 +34,22 @@ public class ClearDatabaseAction extends AbtractMacableAction {
 
     public void actionPerformed(ActionEvent actionEvent) {
         if (JOptionPane.showConfirmDialog(parent, "Are you sure you want to clear the databases?", "Clear DB", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
-            for (RecordParserDataSource dataSource : dataSources) {
-                JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-                for (RecordLayoutTableInfo tableInfo : dataSource.getTableInfos()) {
-                    try {
-                        jdbcTemplate.execute("delete from " + tableInfo.getTableName());
-                    } catch (Exception err) {
-                        throw new RuntimeException("Problem clearing table:"+tableInfo.getTableName()+", in DB:"+dataSource.getUrl(), err);
+            SwingWorker worker = new SwingWorker<Void, Void>() {
+                protected Void doInBackground() throws Exception {
+                    for (RecordParserDataSource dataSource : dataSources) {
+                        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+                        for (RecordLayoutTableInfo tableInfo : dataSource.getTableInfos()) {
+                            try {
+                                jdbcTemplate.execute("delete from " + tableInfo.getTableName());
+                            } catch (Exception err) {
+                                throw new RuntimeException("Problem clearing table:" + tableInfo.getTableName() + ", in DB:" + dataSource.getUrl(), err);
+                            }
+                        }
                     }
+                    return null;
                 }
-            }
+            };
+            worker.execute();
         }
     }
 }

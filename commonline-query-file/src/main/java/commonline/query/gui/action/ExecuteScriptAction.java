@@ -14,6 +14,7 @@ package commonline.query.gui.action;
 
 import commonline.query.gui.ErrorHandlerManager;
 import commonline.query.gui.QueryHandlerManager;
+import commonline.query.gui.QueryWorker;
 import commonline.query.sql.RecordParserDataSource;
 
 import javax.sql.DataSource;
@@ -47,14 +48,11 @@ public class ExecuteScriptAction extends AbtractMacableAction {
             try {
                 QueryHandlerManager.instance().reset();
                 connection = findSelectedDataSource().getConnection();
-                Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 String sql = sqlEditor.getSelectedText();
                 if (sql == null || sql.trim().length() == 0) {
                     sql = sqlEditor.getText();
                 }
-                ResultSet resultSet = statement.executeQuery(sql);
-                QueryHandlerManager.instance().handle(resultSet);
-
+                new QueryWorker(sql, connection).execute();
             } catch (Exception err) {
                 ErrorHandlerManager.instance().handle(err);
             }
