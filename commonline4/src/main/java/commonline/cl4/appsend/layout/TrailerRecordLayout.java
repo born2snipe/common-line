@@ -22,30 +22,30 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * Trailer (@T) Detail Record(s) Addendum
  */
 public class TrailerRecordLayout extends AbstractCommonLineRecordLayout {
-    protected void defineFields() {
-        field("2", "Application Send (@1) Detail Record Count", "9(006)");
-        field("3", "Unique Supplemental (@2) Detail Record Count", "9(006)");
-        field("4", "File Creation Date (CCYYMMDD)", "9(008)");
-        field("5", "File Creation Time (HHMMSS)", "9(006)");
-        field("6", "File Identifier Code", "X(005)");
-        field("7", "Source Name", "X(032)");
-        field("8", "Source ID", "X(008)");
-        field("9", "Filler", "X(002)");
-        field("10", "Source Non-ED Branch ID", "X(004)");
-        field("11", "Recipient Name", "X(032)");
-        field("12", "Recipient ID", "X(008)");
-        field("13", "Filler", "X(002)");
-        field("14", "Recipient Non-ED Branch ID", "X(004)");
-        field("15", "Alternative Loan (@4) Detail Record Count", "9(006)");
-        field("16", "Reference (@5) Detail Record Count", "9(006)");
-        field("17", "Supplemental Borrower Information (@7) Record Count", "9(006)");
-        field("18", "DUNS Source ID", "X(009)");
-        field("19", "DUNS Recipient ID", "X(009)");
-        field("20", "Filler", "X(718)");
-        recordTerminator("21");
+    public TrailerRecordLayout() {
+        super("@T");
     }
 
-    public String getCode() {
-        return "@T";
+    protected void defineFields() {
+        field("2", "Application Send (@1) Detail Record Count", "9(6)");
+        field("3", "Unique Supplemental (@2) Detail Record Count", "9(6)");
+        field("4", "File Creation Date (CCYYMMDD)", "9(8)");
+        field("5", "File Creation Time (HHMMSS)", "9(6)");
+        field("6", "File Identifier Code", "X(5)");
+        field("7", "Source Name", "X(32)");
+        field("8", "Source ID", "X(8)");
+        field("9", "Filler", "X(2)");
+        field("10", "Source Non-ED Branch ID", "X(4)");
+        field("11", "Recipient Name", "X(32)");
+        field("12", "Recipient ID", "X(8)");
+        field("13", "Filler", "X(2)");
+        field("14", "Recipient Non-ED Branch ID", "X(4)");
+        field("15", "Alternative Loan (@4) Detail Record Count", "9(6)");
+        field("16", "Reference (@5) Detail Record Count", "9(6)");
+        field("17", "Supplemental Borrower Information (@7) Record Count", "9(6)");
+        field("18", "DUNS Source ID", "X(9)");
+        field("19", "DUNS Recipient ID", "X(9)");
+        field("20", "Filler", "X(718)");
+        recordTerminator("21");
     }
 }

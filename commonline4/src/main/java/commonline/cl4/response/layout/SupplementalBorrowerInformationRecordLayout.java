@@ -22,26 +22,25 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * Supplemental Borrower Information Response (@7) Detail Record(s) Addendum
  */
 public class SupplementalBorrowerInformationRecordLayout extends AbstractCommonLineRecordLayout {
-    
-    protected void defineFields() {
-        field("2", "Supplemental Borrower Information Layout Owner Code", "X(004)");
-        field("3", "Supplemental Borrower Information Layout Identifier Code", "X(002)");
-        field("4", "E-mail Address", "X(256)");
-        field("5", "E-mail Address Validity Indicator", "X(001)");
-        field("6", "E-mail Address Effective Date(CCYYMMDD)", "9(008)");
-        field("7", "Temporary Borrower Address(line 1)", "X(030)");
-        field("8", "Temporary Borrower Address(line 2)", "X(030)");
-        field("9", "Temporary Borrower City", "X(024)");
-        field("10", "Temporary Borrower State", "X(002)");
-        field("11", "Temporary Borrower Zip Code", "9(005)");
-        field("12", "Temporary Borrower Zip Code Suffix", "9(004)");
-        field("13", "Foreign Postal Code", "X(014)");
-        field("14", "Filler", "X(657)");
-        recordTerminator("15");
+    public SupplementalBorrowerInformationRecordLayout() {
+        super("@7");
     }
 
-    public String getCode() {
-        return "@7";
+    protected void defineFields() {
+        field("2", "Supplemental Borrower Information Layout Owner Code", "X(4)");
+        field("3", "Supplemental Borrower Information Layout Identifier Code", "X(2)");
+        field("4", "E-mail Address", "X(256)");
+        field("5", "E-mail Address Validity Indicator", "X(1)");
+        field("6", "E-mail Address Effective Date(CCYYMMDD)", "9(8)");
+        field("7", "Temporary Borrower Address(line 1)", "X(30)");
+        field("8", "Temporary Borrower Address(line 2)", "X(30)");
+        field("9", "Temporary Borrower City", "X(24)");
+        field("10", "Temporary Borrower State", "X(2)");
+        field("11", "Temporary Borrower Zip Code", "9(5)");
+        field("12", "Temporary Borrower Zip Code Suffix", "9(4)");
+        field("13", "Foreign Postal Code", "X(14)");
+        field("14", "Filler", "X(657)");
+        recordTerminator("15");
     }
 
 }

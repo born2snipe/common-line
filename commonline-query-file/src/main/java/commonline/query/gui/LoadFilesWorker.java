@@ -18,11 +18,11 @@ import commonline.file.FileInfo;
 import commonline.file.parser.ParserResolver;
 import commonline.query.model.CommonLineRecord;
 import commonline.query.model.CommonlineRecordFactory;
-import flapjack.annotation.parser.ByteMapRecordFieldParser;
-import flapjack.annotation.parser.MappedFieldIdGenerator;
 import flapjack.io.LineRecordReader;
 import flapjack.layout.FieldDefinition;
 import flapjack.model.SameRecordFactoryResolver;
+import flapjack.parser.ByteMapRecordFieldParser;
+import flapjack.parser.MappedFieldIdGenerator;
 import flapjack.parser.ParseResult;
 import flapjack.parser.RecordParserImpl;
 
@@ -70,7 +70,6 @@ public class LoadFilesWorker extends SwingWorker<Void, Void> {
                 consoleManager.println("Parsing...");
                 RecordParserImpl parser = (RecordParserImpl) parserResolver.resolver(fileInfo.getType(), fileInfo.getVersion());
                 parser.setRecordFactoryResolver(recordFactoryResolver);
-                parser.setRecordFieldParser(fieldParser);
                 ParseResult result = parser.parse(new LineRecordReader(new FileInputStream(file)));
                 consoleManager.println("\n=======================");
                 consoleManager.println("Results for " + file.getName());

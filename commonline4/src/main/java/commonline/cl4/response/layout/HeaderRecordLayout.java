@@ -22,34 +22,34 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * Header
  */
 public class HeaderRecordLayout extends AbstractCommonLineRecordLayout {
+    public HeaderRecordLayout() {
+        super("@H");
+    }
 
     protected void defineFields() {
-        field("2", "Software Product Code", "X(004)");
-        field("3", "Software Version", "X(004)");
-        field("4", "Batch ID", "X(012)");
-        field("5", "File Creation Date (CCYYMMDD)", "9(008)");
-        field("6", "File Creation Time (HHMMSS)", "9(006)");
-        field("7", "File Transmission Date (CCYYMMDD)", "9(008)");
-        field("8", "File Transmission Time (HHMMSS)", "9(006)");
-        field("9", "File Identifier Name", "X(019)");
-        field("10", "File Identifier Code", "X(005)");
-        field("11", "Recipient Name", "X(032)");
-        field("12", "Recipient ID", "X(008)");
-        field("13", "Filler", "X(002)");
-        field("14", "Recipient Non-ED Branch ID", "X(004)");
-        field("15", "Recipient Type Code", "X(001)");
-        field("16", "Source Name", "X(032)");
-        field("17", "Source ID", "X(008)");
-        field("18", "Filler", "X(002)");
-        field("19", "Source Non-ED Branch ID", "X(004)");
-        field("20", "Media Type Code", "X(001)");
-        field("21", "DUNS Recipient ID", "X(009)");
-        field("22", "DUNS Source ID", "X(009)");
+        field("2", "Software Product Code", "X(4)");
+        field("3", "Software Version", "X(4)");
+        field("4", "Batch ID", "X(12)");
+        field("5", "File Creation Date (CCYYMMDD)", "9(8)");
+        field("6", "File Creation Time (HHMMSS)", "9(6)");
+        field("7", "File Transmission Date (CCYYMMDD)", "9(8)");
+        field("8", "File Transmission Time (HHMMSS)", "9(6)");
+        field("9", "File Identifier Name", "X(19)");
+        field("10", "File Identifier Code", "X(5)");
+        field("11", "Recipient Name", "X(32)");
+        field("12", "Recipient ID", "X(8)");
+        field("13", "Filler", "X(2)");
+        field("14", "Recipient Non-ED Branch ID", "X(4)");
+        field("15", "Recipient Type Code", "X(1)");
+        field("16", "Source Name", "X(32)");
+        field("17", "Source ID", "X(8)");
+        field("18", "Filler", "X(2)");
+        field("19", "Source Non-ED Branch ID", "X(4)");
+        field("20", "Media Type Code", "X(1)");
+        field("21", "DUNS Recipient ID", "X(9)");
+        field("22", "DUNS Source ID", "X(9)");
         field("23", "Filler", "X(853)");
         recordTerminator("24");
     }
 
-    public String getCode() {
-        return "@H";
-    }
 }

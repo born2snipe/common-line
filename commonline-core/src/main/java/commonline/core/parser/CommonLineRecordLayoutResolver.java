@@ -44,8 +44,8 @@ public class CommonLineRecordLayoutResolver implements RecordLayoutResolver {
         this.recordLayouts.clear();
         Iterator it = recordLayouts.iterator();
         while (it.hasNext()) {
-            CommonLineRecordLayout layout = (CommonLineRecordLayout) it.next();
-            this.recordLayouts.put(layout.getCode(), layout);
+            RecordLayout layout = (RecordLayout) it.next();
+            this.recordLayouts.put(layout.getId(), layout);
         }
     }
 

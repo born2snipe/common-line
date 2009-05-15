@@ -20,7 +20,7 @@ import java.util.Map;
 
 
 public class CommonlineRecordFactory implements RecordFactory {
-    public Object build(Object fields, RecordLayout recordLayout) {
-        return new CommonLineRecord((Map<String, byte[]>)fields, (CommonLineRecordLayout) recordLayout);
+    public Object build() {
+        return null;
     }
 }

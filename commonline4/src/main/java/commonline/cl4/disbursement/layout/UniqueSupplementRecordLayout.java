@@ -22,15 +22,16 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * UNIQUE SUPPLEMENTAL (@2) DETAIL RECORD(S)
  */
 public class UniqueSupplementRecordLayout extends AbstractCommonLineRecordLayout {
+    public UniqueSupplementRecordLayout() {
+        super("@2");
+    }
+
     protected void defineFields() {
-        field("2", "Unique Supplemental Vendor Code", "X(004)");
-        field("3", "Unique Supplemental Layout Identifier Code", "X(002)");
+        field("2", "Unique Supplemental Vendor Code", "X(4)");
+        field("3", "Unique Supplemental Layout Identifier Code", "X(2)");
         field("4", "Filler", "X(551)");
         recordTerminator("5");
 
     }
 
-    public String getCode() {
-        return "@2";
-    }
 }

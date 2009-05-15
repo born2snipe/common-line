@@ -18,7 +18,6 @@ import commonline.core.layout.CommonLineRecordLayout;
 
 public class CommonlineTableNameResolver implements TableNameResolver {
     public String resolve(RecordLayout layout) {
-        CommonLineRecordLayout clLayout = (CommonLineRecordLayout) layout;
-        return clLayout.getCode().replace("@", "At");
+        return layout.getId().replace("@", "At");
     }
 }

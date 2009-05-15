@@ -22,27 +22,28 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * Trailer (@T) Detail Record(s) Addendum
  */
 public class TrailerRecordLayout extends AbstractCommonLineRecordLayout {
+    public TrailerRecordLayout() {
+        super("@T");
+    }
+
     protected void defineFields() {
-        field("2", "Disbursement (@1) Detail Record Count", "9(006)");
-        field("3", "Total Net Disbursement Amount", "9(012)v99");
-        field("4", "Total Net EFT Amount", "9(012)v99");
-        field("5", "Total Net Non-EFT Amount", "9(012)v99");
-        field("6", "Total Reissue Amount", "9(012)v99");
-        field("7", "Unique Supplemental (@2) Detail Record Count", "9(006)");
-        field("8", "Special Messages (@3) Detail Record Count", "9(006)");
-        field("9", "File Creation Date (CCYYMMDD)", "9(008)");
-        field("10", "File Creation Time (HHMMSS)", "9(006)");
-        field("11", "Source ID", "X(008)");
-        field("12", "Filler", "X(002)");
-        field("13", "Source Non-ED Branch ID", "X(004)");
-        field("14", "Total Cancellation Amount", "9(012)v99");
-        field("15", "Total Deficit Amount", "9(012)v99");
-        field("16", "DUNS Source ID", "X(009)");
+        field("2", "Disbursement (@1) Detail Record Count", "9(6)");
+        field("3", "Total Net Disbursement Amount", "9(12)v99");
+        field("4", "Total Net EFT Amount", "9(12)v99");
+        field("5", "Total Net Non-EFT Amount", "9(12)v99");
+        field("6", "Total Reissue Amount", "9(12)v99");
+        field("7", "Unique Supplemental (@2) Detail Record Count", "9(6)");
+        field("8", "Special Messages (@3) Detail Record Count", "9(6)");
+        field("9", "File Creation Date (CCYYMMDD)", "9(8)");
+        field("10", "File Creation Time (HHMMSS)", "9(6)");
+        field("11", "Source ID", "X(8)");
+        field("12", "Filler", "X(2)");
+        field("13", "Source Non-ED Branch ID", "X(4)");
+        field("14", "Total Cancellation Amount", "9(12)v99");
+        field("15", "Total Deficit Amount", "9(12)v99");
+        field("16", "DUNS Source ID", "X(9)");
         field("17", "Filler", "X(418)");
         recordTerminator("18");
     }
 
-    public String getCode() {
-        return "@T";
-    }
 }

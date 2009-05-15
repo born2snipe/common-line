@@ -22,17 +22,18 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * SPECIAL MESSAGES (@3) DETAIL RECORD
  */
 public class SpecialMessagesRecordLayout extends AbstractCommonLineRecordLayout {
+    public SpecialMessagesRecordLayout() {
+        super("@3");
+    }
+
     protected void defineFields() {
-        field("2", "Message 1", "X(080)");
-        field("3", "Message 2", "X(080)");
-        field("4", "Message 3", "X(080)");
-        field("5", "Message 4", "X(080)");
-        field("6", "Message 5", "X(080)");
+        field("2", "Message 1", "X(80)");
+        field("3", "Message 2", "X(80)");
+        field("4", "Message 3", "X(80)");
+        field("5", "Message 4", "X(80)");
+        field("6", "Message 5", "X(80)");
         field("7", "Filler", "X(157)");
         recordTerminator("8");
     }
 
-    public String getCode() {
-        return "@3";
-    }
 }

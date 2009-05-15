@@ -40,13 +40,9 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
     }
 
     public void test_build_MultipleFieldsWithTheSameName() {
-        RecordLayout layout = new AbstractCommonLineRecordLayout() {
+        RecordLayout layout = new AbstractCommonLineRecordLayout("") {
             protected void defineFields() {
                 field("1", "Record Code", "x(2)");
-            }
-
-            public String getCode() {
-                return null;
             }
         };
 
@@ -65,13 +61,9 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
     }
 
     public void test_build_MultipleFields() {
-        RecordLayout layout = new AbstractCommonLineRecordLayout() {
+        RecordLayout layout = new AbstractCommonLineRecordLayout("") {
             protected void defineFields() {
                 field("2", "name", "x(9)");
-            }
-
-            public String getCode() {
-                return null;
             }
         };
 
@@ -90,12 +82,8 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
     }
 
     public void test_build_SingleField() {
-        RecordLayout layout = new AbstractCommonLineRecordLayout() {
+        RecordLayout layout = new AbstractCommonLineRecordLayout("") {
             protected void defineFields() {
-            }
-
-            public String getCode() {
-                return null;
             }
         };
 
@@ -120,12 +108,8 @@ public class CommonlineRecordLayoutTableInfoFactoryTest extends TestCase {
 
         factory.setPrependForParsers(x);
 
-        RecordLayout layout = new AbstractCommonLineRecordLayout() {
+        RecordLayout layout = new AbstractCommonLineRecordLayout("") {
             protected void defineFields() {
-            }
-
-            public String getCode() {
-                return null;
             }
         };
 

@@ -12,8 +12,8 @@
  */
 package commonline.core.parser;
 
-import commonline.core.layout.AbstractCommonLineRecordLayout;
 import flapjack.layout.RecordLayout;
+import flapjack.layout.SimpleRecordLayout;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
@@ -25,17 +25,15 @@ public class CommonLineRecordLayoutResolverTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         resolver = new CommonLineRecordLayoutResolver();
-        resolver.setRecordLayouts(Arrays.asList(new RecordLayout[]{new StubRecordLayout("@1")}));
+        resolver.setRecordLayouts(Arrays.asList(new RecordLayout[]{new SimpleRecordLayout("@1")}));
     }
 
     public void test_resolve_RecordLayoutFound() {
         RecordLayout layout = resolver.resolve("@1HelloThere".getBytes());
 
         assertNotNull(layout);
-        assertTrue(layout instanceof StubRecordLayout);
-
-        StubRecordLayout stub = (StubRecordLayout) layout;
-        assertEquals("@1", stub.getCode());
+        assertTrue(layout instanceof SimpleRecordLayout);
+        assertEquals("@1", layout.getId());
     }
 
     public void test_resolve_RecordLayoutNotFound() {
@@ -52,19 +50,4 @@ public class CommonLineRecordLayoutResolverTest extends TestCase {
         assertNull(resolver.resolve("@".getBytes()));
     }
 
-    private static class StubRecordLayout extends AbstractCommonLineRecordLayout {
-        private String code;
-
-        private StubRecordLayout(String code) {
-            this.code = code;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        protected void defineFields() {
-
-        }
-    }
 }

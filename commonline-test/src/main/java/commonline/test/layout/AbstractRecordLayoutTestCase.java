@@ -44,7 +44,7 @@ public abstract class AbstractRecordLayoutTestCase extends TestCase {
     }
 
     public void test_lengthAndFieldCount() {
-        assertEquals(recordCode(), ((CommonLineRecordLayout) createRecordLayout()).getCode());
+        assertEquals(recordCode(), createRecordLayout().getId());
         assertEquals("Not all fields account for", fieldCount(), createRecordLayout().getFieldDefinitions().size());
         assertEquals("Record length is off", recordLength(), createRecordLayout().getLength());
     }

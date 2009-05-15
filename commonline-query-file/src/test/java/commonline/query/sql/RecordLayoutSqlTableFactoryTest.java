@@ -23,7 +23,7 @@ public class RecordLayoutSqlTableFactoryTest extends TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        layout = new SimpleRecordLayout();
+        layout = new SimpleRecordLayout("");
         factory = new RecordLayoutSqlTableFactory();
         tableInfo = new RecordLayoutTableInfo(layout);
         tableInfo.setTableName("DUMMY");

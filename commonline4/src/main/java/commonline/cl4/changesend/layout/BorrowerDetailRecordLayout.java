@@ -22,35 +22,34 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * BORROWER (@1-02) DETAIL RECORD(S)
  */
 public class BorrowerDetailRecordLayout extends AbstractCommonLineRecordLayout {
-
-    protected void defineFields() {
-        field("2", "Record Type", "9(002)");
-        field("3", "Borrower SSN", "9(009)");
-        field("4", "School ID", "9(008)");
-        field("5", "Filler", "X(003)");
-        field("6", "School Non-ED Branch ID", "X(004)");
-        field("7", "Recipient ID", "X(008)");
-        field("8", "Filler", "X(003)");
-        field("9", "Recipient Non-ED Branch ID", "X(004)");
-        field("10", "Filler", "X(012)");
-        field("11", "Borrower Last Name", "X(035)");
-        field("12", "Borrower First Name", "X(012)");
-        field("13", "Borrower Middle Initial", "X(001)");
-        field("14", "Borrower Date of Birth (CCYYMMDD)", "9(008)");
-        field("15", "Record Status", "X(001)");
-        field("16", "Date/Time Stamp(CCYYMMDDHHMMSSNNNNNN)", "X(020)");
-        field("17", "DUNS School ID", "X(009)");
-        field("18", "DUNS Recipient ID", "X(009)");
-        field("19", "Filler", "X(183)");
-        field("20", "School Use Only", "X(023)");
-        field("21", "Lender Use Only", "X(020)");
-        field("22", "Guarantor Use Only", "X(023)");
-        field("23", "Filler", "X(080)");
-        recordTerminator("24");
+    public BorrowerDetailRecordLayout() {
+        super("@102");
     }
 
-    public String getCode() {
-        return "@102";
+    protected void defineFields() {
+        field("2", "Record Type", "9(2)");
+        field("3", "Borrower SSN", "9(9)");
+        field("4", "School ID", "9(8)");
+        field("5", "Filler", "X(3)");
+        field("6", "School Non-ED Branch ID", "X(4)");
+        field("7", "Recipient ID", "X(8)");
+        field("8", "Filler", "X(3)");
+        field("9", "Recipient Non-ED Branch ID", "X(4)");
+        field("10", "Filler", "X(12)");
+        field("11", "Borrower Last Name", "X(35)");
+        field("12", "Borrower First Name", "X(12)");
+        field("13", "Borrower Middle Initial", "X(1)");
+        field("14", "Borrower Date of Birth (CCYYMMDD)", "9(8)");
+        field("15", "Record Status", "X(1)");
+        field("16", "Date/Time Stamp(CCYYMMDDHHMMSSNNNNNN)", "X(20)");
+        field("17", "DUNS School ID", "X(9)");
+        field("18", "DUNS Recipient ID", "X(9)");
+        field("19", "Filler", "X(183)");
+        field("20", "School Use Only", "X(23)");
+        field("21", "Lender Use Only", "X(20)");
+        field("22", "Guarantor Use Only", "X(23)");
+        field("23", "Filler", "X(80)");
+        recordTerminator("24");
     }
 
 }

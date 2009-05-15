@@ -22,6 +22,9 @@ import commonline.core.layout.AbstractCommonLineRecordLayout;
  * SPECIAL MESSAGES (@3) DETAIL RECORD(S)
  */
 public class SpecialMessagesRecordLayout extends AbstractCommonLineRecordLayout {
+    public SpecialMessagesRecordLayout() {
+        super("@3");
+    }
 
     protected void defineFields() {
         field("2", "Message 1", "X(160)");
@@ -33,7 +36,4 @@ public class SpecialMessagesRecordLayout extends AbstractCommonLineRecordLayout 
         recordTerminator("8");
     }
 
-    public String getCode() {
-        return "@3";
-    }
 }
