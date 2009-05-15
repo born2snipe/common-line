@@ -12,18 +12,18 @@
  */
 package commonline.model;
 
-import commonline.core.layout.CommonLineRecordLayout;
+import flapjack.layout.RecordLayout;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Collections;
 
 
 public class CommonLineRecord {
     private Map<String, byte[]> fields = new LinkedHashMap<String, byte[]>();
-    private CommonLineRecordLayout recordLayout;
+    private RecordLayout recordLayout;
 
-    public CommonLineRecord(Map<String, byte[]> fields, CommonLineRecordLayout recordLayout) {
+    public CommonLineRecord(Map<String, byte[]> fields, RecordLayout recordLayout) {
         this.fields = fields;
         this.recordLayout = recordLayout;
     }
@@ -32,7 +32,7 @@ public class CommonLineRecord {
         return Collections.unmodifiableMap(fields);
     }
 
-    public CommonLineRecordLayout getRecordLayout() {
+    public RecordLayout getRecordLayout() {
         return recordLayout;
     }
 }

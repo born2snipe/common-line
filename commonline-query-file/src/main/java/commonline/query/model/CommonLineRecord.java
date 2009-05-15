@@ -12,13 +12,11 @@
  */
 package commonline.query.model;
 
-import commonline.core.layout.CommonLineRecordLayout;
+import flapjack.layout.RecordLayout;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import flapjack.layout.RecordLayout;
 
 
 public class CommonLineRecord {
@@ -45,7 +43,7 @@ public class CommonLineRecord {
         this.fields = fields;
     }
 
-    public void setRecordLayout(CommonLineRecordLayout recordLayout) {
+    public void setRecordLayout(RecordLayout recordLayout) {
         this.recordLayout = recordLayout;
     }
 }
