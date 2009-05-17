@@ -37,11 +37,11 @@ public class HeaderLayoutTest extends AbstractRecordLayoutTestCase {
         assertText("1", "Record Code", 1, 2);
         assertText("2", "Software Product Code", 3, 4);
         assertText("3", "Software Version", 7, 4);
-        assertText("4", "Batch ID O", 11, 12);
+        assertText("4", "Batch ID", 11, 12);
         assertInteger("5", "File Creation Date (CCYYMMDD)", 23, 8);
-        assertInteger("6", "File Creation Time (HHMMSS) O", 31, 6);
+        assertInteger("6", "File Creation Time (HHMMSS)", 31, 6);
         assertInteger("7", "File Transmission Date (CCYYMMDD)", 37, 8);
-        assertInteger("8", "File Transmission Time (HHMMSS) O", 45, 6);
+        assertInteger("8", "File Transmission Time (HHMMSS)", 45, 6);
         assertText("9", "File Identifier Name", 51, 19);
         assertText("10", "File Identifier Code", 70, 5);
         assertText("11", "Source Name", 75, 32);

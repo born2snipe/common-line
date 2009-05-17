@@ -23,11 +23,11 @@ public class HeaderLayout extends AbstractCommonLineRecordLayout {
     protected void defineFields() {
         field("2", "Software Product Code", "X(4)");
         field("3", "Software Version", "X(4)");
-        field("4", "Batch ID O", "X(12)");
+        field("4", "Batch ID", "X(12)");
         field("5", "File Creation Date (CCYYMMDD)", "9(8)");
-        field("6", "File Creation Time (HHMMSS) O", "9(6)");
+        field("6", "File Creation Time (HHMMSS)", "9(6)");
         field("7", "File Transmission Date (CCYYMMDD)", "9(8)");
-        field("8", "File Transmission Time (HHMMSS) O", "9(6)");
+        field("8", "File Transmission Time (HHMMSS)", "9(6)");
         field("9", "File Identifier Name", "X(19)");
         field("10", "File Identifier Code", "X(5)");
         field("11", "Source Name", "X(32)");
