@@ -17,6 +17,7 @@
         <module>commonline-file</module>
         <module>commonline-test</module>
         <module>commonline4</module>
+        <module>commonline5</module>
         <module>commonline-viewer</module>
         <module>commonline-query-file</module>
     </modules>
