@@ -18,8 +18,6 @@ import flapjack.cobol.layout.*;
  * An abstract class simplifying the construction of the CommonLineFieldDefinitions for a CommonLineRecordLayout
  */
 public abstract class AbstractCommonLineRecordLayout extends CobolRecordLayout {
-    private int offset = 2;
-
 
     public AbstractCommonLineRecordLayout(String id) {
         super(id);
@@ -51,6 +49,7 @@ public abstract class AbstractCommonLineRecordLayout extends CobolRecordLayout {
      * @param id - the id representing the Record Terminator
      */
     protected void recordTerminator(String id) {
+        // TODO - should be able to calculate this very easily
         field(id, "Record Terminator", "X");
     }
 
