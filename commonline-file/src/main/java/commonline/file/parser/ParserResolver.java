@@ -14,15 +14,12 @@ package commonline.file.parser;
 
 import commonline.cl4.appsend.parser.AppSendParser;
 import commonline.cl4.changesend.parser.ChangeSendParser;
-import commonline.cl4.response.parser.ResponseParser;
 import commonline.cl4.disbursement.parser.DisbursementParser;
+import commonline.cl4.response.parser.ResponseParser;
 import commonline.file.FileInfo;
 import commonline.file.FileType;
 import commonline.file.FileVersion;
 import flapjack.parser.RecordParser;
-import flapjack.parser.RecordParserImpl;
-import flapjack.model.ObjectMappingStore;
-import flapjack.model.ObjectMapping;
 
 import java.util.HashMap;
 import java.util.Map;

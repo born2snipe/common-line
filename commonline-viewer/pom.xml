@@ -18,6 +18,7 @@
         <dependency>
             <groupId>commonline</groupId>
             <artifactId>commonline-file</artifactId>
+            <version>${version}</version>
         </dependency>
 
         <dependency>

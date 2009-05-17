@@ -18,6 +18,13 @@
         <dependency>
             <groupId>commonline</groupId>
             <artifactId>commonline4</artifactId>
+            <version>${version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commonline</groupId>
+            <artifactId>commonline5</artifactId>
+            <version>${version}</version>
         </dependency>
 
         <dependency>

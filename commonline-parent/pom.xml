@@ -18,30 +18,6 @@
         <dependencies>
 
             <dependency>
-                <groupId>commonline</groupId>
-                <artifactId>commonline-core</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commonline</groupId>
-                <artifactId>commonline-file</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commonline</groupId>
-                <artifactId>commonline4</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commonline</groupId>
-                <artifactId>commonline-test</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>flapjack</groupId>
                 <artifactId>flapjack-cobol</artifactId>
                 <version>${flapjack.version}</version>

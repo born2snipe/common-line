@@ -18,12 +18,14 @@
         <dependency>
             <groupId>commonline</groupId>
             <artifactId>commonline-core</artifactId>
+            <version>${version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>commonline</groupId>
             <artifactId>commonline-test</artifactId>
+            <version>${version}</version>
             <scope>test</scope>
         </dependency>
 
