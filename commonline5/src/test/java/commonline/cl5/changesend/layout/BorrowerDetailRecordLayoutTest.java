@@ -16,9 +16,9 @@ import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class BorrowerDetailLayoutTest extends AbstractRecordLayoutTestCase {
+public class BorrowerDetailRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new BorrowerDetailLayout();
+        return new BorrowerDetailRecordLayout();
     }
 
     protected int recordLength() {

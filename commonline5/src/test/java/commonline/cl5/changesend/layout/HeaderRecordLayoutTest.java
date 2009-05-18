@@ -10,19 +10,19 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline.cl5.appsend.layout;
+package commonline.cl5.changesend.layout;
 
 import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class HeaderLayoutTest extends AbstractRecordLayoutTestCase {
+public class HeaderRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new HeaderLayout();
+        return new HeaderRecordLayout();
     }
 
     protected int recordLength() {
-        return 960;
+        return 480;
     }
 
     protected int fieldCount() {
@@ -46,17 +46,17 @@ public class HeaderLayoutTest extends AbstractRecordLayoutTestCase {
         assertText("10", "File Identifier Code", 70, 5);
         assertText("11", "Source Name", 75, 32);
         assertText("12", "Source ID", 107, 8);
-        assertText("13", "Filler2", 115, 2);
+        assertText("13", "Filler", 115, 2);
         assertText("14", "Source Non-ED Branch ID", 117, 4);
         assertText("15", "Source Type Code", 121, 1);
         assertText("16", "Recipient Name", 122, 32);
         assertText("17", "Recipient ID", 154, 8);
-        assertText("18", "Filler2", 162, 2);
+        assertText("18", "Filler", 162, 2);
         assertText("19", "Recipient Non-ED Branch ID", 164, 4);
         assertText("20", "Media Type Code", 168, 1);
         assertText("21", "Filler", 169, 9);
         assertText("22", "Filler", 178, 9);
-        assertText("23", "Filler", 187, 773);
-        assertText("24", "Record Terminator", 960, 1);
+        assertText("23", "Filler", 187, 293);
+        assertText("24", "Record Terminator", 480, 1);
     }
 }

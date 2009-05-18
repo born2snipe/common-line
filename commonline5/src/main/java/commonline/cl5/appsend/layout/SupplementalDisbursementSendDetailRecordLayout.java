@@ -15,8 +15,8 @@ package commonline.cl5.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class SupplementalDisbursementSendDetailLayout extends AbstractCommonLineRecordLayout {
-    public SupplementalDisbursementSendDetailLayout() {
+public class SupplementalDisbursementSendDetailRecordLayout extends AbstractCommonLineRecordLayout {
+    public SupplementalDisbursementSendDetailRecordLayout() {
         super("@8");
     }
 

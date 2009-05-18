@@ -15,8 +15,8 @@ package commonline.cl5.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class UniqueSupplementDetailLayout extends AbstractCommonLineRecordLayout {
-    public UniqueSupplementDetailLayout() {
+public class UniqueSupplementDetailRecordLayout extends AbstractCommonLineRecordLayout {
+    public UniqueSupplementDetailRecordLayout() {
         super("@2");
     }
 

@@ -16,9 +16,9 @@ import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class SupplementalDisbursementSendDetailLayoutTest extends AbstractRecordLayoutTestCase {
+public class SupplementalDisbursementSendDetailRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new SupplementalDisbursementSendDetailLayout();
+        return new SupplementalDisbursementSendDetailRecordLayout();
     }
 
     protected int recordLength() {

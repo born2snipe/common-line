@@ -15,8 +15,8 @@ package commonline.cl5.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class TrailerLayout extends AbstractCommonLineRecordLayout {
-    public TrailerLayout() {
+public class TrailerRecordLayout extends AbstractCommonLineRecordLayout {
+    public TrailerRecordLayout() {
         super("@T");
     }
 

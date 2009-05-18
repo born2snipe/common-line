@@ -15,9 +15,9 @@ package commonline.cl5.appsend.layout;
 import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
-public class ReferenceDetailLayoutTest extends AbstractRecordLayoutTestCase {
+public class ReferenceDetailRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new ReferenceDetailLayout();
+        return new ReferenceDetailRecordLayout();
     }
 
     protected int recordLength() {

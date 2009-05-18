@@ -15,8 +15,8 @@ package commonline.cl5.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class ApplicationSendDetailLayout extends AbstractCommonLineRecordLayout {
-    public ApplicationSendDetailLayout() {
+public class ApplicationSendDetailRecordLayout extends AbstractCommonLineRecordLayout {
+    public ApplicationSendDetailRecordLayout() {
         super("@1");
     }
 

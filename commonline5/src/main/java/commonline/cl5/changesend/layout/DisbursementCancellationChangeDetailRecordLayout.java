@@ -15,9 +15,9 @@ package commonline.cl5.changesend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayout extends AbstractCommonLineRecordLayout {
-    public LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayout() {
-        super("@107");
+public class DisbursementCancellationChangeDetailRecordLayout extends AbstractCommonLineRecordLayout {
+    public DisbursementCancellationChangeDetailRecordLayout() {
+        super("@109");
     }
 
     protected void defineFields() {
@@ -34,34 +34,37 @@ public class LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayout extends 
         field("12", "Guarantee Date5 (CCYYMMDD)", "X(8)");
         field("13", "Loan Type Code", "X(2)");
         field("14", "Alternative Loan Program Type Code", "X(3)");
-        field("15", "First Disbursement Date (CCYYMMDD)", "X(8)");
+        field("15", "First Disbursement Date5 (CCYYMMDD)", "X(8)");
         field("16", "Lender ID", "X(6)");
-        field("17", "Servicer Code", "X(6)");
-        field("18", "Loan Period Begin Date (CCYYMMDD)", "X(8)");
-        field("19", "Loan Period End Date (CCYYMMDD)", "X(8)");
+        field("17", "Servicer Code5", "X(6)");
+        field("18", "Loan Period Begin Date5 (CCYYMMDD)", "X(8)");
+        field("19", "Loan Period End Date5 (CCYYMMDD)", "X(8)");
         field("20", "Filler", "X(2)");
-        field("21", "PLUS/Alternative Student SSN", "9(9)");
+        field("21", "PLUS/ Alternative Student SSN", "9(9)");
         field("22", "CommonLine Unique Identifier", "X(17)");
         field("23", "CommonLine Loan Sequence Number", "9(2)");
-        field("24", "Revised Loan Period Begin Date (CCYYMMDD)", "9(8)");
-        field("25", "Revised Loan Period End Date (CCYYMMDD)", "9(8)");
-        field("26", "Revised Grade Level Code", "X(1)");
-        field("27", "Change Certification Date (CCYYMMDD)", "9(8)");
-        field("28", "Filler", "X(1)");
-        field("29", "Corrected Anticipated Completion Date (CCYYMMDD)", "9(8)");
-        field("30", "Filler", "X(21)");
-        field("31", "Filler", "X(9)");
-        field("32", "Filler", "X(9)");
+        field("24", "Disbursement Identification Number", "9(2)");
+        field("25", "Disbursement Date (CCYYMMDD)", "9(8)");
+        field("26", "Cancellation Date (CCYYMMDD)", "9(8)");
+        field("27", "Cancellation Amount", "9(6)V99");
+        field("28", "Disbursement Hold/Release Indicator Code", "X(1)");
+        field("29", "Revised Disbursement Date (CCYYMMDD)", "9(8)");
+        field("30", "Revised Disbursement Amount", "9(6)v99");
+        field("31", "Reinstatement Indicator Code5", "X(1)");
+        field("32", "Filler", "X(21)");
         field("33", "Filler", "X(9)");
         field("34", "Filler", "X(9)");
-        field("35", "Lender Non-ED Branch ID", "X(4)");
-        field("36", "Filler", "X(100)");
-        field("37", "School Use Only", "X(23)");
-        field("38", "Lender Use Only", "X(20)");
-        field("39", "Guarantor Use Only", "X(23)");
-        field("40", "Filler", "X(59)");
-        field("41", "Record Status", "X(1)");
-        field("42", "Date/Time Stamp (CCYYMMDDHHSSNNNNNN)", "9(20)");
-        recordTerminator("43");
+        field("35", "Filler", "X(9)");
+        field("36", "Filler", "X(9)");
+        field("37", "Lender Non-ED Branch ID", "X(4)");
+        field("38", "Submittal As-Of Date5", "X(8)");
+        field("39", "Filler", "X(82)");
+        field("40", "School Use Only", "X(23)");
+        field("41", "Lender Use Only", "X(20)");
+        field("42", "Guarantor Use Only", "X(23)");
+        field("43", "Filler", "X(59)");
+        field("44", "Record Status6", "X(1)");
+        field("45", "Date/Time Stamp (CCYYMMDDHHMMSSNNNNNN)", "9(20)");
+        recordTerminator("46");
     }
 }

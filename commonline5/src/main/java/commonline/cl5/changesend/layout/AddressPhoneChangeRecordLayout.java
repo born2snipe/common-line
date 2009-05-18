@@ -15,8 +15,8 @@ package commonline.cl5.changesend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class AddressPhoneChangeLayout extends AbstractCommonLineRecordLayout {
-    public AddressPhoneChangeLayout() {
+public class AddressPhoneChangeRecordLayout extends AbstractCommonLineRecordLayout {
+    public AddressPhoneChangeRecordLayout() {
         super("@105");
     }
 

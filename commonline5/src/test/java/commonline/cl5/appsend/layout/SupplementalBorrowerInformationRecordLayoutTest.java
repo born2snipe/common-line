@@ -16,9 +16,9 @@ import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class UniqueSupplementDetailLayoutTest extends AbstractRecordLayoutTestCase {
+public class SupplementalBorrowerInformationRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new UniqueSupplementDetailLayout();
+        return new SupplementalBorrowerInformationRecordLayout();
     }
 
     protected int recordLength() {
@@ -26,18 +26,21 @@ public class UniqueSupplementDetailLayoutTest extends AbstractRecordLayoutTestCa
     }
 
     protected int fieldCount() {
-        return 5;
+        return 8;
     }
 
     protected String recordCode() {
-        return "@2";
+        return "@7";
     }
 
     public void test_fieldDefinitions() {
         assertText("1", "Record Code", 1, 2);
-        assertText("2", "Unique Supplemental Vendor Code", 3, 4);
-        assertText("3", "Unique Supplemental Layout Identifier Code", 7, 2);
-        assertText("4", "Filler", 9, 951);
-        assertText("5", "Record Terminator", 960, 1);
+        assertText("2", "Supplemental Borrower Information Layout Owner Code", 3, 4);
+        assertText("3", "Supplemental Borrower Information Layout Identifier Code", 7, 2);
+        assertText("4", "E-mail Address", 9, 256);
+        assertText("5", "E-mail Address Validity Indicator", 265, 1);
+        assertInteger("6", "E-mail Address Effective Date (CCYYMMDD)", 266, 8);
+        assertText("7", "Filler", 274, 686);
+        assertText("8", "Record Terminator", 960, 1);
     }
 }

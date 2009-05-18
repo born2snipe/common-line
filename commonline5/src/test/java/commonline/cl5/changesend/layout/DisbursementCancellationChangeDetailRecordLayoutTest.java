@@ -16,9 +16,9 @@ import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayoutTest extends AbstractRecordLayoutTestCase {
+public class DisbursementCancellationChangeDetailRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayout();
+        return new DisbursementCancellationChangeDetailRecordLayout();
     }
 
     protected int recordLength() {
@@ -26,11 +26,11 @@ public class LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayoutTest exte
     }
 
     protected int fieldCount() {
-        return 43;
+        return 46;
     }
 
     protected String recordCode() {
-        return "@107";
+        return "@109";
     }
 
     public void test_fieldDefinitions() {
@@ -48,34 +48,37 @@ public class LoanPeriodGradeLevelAnticipatedCompletionDateChangedLayoutTest exte
         assertText("12", "Guarantee Date5 (CCYYMMDD)", 60, 8);
         assertText("13", "Loan Type Code", 68, 2);
         assertText("14", "Alternative Loan Program Type Code", 70, 3);
-        assertText("15", "First Disbursement Date (CCYYMMDD)", 73, 8);
+        assertText("15", "First Disbursement Date5 (CCYYMMDD)", 73, 8);
         assertText("16", "Lender ID", 81, 6);
-        assertText("17", "Servicer Code", 87, 6);
-        assertText("18", "Loan Period Begin Date (CCYYMMDD)", 93, 8);
-        assertText("19", "Loan Period End Date (CCYYMMDD)", 101, 8);
+        assertText("17", "Servicer Code5", 87, 6);
+        assertText("18", "Loan Period Begin Date5 (CCYYMMDD)", 93, 8);
+        assertText("19", "Loan Period End Date5 (CCYYMMDD)", 101, 8);
         assertText("20", "Filler", 109, 2);
-        assertInteger("21", "PLUS/Alternative Student SSN", 111, 9);
+        assertInteger("21", "PLUS/ Alternative Student SSN", 111, 9);
         assertText("22", "CommonLine Unique Identifier", 120, 17);
         assertInteger("23", "CommonLine Loan Sequence Number", 137, 2);
-        assertInteger("24", "Revised Loan Period Begin Date (CCYYMMDD)", 139, 8);
-        assertInteger("25", "Revised Loan Period End Date (CCYYMMDD)", 147, 8);
-        assertText("26", "Revised Grade Level Code", 155, 1);
-        assertInteger("27", "Change Certification Date (CCYYMMDD)", 156, 8);
-        assertText("28", "Filler", 164, 1);
-        assertInteger("29", "Corrected Anticipated Completion Date (CCYYMMDD)", 165, 8);
-        assertText("30", "Filler", 173, 21);
-        assertText("31", "Filler", 194, 9);
-        assertText("32", "Filler", 203, 9);
-        assertText("33", "Filler", 212, 9);
-        assertText("34", "Filler", 221, 9);
-        assertText("35", "Lender Non-ED Branch ID", 230, 4);
-        assertText("36", "Filler", 234, 100);
-        assertText("37", "School Use Only", 334, 23);
-        assertText("38", "Lender Use Only", 357, 20);
-        assertText("39", "Guarantor Use Only", 377, 23);
-        assertText("40", "Filler", 400, 59);
-        assertText("41", "Record Status", 459, 1);
-        assertInteger("42", "Date/Time Stamp (CCYYMMDDHHSSNNNNNN)", 460, 20);
-        assertText("43", "Record Terminator", 480, 1);
+        assertInteger("24", "Disbursement Identification Number", 139, 2);
+        assertInteger("25", "Disbursement Date (CCYYMMDD)", 141, 8);
+        assertInteger("26", "Cancellation Date (CCYYMMDD)", 149, 8);
+        assertDecimal("27", "Cancellation Amount", 157, 8);
+        assertText("28", "Disbursement Hold/Release Indicator Code", 165, 1);
+        assertInteger("29", "Revised Disbursement Date (CCYYMMDD)", 166, 8);
+        assertDecimal("30", "Revised Disbursement Amount", 174, 8);
+        assertText("31", "Reinstatement Indicator Code5", 182, 1);
+        assertText("32", "Filler", 183, 21);
+        assertText("33", "Filler", 204, 9);
+        assertText("34", "Filler", 213, 9);
+        assertText("35", "Filler", 222, 9);
+        assertText("36", "Filler", 231, 9);
+        assertText("37", "Lender Non-ED Branch ID", 240, 4);
+        assertText("38", "Submittal As-Of Date5", 244, 8);
+        assertText("39", "Filler", 252, 82);
+        assertText("40", "School Use Only", 334, 23);
+        assertText("41", "Lender Use Only", 357, 20);
+        assertText("42", "Guarantor Use Only", 377, 23);
+        assertText("43", "Filler", 400, 59);
+        assertText("44", "Record Status6", 459, 1);
+        assertInteger("45", "Date/Time Stamp (CCYYMMDDHHMMSSNNNNNN)", 460, 20);
+        assertText("46", "Record Terminator", 480, 1);
     }
 }

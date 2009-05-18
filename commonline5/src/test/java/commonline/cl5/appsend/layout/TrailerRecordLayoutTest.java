@@ -16,9 +16,9 @@ import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class TrailerLayoutTest extends AbstractRecordLayoutTestCase {
+public class TrailerRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new TrailerLayout();
+        return new TrailerRecordLayout();
     }
 
     protected int recordLength() {

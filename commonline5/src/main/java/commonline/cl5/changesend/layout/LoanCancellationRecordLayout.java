@@ -15,8 +15,8 @@ package commonline.cl5.changesend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class LoanCancellationLayout extends AbstractCommonLineRecordLayout {
-    public LoanCancellationLayout() {
+public class LoanCancellationRecordLayout extends AbstractCommonLineRecordLayout {
+    public LoanCancellationRecordLayout() {
         super("@108");
     }
 

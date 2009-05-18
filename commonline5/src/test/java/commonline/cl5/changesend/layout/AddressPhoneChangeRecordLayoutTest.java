@@ -16,9 +16,9 @@ import commonline.test.layout.AbstractRecordLayoutTestCase;
 import flapjack.layout.RecordLayout;
 
 
-public class AddressPhoneChangeLayoutTest extends AbstractRecordLayoutTestCase {
+public class AddressPhoneChangeRecordLayoutTest extends AbstractRecordLayoutTestCase {
     protected RecordLayout createRecordLayout() {
-        return new AddressPhoneChangeLayout();
+        return new AddressPhoneChangeRecordLayout();
     }
 
     protected int recordLength() {

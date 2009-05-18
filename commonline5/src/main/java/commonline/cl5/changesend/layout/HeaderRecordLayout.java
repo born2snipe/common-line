@@ -15,8 +15,8 @@ package commonline.cl5.changesend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class HeaderLayout extends AbstractCommonLineRecordLayout {
-    public HeaderLayout() {
+public class HeaderRecordLayout extends AbstractCommonLineRecordLayout {
+    public HeaderRecordLayout() {
         super("@H");
     }
 

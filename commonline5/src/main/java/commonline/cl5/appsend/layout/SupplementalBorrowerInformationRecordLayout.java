@@ -15,8 +15,8 @@ package commonline.cl5.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class SupplementalBorrowerInformationLayout extends AbstractCommonLineRecordLayout {
-    public SupplementalBorrowerInformationLayout() {
+public class SupplementalBorrowerInformationRecordLayout extends AbstractCommonLineRecordLayout {
+    public SupplementalBorrowerInformationRecordLayout() {
         super("@7");
     }
 

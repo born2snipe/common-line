@@ -15,8 +15,8 @@ package commonline.cl5.appsend.layout;
 import commonline.core.layout.AbstractCommonLineRecordLayout;
 
 
-public class AlternativeLoanDetailLayout extends AbstractCommonLineRecordLayout {
-    public AlternativeLoanDetailLayout() {
+public class AlternativeLoanDetailRecordLayout extends AbstractCommonLineRecordLayout {
+    public AlternativeLoanDetailRecordLayout() {
         super("@4");
     }
 
