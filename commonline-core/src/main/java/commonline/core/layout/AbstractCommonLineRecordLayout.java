@@ -49,7 +49,6 @@ public abstract class AbstractCommonLineRecordLayout extends CobolRecordLayout {
      * @param id - the id representing the Record Terminator
      */
     protected void recordTerminator(String id) {
-        // TODO - should be able to calculate this very easily
         field(id, "Record Terminator", "X");
     }
 

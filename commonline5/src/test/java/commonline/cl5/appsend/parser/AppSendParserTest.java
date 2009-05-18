@@ -10,15 +10,15 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline.cl4.appsend.parser;
+package commonline.cl5.appsend.parser;
 
-import commonline.cl4.appsend.layout.*;
+import commonline.cl5.appsend.layout.*;
 import commonline.core.parser.CommonLineRecordLayoutResolver;
 import commonline.test.parser.ParserTestCase;
 
 
 public class AppSendParserTest extends ParserTestCase {
-    public void test_layout() {
+    public void test() {
         AppSendParser parser = new AppSendParser();
         CommonLineRecordLayoutResolver resolver = (CommonLineRecordLayoutResolver) parser.getRecordLayoutResolver();
 
@@ -28,8 +28,9 @@ public class AppSendParserTest extends ParserTestCase {
         assertContainsRecordLayout(ReferenceDetailRecordLayout.class, resolver);
         assertContainsRecordLayout(SupplementalBorrowerInformationRecordLayout.class, resolver);
         assertContainsRecordLayout(TrailerRecordLayout.class, resolver);
+        assertContainsRecordLayout(UniqueSupplementDetailRecordLayout.class, resolver);
+        assertContainsRecordLayout(SupplementalDisbursementSendDetailRecordLayout.class, resolver);
 
-        assertEquals(6, resolver.getRecordLayouts().size());
+        assertEquals(8, resolver.getRecordLayouts().size());
     }
-
 }
