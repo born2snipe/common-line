@@ -15,27 +15,32 @@ package commonline.query.gui;
 import commonline.core.layout.CommonlineFieldDefinition;
 import commonline.file.FileAnalyzer;
 import commonline.file.FileInfo;
-import commonline.file.parser.ParserResolver;
+import commonline.file.parser.ParserRegistry;
 import commonline.query.model.CommonLineRecord;
 import commonline.query.model.CommonlineRecordFactory;
 import flapjack.io.LineRecordReader;
 import flapjack.layout.FieldDefinition;
+import flapjack.model.ObjectMapper;
+import flapjack.model.ObjectMappingException;
+import flapjack.model.ObjectMappingStore;
 import flapjack.model.SameRecordFactoryResolver;
 import flapjack.parser.ByteMapRecordFieldParser;
 import flapjack.parser.MappedFieldIdGenerator;
 import flapjack.parser.ParseResult;
 import flapjack.parser.RecordParserImpl;
+import flapjack.util.TypeConverter;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class LoadFilesWorker extends SwingWorker<Void, Void> {
     private FileAnalyzer fileAnalyzer = new FileAnalyzer();
-    private ParserResolver parserResolver = new ParserResolver();
+    private ParserRegistry parserRegistry = new ParserRegistry();
     private ByteMapRecordFieldParser fieldParser;
     private SameRecordFactoryResolver recordFactoryResolver;
     private List<File> files = new ArrayList<File>();
@@ -68,8 +73,27 @@ public class LoadFilesWorker extends SwingWorker<Void, Void> {
                 }
                 consoleManager.println("File Info: " + fileInfo.toString());
                 consoleManager.println("Parsing...");
-                RecordParserImpl parser = (RecordParserImpl) parserResolver.resolver(fileInfo.getType(), fileInfo.getVersion());
+                RecordParserImpl parser = (RecordParserImpl) parserRegistry.get(fileInfo);
                 parser.setRecordFactoryResolver(recordFactoryResolver);
+                parser.setObjectMapper(new ObjectMapper() {
+                    public void mapOnTo(Object parsedFields, Object domain) throws ObjectMappingException {
+                        CommonLineRecord record = (CommonLineRecord) domain;
+                        record.setFields((Map<String, byte[]>) parsedFields);
+                    }
+
+                    public void setIgnoreUnmappedFields(boolean ignoreUnmappedFields) {
+
+                    }
+
+                    public void setObjectMappingStore(ObjectMappingStore objectMappingStore) {
+
+                    }
+
+                    public void setTypeConverter(TypeConverter typeConverter) {
+
+                    }
+                });
+
                 ParseResult result = parser.parse(new LineRecordReader(new FileInputStream(file)));
                 consoleManager.println("\n=======================");
                 consoleManager.println("Results for " + file.getName());

@@ -21,23 +21,30 @@ import commonline.file.FileType;
 import commonline.file.FileVersion;
 import flapjack.parser.RecordParser;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class ParserResolver {
+public class ParserRegistry {
     private Map parsers = new HashMap();
 
-    public ParserResolver() {
-        parsers.put(new FileInfo(FileVersion.CL4, FileType.RESPONSE), new ResponseParser());
-        parsers.put(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), new ChangeSendParser());
+    public ParserRegistry() {
         parsers.put(new FileInfo(FileVersion.CL4, FileType.APP_SEND), new AppSendParser());
-        parsers.put(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ROSTER), new DisbursementParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), new ChangeSendParser());
         parsers.put(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ACKNOWLEDGEMENT), new DisbursementParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ROSTER), new DisbursementParser());
+        parsers.put(new FileInfo(FileVersion.CL4, FileType.RESPONSE), new ResponseParser());
+        parsers.put(new FileInfo(FileVersion.CL5, FileType.APP_SEND), new commonline.cl5.appsend.parser.AppSendParser());
+        parsers.put(new FileInfo(FileVersion.CL5, FileType.CHANGE_SEND), new commonline.cl5.changesend.parser.ChangeSendParser());
     }
 
-    public RecordParser resolver(FileType fileType, FileVersion fileVersion) {
-        return (RecordParser) parsers.get(new FileInfo(fileVersion, fileType));
+    public RecordParser get(FileInfo fileInfo) {
+        return (RecordParser) parsers.get(fileInfo);
     }
 
+    public Collection parsers() {
+        return Collections.unmodifiableCollection(parsers.values());
+    }
 }

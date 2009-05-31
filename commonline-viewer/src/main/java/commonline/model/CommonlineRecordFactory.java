@@ -12,11 +12,12 @@
  */
 package commonline.model;
 
+import flapjack.layout.RecordLayout;
 import flapjack.model.RecordFactory;
 
 
 public class CommonlineRecordFactory implements RecordFactory {
-    public Object build() {
+    public Object build(RecordLayout recordLayout) {
         return null;
     }
 }

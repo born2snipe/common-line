@@ -17,6 +17,9 @@ public class FileInfo {
     private FileVersion version;
     private FileType type;
 
+    public FileInfo() {
+    }
+
     public FileInfo(FileVersion version, FileType type) {
         this.version = version;
         this.type = type;

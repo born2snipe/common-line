@@ -26,6 +26,10 @@ public class CommonLineRecord {
     public CommonLineRecord() {
     }
 
+    public CommonLineRecord(RecordLayout recordLayout) {
+        this.recordLayout = recordLayout;
+    }
+
     public CommonLineRecord(Map<String, byte[]> fields, RecordLayout recordLayout) {
         this.fields = fields;
         this.recordLayout = recordLayout;

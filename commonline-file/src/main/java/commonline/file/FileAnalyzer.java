@@ -12,23 +12,25 @@
  */
 package commonline.file;
 
-import commonline.cl4.appsend.parser.AppSendParser;
-import commonline.cl4.changesend.parser.ChangeSendParser;
-import commonline.cl4.disbursement.parser.DisbursementParser;
-import commonline.cl4.response.parser.ResponseParser;
+import commonline.file.parser.ParserRegistry;
+import commonline.file.util.FileTypeValueConverter;
+import commonline.file.util.FileVersionValueConverter;
 import flapjack.io.LineRecordReader;
+import flapjack.model.ObjectMapping;
+import flapjack.model.ObjectMappingStore;
 import flapjack.parser.ParseResult;
 import flapjack.parser.RecordParser;
+import flapjack.parser.RecordParserImpl;
+import flapjack.util.TypeConverter;
 
 import java.io.*;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class FileAnalyzer {
     private HeaderLocator headerLocator;
-    private Map parsers = new LinkedHashMap();
-    private Map fileInfos = new LinkedHashMap();
+    private ParserRegistry parserRegistry = new ParserRegistry();
+    private ObjectMappingStore objectMappingStore = new ObjectMappingStore();
+    private TypeConverter typeConverter = new TypeConverter();
 
     public FileAnalyzer() {
         this(new CommonlineHeaderLocator());
@@ -36,21 +38,14 @@ public class FileAnalyzer {
 
     protected FileAnalyzer(HeaderLocator headerLocator) {
         this.headerLocator = headerLocator;
-        initializeParsers();
-    }
 
-    // TODO -- this seems messy to have to put this here and in the ParserResolver
-    private void initializeParsers() {
-        registerParser(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), new ChangeSendParser());
-        registerParser(new FileInfo(FileVersion.CL4, FileType.APP_SEND), new AppSendParser());
-        registerParser(new FileInfo(FileVersion.CL4, FileType.RESPONSE), new ResponseParser());
-        registerParser(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ROSTER), new DisbursementParser());
-        registerParser(new FileInfo(FileVersion.CL4, FileType.DISBURSEMENT_ACKNOWLEDGEMENT), new DisbursementParser());
-    }
+        typeConverter.registerConverter(new FileTypeValueConverter());
+        typeConverter.registerConverter(new FileVersionValueConverter());
 
-    protected void registerParser(FileInfo info, RecordParser parser) {
-        parsers.put(info, parser);
-        fileInfos.put(parser, info);
+        ObjectMapping fileInfoMapping = new ObjectMapping(FileInfo.class);
+        fileInfoMapping.field("10", "version", FileVersionValueConverter.class);
+        fileInfoMapping.field("9", "type", FileTypeValueConverter.class);
+        objectMappingStore.add(fileInfoMapping);
     }
 
     public FileInfo analyze(InputStream input) throws IllegalArgumentException {
@@ -58,14 +53,15 @@ public class FileAnalyzer {
         if (headerRecord == null) {
             throw new IllegalArgumentException("Could not locate header");
         }
-        Iterator it = parsers.values().iterator();
+        Iterator it = parserRegistry.parsers().iterator();
         while (it.hasNext()) {
             LineRecordReader reader = new LineRecordReader(new ByteArrayInputStream(headerRecord.getBytes()));
             RecordParser parser = (RecordParser) it.next();
             try {
+                applyToParser(parser);
                 ParseResult result = parser.parse(reader);
                 if (result.getRecords().size() > 0) {
-                    return (FileInfo) fileInfos.get(parser);
+                    return (FileInfo) result.getRecords().get(0);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -84,13 +80,13 @@ public class FileAnalyzer {
         }
     }
 
-    protected void setParsers(Map parsers) {
-        this.parsers.clear();
-        this.fileInfos.clear();
-        Iterator it = parsers.keySet().iterator();
-        while (it.hasNext()) {
-            FileInfo info = (FileInfo) it.next();
-            registerParser(info, (RecordParser) parsers.get(info));
-        }
+    protected void applyToParser(RecordParser parser) {
+        RecordParserImpl parserImpl = (RecordParserImpl) parser;
+        parserImpl.setObjectMappingStore(objectMappingStore);
+        parserImpl.setTypeConverter(typeConverter);
+    }
+
+    protected void setParserRegistry(ParserRegistry parserRegistry) {
+        this.parserRegistry = parserRegistry;
     }
 }

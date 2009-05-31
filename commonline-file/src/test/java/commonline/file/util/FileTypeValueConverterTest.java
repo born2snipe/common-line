@@ -10,15 +10,18 @@
  * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and limitations under the License.
  */
-package commonline.query.model;
+package commonline.file.util;
 
-import flapjack.layout.RecordLayout;
-import flapjack.model.RecordFactory;
+import commonline.file.FileType;
+import junit.framework.TestCase;
 
 
-public class CommonlineRecordFactory implements RecordFactory {
+public class FileTypeValueConverterTest extends TestCase {
+    public void test_toDomain() {
+        FileTypeValueConverter converter = new FileTypeValueConverter();
 
-    public Object build(RecordLayout recordLayout) {
-        return new CommonLineRecord(recordLayout);
+        assertEquals(FileType.RESPONSE, converter.toDomain(FileType.RESPONSE.getIdentifierName().getBytes()));
+        assertEquals(FileType.APP_SEND, converter.toDomain((FileType.APP_SEND.getIdentifierName() + "   ").getBytes()));
+        assertNull(converter.toDomain(new byte[0]));
     }
 }

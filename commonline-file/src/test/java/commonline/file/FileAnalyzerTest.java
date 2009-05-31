@@ -12,15 +12,17 @@
  */
 package commonline.file;
 
+import commonline.file.parser.ParserRegistry;
 import flapjack.io.RecordReader;
 import flapjack.parser.BadRecord;
 import flapjack.parser.ParseResult;
 import flapjack.parser.RecordParser;
 import org.jmock.Mock;
-import org.jmock.MockObjectTestCase;
+import org.jmock.cglib.MockObjectTestCase;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -32,19 +34,21 @@ public class FileAnalyzerTest extends MockObjectTestCase {
     private FileAnalyzer analyzer;
     private Mock appSendParser;
     private Mock changeSendParser;
+    private Mock parserRegistry;
 
     protected void setUp() throws Exception {
         super.setUp();
         headerLocator = mock(HeaderLocator.class);
         appSendParser = mock(RecordParser.class, "appSend");
         changeSendParser = mock(RecordParser.class, "changeSend");
+        parserRegistry = mock(ParserRegistry.class);
 
         Map parsers = new LinkedHashMap();
         parsers.put(new FileInfo(FileVersion.CL4, FileType.APP_SEND), appSendParser.proxy());
         parsers.put(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND), changeSendParser.proxy());
 
-        analyzer = new FileAnalyzer((HeaderLocator) headerLocator.proxy());
-        analyzer.setParsers(parsers);
+        analyzer = new ShuntFileAnalyzer((HeaderLocator) headerLocator.proxy());
+        analyzer.setParserRegistry((ParserRegistry) parserRegistry.proxy());
     }
 
     public void test_analyze_HeaderNotFound() {
@@ -61,6 +65,8 @@ public class FileAnalyzerTest extends MockObjectTestCase {
     public void test_analyze_HeaderFound_ParsedByAllParsers_WithoutSuccess() {
         headerLocator.expects(once()).method("locate").with(eq(INPUT)).will(returnValue(HEADER));
 
+        parserRegistry.expects(once()).method("parsers").will(returnValue(Arrays.asList(new Object[]{appSendParser.proxy(), changeSendParser.proxy()})));
+
         appSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createBadResult()));
         changeSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createBadResult()));
 
@@ -70,8 +76,10 @@ public class FileAnalyzerTest extends MockObjectTestCase {
     public void test_analyze_HeaderFound_ParsedByAnotherParser() {
         headerLocator.expects(once()).method("locate").with(eq(INPUT)).will(returnValue(HEADER));
 
+        parserRegistry.expects(once()).method("parsers").will(returnValue(Arrays.asList(new Object[]{appSendParser.proxy(), changeSendParser.proxy()})));
+
         appSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createBadResult()));
-        changeSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createGoodResult()));
+        changeSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createGoodResult(new FileInfo(FileVersion.CL4, FileType.CHANGE_SEND))));
 
         FileInfo fileInfo = analyzer.analyze(INPUT);
 
@@ -83,7 +91,9 @@ public class FileAnalyzerTest extends MockObjectTestCase {
     public void test_analyze_HeaderFound_ParserByFirstParser() {
         headerLocator.expects(once()).method("locate").with(eq(INPUT)).will(returnValue(HEADER));
 
-        appSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createGoodResult()));
+        parserRegistry.expects(once()).method("parsers").will(returnValue(Arrays.asList(new Object[]{appSendParser.proxy()})));
+
+        appSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(returnValue(createGoodResult(new FileInfo(FileVersion.CL4, FileType.APP_SEND))));
 
         FileInfo fileInfo = analyzer.analyze(INPUT);
 
@@ -94,6 +104,8 @@ public class FileAnalyzerTest extends MockObjectTestCase {
 
     public void test_analyze_HeaderFound_ParserThrowsIOException() {
         headerLocator.expects(once()).method("locate").with(eq(INPUT)).will(returnValue(HEADER));
+
+        parserRegistry.expects(once()).method("parsers").will(returnValue(Arrays.asList(new Object[]{appSendParser.proxy()})));
 
         IOException error = new IOException();
         appSendParser.expects(once()).method("parse").with(isA(RecordReader.class)).will(throwException(error));
@@ -106,9 +118,9 @@ public class FileAnalyzerTest extends MockObjectTestCase {
         }
     }
 
-    private ParseResult createGoodResult() {
+    private ParseResult createGoodResult(FileInfo fileInfo) {
         ParseResult result = new ParseResult();
-        result.addRecord("GOOD");
+        result.addRecord(fileInfo);
         return result;
     }
 
@@ -116,6 +128,17 @@ public class FileAnalyzerTest extends MockObjectTestCase {
         ParseResult badResult = new ParseResult();
         badResult.addPartialRecord(new BadRecord(new byte[0]));
         return badResult;
+    }
+
+
+    private static final class ShuntFileAnalyzer extends FileAnalyzer {
+        private ShuntFileAnalyzer(HeaderLocator headerLocator) {
+            super(headerLocator);
+        }
+
+        protected void applyToParser(RecordParser parser) {
+
+        }
     }
 
 }

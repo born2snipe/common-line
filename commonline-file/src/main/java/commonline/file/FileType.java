@@ -39,6 +39,10 @@ public class FileType {
         return description;
     }
 
+    public String getIdentifierName() {
+        return identifierName;
+    }
+
     public static FileType evaluate(String identifier) {
         return (FileType) types.get(identifier);
     }
