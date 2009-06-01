@@ -72,8 +72,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
 
@@ -136,12 +136,12 @@
                         </executions>
                         <configuration>
                             <keystore>${keystore}</keystore>
-                            <dname>cn=code.google.com/p/common-line, ou=None, L=West Des Moines, ST=IA, o=common-line,
-                                c=US
+                            <dname>cn=${artifactId}, ou=None, L=West Des Moines, ST=IA, o=${artifactId}, c=US
                             </dname>
-                            <keypass>c0mm0nl1n3</keypass>
-                            <storepass>c0mm0nl1n3</storepass>
-                            <alias>commonline</alias>
+                            <keypass>${artifactId}</keypass>
+                            <storepass>${artifactId}</storepass>
+                            <alias>${artifactId}</alias>
+                            <validity>3650</validity>
                         </configuration>
                     </plugin>
                     <plugin>
@@ -159,13 +159,13 @@
                         <configuration>
                             <mainClass>commonline.query.gui.Frame</mainClass>
                             <keystore>${keystore}</keystore>
-                            <keypass>c0mm0nl1n3</keypass>
-                            <storepass>c0mm0nl1n3</storepass>
-                            <alias>commonline</alias>
+                            <keypass>${artifactId}</keypass>
+                            <storepass>${artifactId}</storepass>
+                            <alias>${artifactId}</alias>
                             <offlineAllowed>true</offlineAllowed>
                             <allPermissions>true</allPermissions>
                             <j2seVersion>1.6+</j2seVersion>
-                            <codebase>http://common-line.googlecode.com/svn/trunk/webstart</codebase>
+                            <codebase>http://common-line.googlecode.com/svn/trunk/webstart/query-tool</codebase>
                             <vendor>http://code.google.com/p/common-line</vendor>
                             <homepage>http://code.google.com/p/common-line</homepage>
                             <description>A tool that allows you to run queries against commonline files.</description>

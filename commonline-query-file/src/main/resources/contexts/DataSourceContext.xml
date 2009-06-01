@@ -38,6 +38,8 @@
         <property name="layoutTableInfoFactory" ref="layoutTableInfoFactory"/>
         <property name="parsers">
             <list>
+                <bean class="commonline.cl5.appsend.parser.AppSendParser"/>
+                <bean class="commonline.cl5.changesend.parser.ChangeSendParser"/>
             </list>
         </property>
     </bean>
@@ -71,6 +73,8 @@
                                 <value>.</value>
                                 <value>'</value>
                                 <value>-</value>
+                                <value>’</value>
+                                <value>,</value>
                             </list>
                         </property>
                         <property name="replacements">
@@ -82,6 +86,13 @@
                             <list>
                                 <value>filler</value>
                                 <value>disbursement number</value>
+                                <value>disbursement date</value>
+                                <value>disbursement amount</value>
+                                <value>disbursement identification number</value>
+                                <value>RETURN TO LENDER DATE</value>
+                                <value>RETURN TO LENDER Amount</value>
+                                <value>PREVIOUSLY REPORTED RETURN TO LENDER DATE</value>
+                                <value>PREVIOUSLY REPORTED RETURN TO LENDER Amount</value>
                             </list>
                         </property>
                     </bean>
@@ -107,6 +118,8 @@
                 <entry key="commonline.cl4.appsend.parser.AppSendParser" value="APPSEND"/>
                 <entry key="commonline.cl4.changesend.parser.ChangeSendParser" value="CHANGESEND"/>
                 <entry key="commonline.cl4.disbursement.parser.DisbursementParser" value="DISBURSEMENT"/>
+                <entry key="commonline.cl5.appsend.parser.AppSendParser" value="APPSEND"/>
+                <entry key="commonline.cl5.changesend.parser.ChangeSendParser" value="CHANGESEND"/>
             </map>
         </property>
     </bean>

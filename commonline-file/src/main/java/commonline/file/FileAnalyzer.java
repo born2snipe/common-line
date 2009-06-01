@@ -16,8 +16,11 @@ import commonline.file.parser.ParserRegistry;
 import commonline.file.util.FileTypeValueConverter;
 import commonline.file.util.FileVersionValueConverter;
 import flapjack.io.LineRecordReader;
+import flapjack.layout.RecordLayout;
 import flapjack.model.ObjectMapping;
 import flapjack.model.ObjectMappingStore;
+import flapjack.model.RecordFactory;
+import flapjack.model.SameRecordFactoryResolver;
 import flapjack.parser.ParseResult;
 import flapjack.parser.RecordParser;
 import flapjack.parser.RecordParserImpl;
@@ -84,9 +87,18 @@ public class FileAnalyzer {
         RecordParserImpl parserImpl = (RecordParserImpl) parser;
         parserImpl.setObjectMappingStore(objectMappingStore);
         parserImpl.setTypeConverter(typeConverter);
+        parserImpl.setRecordFactoryResolver(new SameRecordFactoryResolver(FileInfoFactory.class));
+        parserImpl.setIgnoreUnmappedFields(true);
     }
 
     protected void setParserRegistry(ParserRegistry parserRegistry) {
         this.parserRegistry = parserRegistry;
+    }
+    
+    public static final class FileInfoFactory implements RecordFactory {
+		public Object build(RecordLayout arg0) {
+			return new FileInfo();
+		}
+    	
     }
 }

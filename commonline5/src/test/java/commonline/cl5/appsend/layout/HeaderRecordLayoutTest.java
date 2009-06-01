@@ -46,12 +46,12 @@ public class HeaderRecordLayoutTest extends AbstractRecordLayoutTestCase {
         assertText("10", "File Identifier Code", 70, 5);
         assertText("11", "Source Name", 75, 32);
         assertText("12", "Source ID", 107, 8);
-        assertText("13", "Filler2", 115, 2);
+        assertText("13", "Filler", 115, 2);
         assertText("14", "Source Non-ED Branch ID", 117, 4);
         assertText("15", "Source Type Code", 121, 1);
         assertText("16", "Recipient Name", 122, 32);
         assertText("17", "Recipient ID", 154, 8);
-        assertText("18", "Filler2", 162, 2);
+        assertText("18", "Filler", 162, 2);
         assertText("19", "Recipient Non-ED Branch ID", 164, 4);
         assertText("20", "Media Type Code", 168, 1);
         assertText("21", "Filler", 169, 9);

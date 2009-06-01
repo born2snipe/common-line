@@ -12,12 +12,14 @@
  */
 package commonline.core.layout;
 
+import flapjack.layout.TextPaddingDescriptor;
+
 
 public class IntegerFieldDefinition extends flapjack.cobol.layout.IntegerFieldDefinition implements CommonlineFieldDefinition {
     private String id;
 
     public IntegerFieldDefinition(String id, String name, int position, String pattern) {
-        super(name, position, pattern);
+        super(name, position, pattern, new TextPaddingDescriptor(TextPaddingDescriptor.Padding.LEFT, '0'));
         this.id = id;
     }
 

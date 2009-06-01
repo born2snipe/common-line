@@ -32,12 +32,12 @@ public class HeaderRecordLayout extends AbstractCommonLineRecordLayout {
         field("10", "File Identifier Code", "X(5)");
         field("11", "Source Name", "X(32)");
         field("12", "Source ID", "X(8)");
-        field("13", "Filler2", "X(2)");
+        field("13", "Filler", "X(2)");
         field("14", "Source Non-ED Branch ID", "X(4)");
         field("15", "Source Type Code", "X(1)");
         field("16", "Recipient Name", "X(32)");
         field("17", "Recipient ID", "X(8)");
-        field("18", "Filler2", "X(2)");
+        field("18", "Filler", "X(2)");
         field("19", "Recipient Non-ED Branch ID", "X(4)");
         field("20", "Media Type Code", "X(1)");
         field("21", "Filler", "X(9)");
