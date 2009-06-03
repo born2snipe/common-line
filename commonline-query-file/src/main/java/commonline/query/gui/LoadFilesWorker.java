@@ -75,6 +75,7 @@ public class LoadFilesWorker extends SwingWorker<Void, Void> {
                 consoleManager.println("Parsing...");
                 RecordParserImpl parser = (RecordParserImpl) parserRegistry.get(fileInfo);
                 parser.setRecordFactoryResolver(recordFactoryResolver);
+                parser.setRecordFieldParser(fieldParser);
                 parser.setObjectMapper(new ObjectMapper() {
                     public void mapOnTo(Object parsedFields, Object domain) throws ObjectMappingException {
                         CommonLineRecord record = (CommonLineRecord) domain;

@@ -46,8 +46,8 @@ public class FileAnalyzer {
         typeConverter.registerConverter(new FileVersionValueConverter());
 
         ObjectMapping fileInfoMapping = new ObjectMapping(FileInfo.class);
-        fileInfoMapping.field("10", "version", FileVersionValueConverter.class);
-        fileInfoMapping.field("9", "type", FileTypeValueConverter.class);
+        fileInfoMapping.field("File Identifier Code", "version", FileVersionValueConverter.class);
+        fileInfoMapping.field("File Identifier Name", "type", FileTypeValueConverter.class);
         objectMappingStore.add(fileInfoMapping);
     }
 
@@ -64,7 +64,8 @@ public class FileAnalyzer {
                 applyToParser(parser);
                 ParseResult result = parser.parse(reader);
                 if (result.getRecords().size() > 0) {
-                    return (FileInfo) result.getRecords().get(0);
+                	FileInfo info = (FileInfo) result.getRecords().get(0);
+                    return info;
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
