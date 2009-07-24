@@ -13,8 +13,10 @@
 package commonline.query.gui;
 
 import commonline.core.layout.CommonlineFieldDefinition;
-import commonline.file.FileAnalyzer;
+import commonline.file.HeaderRecordFileAnalyzer;
 import commonline.file.FileInfo;
+import commonline.file.FileAnalyzer;
+import commonline.file.CompositeFileAnalyzer;
 import commonline.file.parser.ParserRegistry;
 import commonline.query.model.CommonLineRecord;
 import commonline.query.model.CommonlineRecordFactory;
@@ -39,7 +41,7 @@ import java.util.Map;
 
 
 public class LoadFilesWorker extends SwingWorker<Void, Void> {
-    private FileAnalyzer fileAnalyzer = new FileAnalyzer();
+    private CompositeFileAnalyzer fileAnalyzer = new CompositeFileAnalyzer();
     private ParserRegistry parserRegistry = new ParserRegistry();
     private ByteMapRecordFieldParser fieldParser;
     private SameRecordFactoryResolver recordFactoryResolver;

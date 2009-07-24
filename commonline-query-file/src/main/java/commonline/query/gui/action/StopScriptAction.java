@@ -20,7 +20,7 @@ import java.awt.event.KeyEvent;
 public class StopScriptAction extends AbtractMacableAction {
     public StopScriptAction(boolean isMac) {
         super("Stop", "Stop the current query", KeyEvent.VK_S, isMac);
-        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("icon_stop.gif")));
+        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("ch_cancel.gif")));
     }
 
     public void actionPerformed(ActionEvent actionEvent) {

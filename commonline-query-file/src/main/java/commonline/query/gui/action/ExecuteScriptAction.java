@@ -35,7 +35,7 @@ public class ExecuteScriptAction extends AbtractMacableAction {
 
     public ExecuteScriptAction(boolean isMac, List dataSources) {
         super("Execute...", "Execute the current query", KeyEvent.VK_E, isMac);
-        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("icon_run.gif")));
+        putValue(Action.SMALL_ICON, new ImageIcon(getClass().getClassLoader().getResource("run_exc.png")));
         this.dataSources = dataSources;
     }
 
