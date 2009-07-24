@@ -12,18 +12,19 @@
  */
 package commonline.file;
 
-import java.io.InputStream;
 import java.io.File;
 
-/**
- * Created by IntelliJ IDEA.
- * User: dan
- * Date: Jul 23, 2009
- * Time: 9:53:30 PM
- * To change this template use File | Settings | File Templates.
- */
-public interface FileAnalyzer {
-    FileInfo analyze(InputStream input) throws IllegalArgumentException;
 
-    FileInfo analyze(File file) throws IllegalArgumentException;
+public class CompositeFileAnalyzer {
+    private FileAnalyzer[] analyzers = new FileAnalyzer[]{new HeaderRecordFileAnalyzer(), new RecordLengthFileAnalyzer()};
+
+    public FileInfo analyze(File file) throws IllegalArgumentException {
+        for (int i = 0; i < analyzers.length; i++) {
+            FileInfo info = analyzers[i].analyze(file);
+            if (info != null) {
+                return info;
+            }
+        }
+        return null;
+    }
 }

@@ -27,11 +27,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 
-public class FileAnalyzerTest extends MockObjectTestCase {
+public class HeaderRecordFileAnalyzerTest extends MockObjectTestCase {
     private static final ByteArrayInputStream INPUT = new ByteArrayInputStream(new byte[0]);
     private static final String HEADER = "HEADER";
     private Mock headerLocator;
-    private FileAnalyzer analyzer;
+    private HeaderRecordFileAnalyzer analyzer;
     private Mock appSendParser;
     private Mock changeSendParser;
     private Mock parserRegistry;
@@ -131,7 +131,7 @@ public class FileAnalyzerTest extends MockObjectTestCase {
     }
 
 
-    private static final class ShuntFileAnalyzer extends FileAnalyzer {
+    private static final class ShuntFileAnalyzer extends HeaderRecordFileAnalyzer {
         private ShuntFileAnalyzer(HeaderLocator headerLocator) {
             super(headerLocator);
         }
